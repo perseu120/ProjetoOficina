@@ -1,7 +1,7 @@
-package com.controler;
+package controller;
 
-import com.view.JPanelLogin;
-import com.view.JPanelPrincipal;
+import view.JPanelLogin;
+import view.JPanelPrincipal;
 
 public class ControlMain {
 	

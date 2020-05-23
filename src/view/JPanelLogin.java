@@ -8,7 +8,7 @@
  * and open the template in the editor.
  */
 
-package com.view;
+package view;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
