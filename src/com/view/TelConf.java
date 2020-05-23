@@ -1,0 +1,171 @@
+package com.view;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import java.awt.Dimension;
+import java.awt.Frame;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author willian Lago
+ */
+public class TelConf {
+    // pega a resolução do sistema
+    Toolkit resolucao = Toolkit.getDefaultToolkit(); 
+    Dimension setResolucao = resolucao.getScreenSize();
+    int width = (int)setResolucao.getWidth();
+    int height = (int)setResolucao.getHeight();
+    
+    //Deixa jFrom em tela cheia
+    public void fullScree(Frame tela){
+        tela.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    // Renderiza a jlabel e o icon na resolução da tela do sistema.
+    public void imageLabelRend(JLabel funTel, String img){  
+        //seta a label de fundo na dimensão da tela
+        funTel.setSize(width, height);
+        //seta a imagem do tamanho da label de fundo de tela 
+         try {
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(img));    
+            Image image = imageIcon.getImage().getScaledInstance(width, height, 
+                    Image.SCALE_DEFAULT);
+            funTel.setIcon(new ImageIcon(image));
+            
+         } catch (Exception e) {
+             System.out.println("ImageLabelRend Erro");
+         }        
+    }
+    
+    // Renderiza a jlabel e o icon na resolução da JFrame.
+    public void imageLabelRend(JFrame frame, JLabel funTel, String img){  
+        int wdt = frame.getWidth();
+        int hgt = frame.getHeight();
+        //seta a label de fundo na dimensão da tela
+        funTel.setSize(wdt, hgt);
+        //seta a imagem do tamanho da label de fundo de tela 
+         try {
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(img));    
+            Image image = imageIcon.getImage().getScaledInstance(wdt, hgt, 
+                    Image.SCALE_DEFAULT);
+            funTel.setIcon(new ImageIcon(image));
+            
+         } catch (Exception e) {
+             System.out.println("ImageLabelRend Erro");
+         }        
+    }
+    
+    // Renderiza a jlabel e o icon na resolução da JPanel.
+    public void imageLabelRend(JPanel panel, JLabel funTel, String img){  
+        int wdt = panel.getWidth();
+        int hgt = panel.getHeight();
+        //seta a label de fundo na dimensão da tela
+        funTel.setSize(wdt, hgt);
+        //seta a imagem do tamanho da label de fundo de tela 
+         try {
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(img));
+            System.out.println("ImageLabelRend"+wdt+ hgt);
+            Image image = imageIcon.getImage().getScaledInstance(wdt, hgt, 
+                    Image.SCALE_DEFAULT);
+            funTel.setIcon(new ImageIcon(image));
+            
+         } catch (Exception e) {
+             System.out.println("ImageLabelRend Erro"+wdt+ hgt);
+         }        
+    }
+    
+    // Seta e renderiza o icon  de uma jlabel na resolução inserida.
+    public void imageRend(JLabel label, String img, int width, int height){
+        try {
+            ImageIcon imageIcon1 = new ImageIcon(getClass().getResource(img));
+            // Redimensiona a imagem com a resolução width X hight.
+            Image image1 = imageIcon1.getImage().getScaledInstance(width, height,
+                    Image.SCALE_DEFAULT);
+            // Seta o icon na JLabel.
+        label.setIcon(new ImageIcon(image1));
+        
+        } catch (Exception e) {
+            System.out.println("Erro");
+        }                  
+    }  
+    // Centraliza uma JPanel no centro da tela, de acordo com a resolução do 
+    // sistema e o tamanho do JPanel. (verificar forma de centralizar no JFrame).  
+    public void centralizeJPanel(JPanel pane, int wdt, int hgt){
+        int x = 0;
+        int y = 0;
+        // Cálculo para determinar a posição "x" e "y" do JPanel.
+        x = (width/2) - (wdt/2);
+        y = (height/2) - (hgt/2);
+        // Setando a posição do JPanel.
+        pane.setBounds(x, y, wdt, hgt);
+        // A linha de código abaixo serve de apoio para depuração.
+        System.out.println(x+" "+y+" "+wdt+" "+hgt);
+    }
+    
+    // Adápta o JPanel no centro da tela e diminui o tamanho de com o tamanho do
+    // JFrame
+    // obs: o campo "float prc" é para ser usado quando nescecitar variar a 
+    // porcentagem.
+    public void centralizeJPanel(JFrame frame, JPanel panel, int width,
+            int height/*, float prc*/){
+        float prc = 0.75f;
+        int wdt = frame.getWidth();
+        int hgt = frame.getHeight();
+        int wdt_pct = (int)(width * prc);
+        int hgt_pct = (int)(height * prc);
+        int x;
+        int y;
+        //se a resolução da tela for maior que 1920 x 1080
+        if(wdt > 1900 || hgt > 1080){
+            x = (wdt/2) - (width/2);
+            y = (hgt/2) - (height/2);
+            // Centraliza o JPanel
+            panel.setBounds(x, y, width, height);
+            //a linha a baixo serve de auxilio para erros na renderizaçaõ
+            System.out.println("width = "+width+" height = "+height);
+        // Se a resolução da tela for menor que 1900 x 1080
+        }else{
+            x = (wdt/2) - (wdt_pct/2);
+            y = (hgt/2) - (hgt_pct/2);
+            // Centraliza e diminui o painel proporcionalmente a porcentagem
+            // inserida no "prc"
+            panel.setBounds(x, y, wdt_pct, hgt_pct);
+            //a linha a baixo serve de auxilio para erros na renderizaçaõ
+            System.out.println("width else = "+(width * prc)+" height = "+(height * prc));
+        }
+    }
+    
+    // Centraliza um JPanel no centro de um JFrame
+    public void adaptar(JFrame frame, JPanel panel, int width, int height){
+        int wdt = frame.getWidth();
+        int hgt = frame.getHeight();
+        // Cálculo para determinar a posição "x" e "y" do JPanel.
+        int x = (wdt/2) - (width/2);
+        int y = (hgt/2) - (height/2);
+        // Setando a posição do JPanel.
+        panel.setBounds(x, y, width, height);
+        // A linha de código abaixo serve de apoio para depuração.
+        System.out.format("Resolução %s X %s\n",wdt,hgt);
+    }
+    
+    // O método a baixo faz com que a o componete "JPanel" se adapte a resolução
+    // do sistema. (em faze de criação).
+    public void renderizaJPanel(JPanel pane){
+         pane.setBounds(0, 0, width, height);
+         //a linha a baixo serve de auxilio para erros na renderizaçaõ
+         System.out.println("width = "+width+" height = "+height);
+    }
+    
+}
