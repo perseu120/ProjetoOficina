@@ -11,15 +11,42 @@
 package view;
 
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author willi
  */
-public class JPanelLogin extends javax.swing.JFrame {
+public class JPanelLogin extends JFrame {
 
+	
+    // declaracao de variaveis inicio
+    JButton btnEntrar;
+    JButton jButton1;
+    JLabel jLabel2;
+    JPanel jPanel1;
+    JPanel jPanel2;
+    JPanel jPanel3;
+    JPanel jPanel4;
+    JLabel lblIcon;
+    JLabel lblImageFrame;
+    JLabel lblImagemPnl;
+    JLabel jLabelSenha;
+    JLabel lblSenhaErro;
+    JLabel lblUsuario;
+    JPanel pnlLogin;
+    JPanel pnlPrincipalFrame;
+    JTextField txfUsuario;
+    JPasswordField txfsenha;
+    // declaracao de variaveis final
+	
    
     /** Creates new form TelaLogin */
     // Inicializando atributos com os caminhos das imagens na pasta.
@@ -48,23 +75,23 @@ public class JPanelLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        pnlPrincipalFrame = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        pnlLogin = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        lblIcon = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        lblUsuario = new javax.swing.JLabel();
-        txfUsuario = new javax.swing.JTextField();
-        lblSenha = new javax.swing.JLabel();
-        txfsenha = new javax.swing.JPasswordField();
-        jPanel3 = new javax.swing.JPanel();
-        lblSenhaErro = new javax.swing.JLabel();
-        btnEntrar = new javax.swing.JButton();
-        lblImagemPnl = new javax.swing.JLabel();
-        lblImageFrame = new javax.swing.JLabel();
+        jButton1 = new JButton();
+        jLabel2 = new JLabel();
+        pnlPrincipalFrame = new JPanel();
+        jPanel4 = new JPanel();
+        pnlLogin = new JPanel();
+        jPanel1 = new JPanel();
+        lblIcon = new JLabel();
+        jPanel2 = new JPanel();
+        lblUsuario = new JLabel();
+        txfUsuario = new JTextField();
+        jLabelSenha = new JLabel();
+        txfsenha = new JPasswordField();
+        jPanel3 = new JPanel();
+        lblSenhaErro = new JLabel();
+        btnEntrar = new JButton();
+        lblImagemPnl = new JLabel();
+        lblImageFrame = new JLabel();
 
         jButton1.setText("jButton1");
 
@@ -123,10 +150,10 @@ public class JPanelLogin extends javax.swing.JFrame {
         txfUsuario.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txfUsuario.setPreferredSize(new java.awt.Dimension(205, 55));
 
-        lblSenha.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
-        lblSenha.setForeground(new java.awt.Color(204, 204, 204));
-        lblSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSenha.setText("Senha:");
+        jLabelSenha.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
+        jLabelSenha.setForeground(new java.awt.Color(204, 204, 204));
+        jLabelSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelSenha.setText("Senha:");
 
         txfsenha.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txfsenha.setPreferredSize(new java.awt.Dimension(205, 55));
@@ -150,7 +177,7 @@ public class JPanelLogin extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblUsuario)
-                    .addComponent(lblSenha))
+                    .addComponent(jLabelSenha))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txfsenha, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
@@ -167,7 +194,7 @@ public class JPanelLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSenha))
+                    .addComponent(jLabelSenha))
                 .addGap(32, 32, 32))
         );
 
@@ -278,24 +305,6 @@ public class JPanelLogin extends javax.swing.JFrame {
     }
     
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton btnEntrar;
-    javax.swing.JButton jButton1;
-    javax.swing.JLabel jLabel2;
-    javax.swing.JPanel jPanel1;
-    javax.swing.JPanel jPanel2;
-    javax.swing.JPanel jPanel3;
-    javax.swing.JPanel jPanel4;
-    javax.swing.JLabel lblIcon;
-    javax.swing.JLabel lblImageFrame;
-    javax.swing.JLabel lblImagemPnl;
-    javax.swing.JLabel lblSenha;
-    javax.swing.JLabel lblSenhaErro;
-    javax.swing.JLabel lblUsuario;
-    javax.swing.JPanel pnlLogin;
-    javax.swing.JPanel pnlPrincipalFrame;
-    javax.swing.JTextField txfUsuario;
-    javax.swing.JPasswordField txfsenha;
-    // End of variables declaration//GEN-END:variables
+
 
 }
