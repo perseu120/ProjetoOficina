@@ -28,19 +28,19 @@ public class JPanelLogin extends JFrame {
 
 	
     // declaracao de variaveis inicio
-    JButton btnEntrar;
+    JButton jButonEntrar;
     JButton jButton1;
     JLabel jLabel2;
     JPanel jPanel1;
     JPanel jPanel2;
     JPanel jPanel3;
     JPanel jPanel4;
-    JLabel lblIcon;
-    JLabel lblImageFrame;
-    JLabel lblImagemPnl;
+    JLabel jLabelIcon;
+    JLabel jLabelImageFrame;
+    JLabel jLabelImagemPnl;
     JLabel jLabelSenha;
-    JLabel lblSenhaErro;
-    JLabel lblUsuario;
+    JLabel jLabelSenhaErro;
+    JLabel jLabelUsuario;
     JPanel pnlLogin;
     JPanel pnlPrincipalFrame;
     JTextField txfUsuario;
@@ -81,17 +81,17 @@ public class JPanelLogin extends JFrame {
         jPanel4 = new JPanel();
         pnlLogin = new JPanel();
         jPanel1 = new JPanel();
-        lblIcon = new JLabel();
+        jLabelIcon = new JLabel();
         jPanel2 = new JPanel();
-        lblUsuario = new JLabel();
+        jLabelUsuario = new JLabel();
         txfUsuario = new JTextField();
         jLabelSenha = new JLabel();
         txfsenha = new JPasswordField();
         jPanel3 = new JPanel();
-        lblSenhaErro = new JLabel();
-        btnEntrar = new JButton();
-        lblImagemPnl = new JLabel();
-        lblImageFrame = new JLabel();
+        jLabelSenhaErro = new JLabel();
+        jButonEntrar = new JButton();
+        jLabelImagemPnl = new JLabel();
+        jLabelImageFrame = new JLabel();
 
         jButton1.setText("jButton1");
 
@@ -125,16 +125,16 @@ public class JPanelLogin extends JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setOpaque(false);
 
-        lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/iconPrj.png"))); // NOI18N
-        lblIcon.setToolTipText("");
-        lblIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        lblIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblIcon.setInheritsPopupMenu(false);
-        lblIcon.setMinimumSize(new java.awt.Dimension(110, 110));
-        lblIcon.setPreferredSize(new java.awt.Dimension(380, 110));
-        lblIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(lblIcon);
+        jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/iconPrj.png"))); // NOI18N
+        jLabelIcon.setToolTipText("");
+        jLabelIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelIcon.setInheritsPopupMenu(false);
+        jLabelIcon.setMinimumSize(new java.awt.Dimension(110, 110));
+        jLabelIcon.setPreferredSize(new java.awt.Dimension(380, 110));
+        jLabelIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(jLabelIcon);
 
         pnlLogin.add(jPanel1, java.awt.BorderLayout.NORTH);
 
@@ -142,10 +142,10 @@ public class JPanelLogin extends JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(380, 220));
         jPanel2.setRequestFocusEnabled(false);
 
-        lblUsuario.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(204, 204, 204));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsuario.setText("Usuário:");
+        jLabelUsuario.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
+        jLabelUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelUsuario.setText("Usuário:");
 
         txfUsuario.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txfUsuario.setPreferredSize(new java.awt.Dimension(205, 55));
@@ -161,9 +161,9 @@ public class JPanelLogin extends JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER){
                     if(txfsenha.getText().equals("654987")){
-                        btnEntrar.doClick();
+                    	jButonEntrar.doClick();
                     }else{
-                        lblSenhaErro.setVisible(true);
+                    	jLabelSenhaErro.setVisible(true);
                     }
                 }
             }
@@ -176,7 +176,7 @@ public class JPanelLogin extends JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUsuario)
+                    .addComponent(jLabelUsuario)
                     .addComponent(jLabelSenha))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +190,7 @@ public class JPanelLogin extends JFrame {
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsuario))
+                    .addComponent(jLabelUsuario))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,19 +203,19 @@ public class JPanelLogin extends JFrame {
         jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new java.awt.Dimension(380, 105));
 
-        lblSenhaErro.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        lblSenhaErro.setForeground(new java.awt.Color(255, 0, 0));
-        lblSenhaErro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSenhaErro.setText("Usuário e/ou senha iconrretos");
-        lblSenhaErro.setToolTipText("");
-        lblSenhaErro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblSenhaErro.setPreferredSize(new java.awt.Dimension(380, 35));
-        lblSenhaErro.setVisible(false);
+        jLabelSenhaErro.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabelSenhaErro.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelSenhaErro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSenhaErro.setText("Usuário e/ou senha iconrretos");
+        jLabelSenhaErro.setToolTipText("");
+        jLabelSenhaErro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelSenhaErro.setPreferredSize(new java.awt.Dimension(380, 35));
+        jLabelSenhaErro.setVisible(false);
 
-        btnEntrar.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
-        btnEntrar.setText("Entrar");
-        btnEntrar.setBorder(null);
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+        jButonEntrar.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
+        jButonEntrar.setText("Entrar");
+        jButonEntrar.setBorder(null);
+        jButonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
@@ -226,19 +226,19 @@ public class JPanelLogin extends JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(lblSenhaErro, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addComponent(jLabelSenhaErro, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(lblSenhaErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelSenhaErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -248,17 +248,17 @@ public class JPanelLogin extends JFrame {
         pnlLogin.setBounds(0, 0, 390, 430);
         pnlLogin.getAccessibleContext().setAccessibleName("");
 
-        lblImagemPnl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/funLogin.png"))); // NOI18N
-        jPanel4.add(lblImagemPnl);
-        lblImagemPnl.setBounds(0, 0, 130, 120);
+        jLabelImagemPnl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/funLogin.png"))); // NOI18N
+        jPanel4.add(jLabelImagemPnl);
+        jLabelImagemPnl.setBounds(0, 0, 130, 120);
 
         pnlPrincipalFrame.add(jPanel4, new java.awt.GridBagConstraints());
 
         getContentPane().add(pnlPrincipalFrame);
         pnlPrincipalFrame.getAccessibleContext().setAccessibleDescription("");
 
-        lblImageFrame.setRequestFocusEnabled(false);
-        getContentPane().add(lblImageFrame);
+        jLabelImageFrame.setRequestFocusEnabled(false);
+        getContentPane().add(jLabelImageFrame);
 
         getAccessibleContext().setAccessibleParent(pnlPrincipalFrame);
 
@@ -285,8 +285,8 @@ public class JPanelLogin extends JFrame {
     private void inicializeAplication(){
         // As linhas abaixo setam as dimensoes dos icones das JLabel's.
         telaConf.fullScree(JPanelLogin.this);
-        telaConf.imageRend(this.lblIcon, img2, 100, 100);
-        telaConf.imageLabelRend(this.pnlLogin, this.lblImagemPnl, img1);
+        telaConf.imageRend(this.jLabelIcon, img2, 100, 100);
+        telaConf.imageLabelRend(this.pnlLogin, this.jLabelImagemPnl, img1);
         this.imgJFrameLogin(true);
     }
     
@@ -296,10 +296,10 @@ public class JPanelLogin extends JFrame {
     private void imgJFrameLogin(boolean notIsInicial){
         if(notIsInicial){
             
-            telaConf.imageLabelRend(this.lblImageFrame, img);
+            telaConf.imageLabelRend(this.jLabelImageFrame, img);
         }else{
             //telaConf.imageLabelRend(TelaLogin.this, this.lblImageFrame, img);
-            telaConf.imageLabelRend(this, this.lblImageFrame, img);
+            telaConf.imageLabelRend(this, this.jLabelImageFrame, img);
         }
        
     }
