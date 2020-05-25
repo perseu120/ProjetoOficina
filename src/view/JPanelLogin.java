@@ -28,7 +28,7 @@ public class JPanelLogin extends JFrame {
 
 	
     // declaracao de variaveis inicio
-    JButton jButonEntrar;
+    JButton jButonEntrar = null;
     JButton jButton1;
     JLabel jLabel2;
     JPanel jPanel1;
@@ -50,9 +50,9 @@ public class JPanelLogin extends JFrame {
    
     /** Creates new form TelaLogin */
     // Inicializando atributos com os caminhos das imagens na pasta.
-    final String img = "/com/images/funTel1.jpg";
-    private final String img1 = "/com/images/funLogin.png";
-    private final String img2 = "/com/images/iconPrj.png";
+    final String img = "/images/funTel1.jpg";
+    private final String img1 = "/images/funLogin.png";
+    private final String img2 = "/images/iconPrj.png";
     
     // Cria objeto da classe TelConf.
     TelConf telaConf = new TelConf();    
@@ -89,7 +89,8 @@ public class JPanelLogin extends JFrame {
         txfsenha = new JPasswordField();
         jPanel3 = new JPanel();
         jLabelSenhaErro = new JLabel();
-        jButonEntrar = new JButton();
+        //jButonEntrar = new JButton();
+        getJButtonEntrar();
         jLabelImagemPnl = new JLabel();
         jLabelImageFrame = new JLabel();
 
@@ -126,7 +127,7 @@ public class JPanelLogin extends JFrame {
         jPanel1.setOpaque(false);
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/iconPrj.png"))); // NOI18N
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconPrj.png"))); // NOI18N
         jLabelIcon.setToolTipText("");
         jLabelIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabelIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -157,17 +158,7 @@ public class JPanelLogin extends JFrame {
 
         txfsenha.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txfsenha.setPreferredSize(new java.awt.Dimension(205, 55));
-        txfsenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-                    if(txfsenha.getText().equals("654987")){
-                    	jButonEntrar.doClick();
-                    }else{
-                    	jLabelSenhaErro.setVisible(true);
-                    }
-                }
-            }
-        });
+      
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -212,14 +203,7 @@ public class JPanelLogin extends JFrame {
         jLabelSenhaErro.setPreferredSize(new java.awt.Dimension(380, 35));
         jLabelSenhaErro.setVisible(false);
 
-        jButonEntrar.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
-        jButonEntrar.setText("Entrar");
-        jButonEntrar.setBorder(null);
-        jButonEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
-            }
-        });
+       
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -230,7 +214,7 @@ public class JPanelLogin extends JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(getJButtonEntrar(), javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
@@ -238,17 +222,17 @@ public class JPanelLogin extends JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabelSenhaErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(getJButtonEntrar(), javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pnlLogin.add(jPanel3, java.awt.BorderLayout.SOUTH);
 
         jPanel4.add(pnlLogin);
-        pnlLogin.setBounds(0, 0, 390, 430);
+        pnlLogin.setBounds(0, 0, 390, 433);
         pnlLogin.getAccessibleContext().setAccessibleName("");
 
-        jLabelImagemPnl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/funLogin.png"))); // NOI18N
+        jLabelImagemPnl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/funLogin.png"))); // NOI18N
         jPanel4.add(jLabelImagemPnl);
         jLabelImagemPnl.setBounds(0, 0, 130, 120);
 
@@ -304,7 +288,17 @@ public class JPanelLogin extends JFrame {
        
     }
     
-    
+    public JButton getJButtonEntrar() {
+    	boolean verdadeiro = true;
+    	if(true) {
+    		this.jButonEntrar = new JButton();
+    		jButonEntrar.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
+            jButonEntrar.setText("Entrar");
+            jButonEntrar.setBorder(null);
+    	}
+    	
+    	return jButonEntrar;
+    }
 
 
 }
