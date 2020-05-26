@@ -1,62 +1,61 @@
 package controller;
 
-import javax.swing.JButton;
 import javax.swing.UIManager;
 
 import view.JFramePrincipal;
-import view.test;
 import view.JPanelPrincipal;
 
 public class ControlMain {
 	
+	private static ControlJPanelPrincipal controlJPanelPricipal;
+	
 	private static JFramePrincipal jFramePrincipal;
 	private static JPanelPrincipal jPanelPrincipal;
-	static test test;
 		
 	
 	public static void main(String args[]) {
 		
-		
-		//Verificar a possíbilidade de implementação das linhas de códigos abaixo		
-	    /*
-	     *try {
+		try {
 	      	for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-	        	if ("Windows".equals(info.getName())) {
+	        	if ("Windows".equals(info.getName())) { // Define designer dos componentes ("Windows","Windows Classic","Nimbus","Metal","CDE/Motif")
 	            	UIManager.setLookAndFeel(info.getClassName());
 	                break;
 	            }
 	        }
-	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+	     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
 	           
-	      }
-	      *
-	      */
-		getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
+	     }
+	      
+		 getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
+		 getControlJPanelPricipal();
 	}
 	
 	
+	
+	
+
+	public static ControlJPanelPrincipal getControlJPanelPricipal() {
+		if(controlJPanelPricipal == null){
+			controlJPanelPricipal = new ControlJPanelPrincipal(getjFramePrincipal(),getjPanelPrincipal());
+		}
+		return controlJPanelPricipal;}
+
+
+
 
 
 	public static JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null){
 			jFramePrincipal = new JFramePrincipal();
 		}
-		return jFramePrincipal;}
+		return jFramePrincipal;
+	}
 	
-	public static test getTest() {
-		if(test == null){
-			test = new test();
-		}
-		return test;}
-
 
 	public static JPanelPrincipal getjPanelPrincipal() {
 		if(jPanelPrincipal == null){
 			jPanelPrincipal = new JPanelPrincipal();
 		}
-		return jPanelPrincipal;}
-	
-	
-	
-	
+		return jPanelPrincipal;
+	}	
 }
