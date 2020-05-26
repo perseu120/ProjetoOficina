@@ -12,7 +12,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle;
@@ -24,7 +23,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.OverlayLayout;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 
 
 /**
@@ -85,6 +83,7 @@ public class JPanelPrincipal extends JPanel {
 		this.getjButtonGerarOS();
 		this.getjButtonConsultarOS();
 		this.getjPanelJButtonOS();
+		this.getJPanelButtonOSAddComponentes();
 		this.getJButtonOrcamento();
 		this.getjButtonVeiculos();
 		this.getjButtonClientes();
@@ -129,7 +128,7 @@ public class JPanelPrincipal extends JPanel {
 	}	
 	
 	
-	public JPanelPrincipal getJPanelPrincipal() {		
+	public JPanelPrincipal getJPanelPrincipal() { // Retorna os parametros de definições da própia classe
 		this.setBackground(new Color(255, 255, 255));
 		this.setLayout(new BorderLayout());
 		this.setOpaque(false);
@@ -334,10 +333,7 @@ public class JPanelPrincipal extends JPanel {
 		return jButtonConfiguracao;
 	}
 	
-	
-	
-
-	
+		
 	public JButton getjButtonGerarOS() {
 		if(jButtonGerarOS == null){
 			jButtonGerarOS = new JButton();
@@ -357,7 +353,7 @@ public class JPanelPrincipal extends JPanel {
 
 
 	public JButton getjButtonConsultarOS() {
-		if(jButtonConsultarOS == null){
+		if(jButtonConsultarOS == null) {
 			jButtonConsultarOS = new JButton();
 			jButtonConsultarOS.setBackground(new Color(204, 204, 204));
 			jButtonConsultarOS.setFont(new Font("Trebuchet MS", 1, 18)); 
@@ -524,123 +520,51 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	public void getjPanelButtonsAddComponentes(int a, int b, int c) { 
-		/*GroupLayout jPanelButtons_Layout = new GroupLayout(this.getjPanelButtons());
-		this.getjPanelButtons().setLayout(jPanelButtons_Layout);
-		jPanelButtons_Layout.setHorizontalGroup(
-				jPanelButtons_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                .addGroup(jPanelButtons_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                        .addGap(a, b, c)
-                        .addGroup(jPanelButtons_Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(this.getjButtonHome())
-                            .addComponent(this.getjButtonOS())))
-                    .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addComponent(this.getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, 219, 
-                        		GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addGroup(jPanelButtons_Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(this.getJButtonOrcamento())
-                            .addComponent(this.getjButtonVeiculos())))
-                    .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addComponent(this.getjPanelJButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, 219, 
-                        		GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addComponent(this.getjButtonClientes()))
-                    .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addComponent(this.getjButtonFaturamento()))
-                .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addComponent(this.getjButtonAddUsuarios()))
-                .addGroup(jPanelButtons_Layout.createSequentialGroup()
-                    	.addGap(a, b, c)
-                        .addComponent(this.getjButtonConfiguracao())))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        jPanelButtons_Layout.setVerticalGroup(
-            jPanelButtons_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelButtons_Layout.createSequentialGroup()
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonHome())
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonOS())
-                .addGap(0, 0, 0)
-                .addComponent(this.getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(this.getJButtonOrcamento())
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonVeiculos())
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonClientes())
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonFaturamento())
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonAddUsuarios())
-            	.addGap(a, b, c)
-                .addComponent(this.getjButtonConfiguracao())            	
-                .addGap(0, 0, 0)
-                .addComponent(this.getjPanelJButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)                
-				.addContainerGap()));*/
-		
-		
-		
-		
+	public void getjPanelButtonsAddComponentes(int a, int b, int c) {
 		GroupLayout jPanelButtons_Layout = new GroupLayout(this.getjPanelButtons());
 		jPanelButtons_Layout.setHorizontalGroup(
-				jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(jPanelButtons_Layout.createSequentialGroup().addContainerGap()
-						.addGroup(jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
-								.addGroup(jPanelButtons_Layout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(this.getjButtonOS(), GroupLayout.PREFERRED_SIZE, 219,
-												GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjButtonHome(), GroupLayout.PREFERRED_SIZE, 219,
-												GroupLayout.PREFERRED_SIZE))
-								.addComponent(this.getjButtonFaturamento(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getJButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjButtonVeiculos(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjButtonClientes(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjButtonAddUsuarios(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(this.getjPanelJButtonConfiguracao(), GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(32, Short.MAX_VALUE)));
-		jPanelButtons_Layout.setVerticalGroup(jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(jPanelButtons_Layout.createSequentialGroup().addGap(6)
-						.addComponent(this.getjButtonHome(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjButtonOS(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getJButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjButtonVeiculos(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjButtonClientes(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjButtonAddUsuarios(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjButtonFaturamento(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjButtonConfiguracao(), GroupLayout.DEFAULT_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(this.getjPanelJButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addContainerGap()));
+			jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(jPanelButtons_Layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(getjButtonFaturamento(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(getJButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(getjButtonVeiculos(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(getjButtonClientes(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(getjButtonAddUsuarios(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(getjButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(getjPanelJButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(jPanelButtons_Layout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getjButtonOS(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getjButtonHome(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(32, Short.MAX_VALUE))
+		);
+		jPanelButtons_Layout.setVerticalGroup(
+			jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(jPanelButtons_Layout.createSequentialGroup()
+					.addGap(6)
+					.addComponent(getjButtonHome(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjButtonOS(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getJButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjButtonVeiculos(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjButtonClientes(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjButtonAddUsuarios(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjButtonFaturamento(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjButtonConfiguracao(), GroupLayout.DEFAULT_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(getjPanelJButtonConfiguracao(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
 		this.getjPanelButtons().setLayout(jPanelButtons_Layout);
 
 	}
@@ -767,7 +691,6 @@ public class JPanelPrincipal extends JPanel {
 		if(jPanelJButtonOS == null){
 			jPanelJButtonOS = new JPanel();
 			jPanelJButtonOS.setBackground(new Color(0, 0, 0));
-			jPanelJButtonOS.setSize(220,86);
 			jPanelJButtonOS.setRequestFocusEnabled(false);
 			jPanelJButtonOS.setVisible(true);
 		}
