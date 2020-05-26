@@ -1,44 +1,40 @@
 package controller;
 
-import view.JFramePrincipal;
+import javax.swing.JButton;
+import javax.swing.UIManager;
 
+import view.JFramePrincipal;
+import view.test;
 import view.JPanelPrincipal;
 
 public class ControlMain {
 	
 	private static JFramePrincipal jFramePrincipal;
 	private static JPanelPrincipal jPanelPrincipal;
+	static test test;
 		
 	
 	public static void main(String args[]) {
 		
-		getjFramePrincipal();//.alterarJPanel(getjPanelPrincipal());
 		
-		
-		
-		
-		
-		
-		
-		
-	        //Verificar a possíbilidade de implementação das linhas de códigos abaixo
-		/*
-	        try {
-	            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-	                if ("Windows".equals(info.getName())) {
-	                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-	                    break;
-	                }
+		//Verificar a possíbilidade de implementação das linhas de códigos abaixo		
+	    /*
+	     *try {
+	      	for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+	        	if ("Windows".equals(info.getName())) {
+	            	UIManager.setLookAndFeel(info.getClassName());
+	                break;
 	            }
-	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-	            java.util.logging.Logger.getLogger(JPanelPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	        }
-	 
-	        java.awt.EventQueue.invokeLater(() -> { new JPanelLogin().setVisible(true);});
+	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+	           
+	      }
+	      *
+	      */
+		getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
 	}
-	*/
-
-	}
+	
+	
 
 
 	public static JFramePrincipal getjFramePrincipal() {
@@ -46,6 +42,12 @@ public class ControlMain {
 			jFramePrincipal = new JFramePrincipal();
 		}
 		return jFramePrincipal;}
+	
+	public static test getTest() {
+		if(test == null){
+			test = new test();
+		}
+		return test;}
 
 
 	public static JPanelPrincipal getjPanelPrincipal() {
