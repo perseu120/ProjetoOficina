@@ -27,6 +27,7 @@ public class ControlMain {
 	     }
 	      
 		 getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
+<<<<<<< HEAD
 		 getControlJPanelPricipal();
 	}
 	
@@ -43,6 +44,10 @@ public class ControlMain {
 
 
 
+=======
+	}
+	
+>>>>>>> 1f342a547b3d888df5d51ea7e66553e7d69b9ee7
 
 	public static JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null){
