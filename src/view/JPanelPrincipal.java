@@ -84,11 +84,7 @@ public class JPanelPrincipal extends JPanel {
 		this.getjButtonConsultarOS();
 		this.getjPanelJButtonOS();
 		this.getJPanelButtonOSAddComponentes();
-<<<<<<< HEAD
 		this.getjButtonOrcamento();
-=======
-		this.getJButtonOrcamento();
->>>>>>> 1f342a547b3d888df5d51ea7e66553e7d69b9ee7
 		this.getjButtonVeiculos();
 		this.getjButtonClientes();
 		this.getjButtonFaturamento();
@@ -611,11 +607,7 @@ public class JPanelPrincipal extends JPanel {
 					.addContainerGap()
 					.addGroup(jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
 						.addComponent(getjButtonFaturamento(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
 						.addComponent(getjButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-=======
-						.addComponent(getJButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
->>>>>>> 1f342a547b3d888df5d51ea7e66553e7d69b9ee7
 						.addComponent(getjButtonVeiculos(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
 						.addComponent(getjButtonClientes(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
 						.addComponent(getjButtonAddUsuarios(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
@@ -637,11 +629,7 @@ public class JPanelPrincipal extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(getjPanelJButtonOS(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-<<<<<<< HEAD
 					.addComponent(getjButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-=======
-					.addComponent(getJButtonOrcamento(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
->>>>>>> 1f342a547b3d888df5d51ea7e66553e7d69b9ee7
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(getjButtonVeiculos(), GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -728,45 +716,7 @@ public class JPanelPrincipal extends JPanel {
 								.addGap(1, 1, 1).addComponent(this.getjButton11(), GroupLayout.PREFERRED_SIZE, 42,
 										GroupLayout.PREFERRED_SIZE)
 								.addGap(1, 1, 1)));
-	}
-	
-	
-	
-<<<<<<< HEAD
-=======
-	public JPanel getjPanelJButtonOS() {
-		if(jPanelJButtonOS == null){
-			jPanelJButtonOS = new JPanel();
-			jPanelJButtonOS.setBackground(new Color(0, 0, 0));
-			jPanelJButtonOS.setRequestFocusEnabled(false);
-			jPanelJButtonOS.setVisible(true);
-		}
-		return jPanelJButtonOS;
-	}
-	
-
-	public JPanel getjPanelJButtonConfiguracao() {
-		if(jPanelJButtonConfiguracao == null){
-			jPanelJButtonConfiguracao = new JPanel();
-			jPanelJButtonConfiguracao.setBackground(new Color(0, 0, 0));
-			jPanelJButtonConfiguracao.setRequestFocusEnabled(false);
-			jPanelJButtonConfiguracao.setVisible(true);
-		}
-		return jPanelJButtonConfiguracao;
-	}
-	
-	
-	public JPanel getjPanelHomeInicial() {
-		if(jPanelHomeInicial == null){
-			jPanelHomeInicial = new JPanel();
-			jPanelHomeInicial.setLayout(new BorderLayout());		
-			
-		}
-		return jPanelHomeInicial;
-	}
->>>>>>> 1f342a547b3d888df5d51ea7e66553e7d69b9ee7
-	
-		
+	}		
 	
 }
 

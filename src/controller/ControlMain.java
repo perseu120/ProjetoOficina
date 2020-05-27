@@ -2,8 +2,8 @@ package controller;
 
 import javax.swing.UIManager;
 
-import view.JFramePrincipal;
-import view.JPanelPrincipal;
+import view.*;
+;
 
 public class ControlMain {
 	
@@ -11,6 +11,7 @@ public class ControlMain {
 	
 	private static JFramePrincipal jFramePrincipal;
 	private static JPanelPrincipal jPanelPrincipal;
+	private static JPanelLogin jPanelLogin;
 		
 	
 	public static void main(String args[]) {
@@ -26,12 +27,9 @@ public class ControlMain {
 	           
 	     }
 	      
-		 getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
-<<<<<<< HEAD
+		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
 		 getControlJPanelPricipal();
 	}
-	
-	
 	
 	
 
@@ -41,13 +39,6 @@ public class ControlMain {
 		}
 		return controlJPanelPricipal;}
 
-
-
-
-=======
-	}
-	
->>>>>>> 1f342a547b3d888df5d51ea7e66553e7d69b9ee7
 
 	public static JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null){
@@ -62,5 +53,15 @@ public class ControlMain {
 			jPanelPrincipal = new JPanelPrincipal();
 		}
 		return jPanelPrincipal;
-	}	
+	}
+
+
+
+	public static JPanelLogin getjPanelLogin() {
+		if(jPanelLogin == null){
+			jPanelLogin = new JPanelLogin();
+		}
+		return jPanelLogin;}
+	
+	
 }
