@@ -257,7 +257,7 @@ public class JPanelLogin extends JPanel {
 
    
     
-    // MÃ©todo para inicializar a aplicaÃ§Ã£o java.
+    // Metodo para inicializar a aplicação java.
     private void inicializeAplication(){
         // As linhas abaixo setam as dimensoes dos icones das JLabel's.
        // telaConf.fullScree(JPanelLogin.this);
