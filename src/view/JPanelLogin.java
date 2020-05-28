@@ -11,15 +11,13 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagLayout;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -70,7 +68,7 @@ public class JPanelLogin extends JPanel {
     private final String img = "/images/funTel1.jpg";
     private final String img1 = "/images/funLogin.png";
     private final String img2 = "/images/iconPrj.png";
-    TelConf con = new TelConf();
+    
     
     
     public JPanelLogin() { // metodo construtor.
@@ -92,12 +90,8 @@ public class JPanelLogin extends JPanel {
     	this.setLayout(new OverlayLayout(this));
         this.setPreferredSize(new java.awt.Dimension(800, 600));
         getjLabelImageFundoPainelPrincipal().setIcon(new ImageIcon(getClass().getResource(img)));
-        con.imageLabelRend(this, this.getjLabelImageFundoPainelPrincipal(), img1);
-        this.getjPaenlLoginAddComponentes();
-        this.add(getjPanelLogin());
-        
         this.add( getjLabelImageFundoPainelPrincipal() );
-        
+        this.add(getjPanelLogin());
 
         //this.add(getjButtonEntrar() );
 
@@ -317,18 +311,19 @@ public class JPanelLogin extends JPanel {
 	}
 
 	public JLabel getjLabelImageFundoPainelPrincipal() {
-		if(jLabelImageFundoPainelPrincipal == null){	
-			jLabelImageFundoPainelPrincipal = new JLabel();		
-			jLabelImageFundoPainelPrincipal.setSize(800, 600);
-			//jLabelImageFundoPainelPrincipal.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
-			//jLabelImageFundoPainelPrincipal.setHorizontalTextPosition(SwingConstants.CENTER);
+		if(jLabelImageFundoPainelPrincipal == null){
+	
+			jLabelImageFundoPainelPrincipal = new JLabel();
+		
+			jLabelImageFundoPainelPrincipal.setBounds(0, 0, 800, 600);
+			jLabelImageFundoPainelPrincipal.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
+			jLabelImageFundoPainelPrincipal.setHorizontalTextPosition(SwingConstants.CENTER);
 			jLabelImageFundoPainelPrincipal.setOpaque(true);
 			
 		}
 	
 		return jLabelImageFundoPainelPrincipal;
 	}
-	
 
 	public JLabel getjLabelImagemPnl() {
 		if(jLabelImagemPnl == null){
@@ -375,34 +370,42 @@ public class JPanelLogin extends JPanel {
 	
 			jPanelCentroLogin = new JPanel();
 			jPanelCentroLogin.setLayout(new OverlayLayout(jPanelCentroLogin));
+			//jPanelCentroLogin.setSize(375, 500);
 			jPanelCentroLogin.setBackground(Color.BLUE);
-			jPanelCentroLogin.setSize(375, 500);
 			
 		}
 	
 		return jPanelCentroLogin;
 	}
 	
-	public JPanel getjPanelLogin() {		
-		if(jPanelLogin == null){	
-			jPanelLogin = new JPanel();			
+	
+	public JPanel getjPanelLogin() {
+		
+		
+		if(jPanelLogin == null){
+	
+			jPanelLogin = new JPanel();
+			jPanelLogin.setLayout(new GridBagLayout());
+			jPanelLogin.setPreferredSize(null);
 			jPanelLogin.setOpaque(false);
-			GridBagLayout layout = new GridBagLayout();
-		    jPanelLogin.setLayout(layout);	    
-		    jPanelLogin.setSize(600,600);    
+			
+			GridBagConstraints variavelGrid = new GridBagConstraints();
+			variavelGrid.gridx = 2; //seta a posição no eixo das coordenadas
+			variavelGrid.gridy = 2; //seta a posição no eixo das abissisas
+			variavelGrid.gridheight = GridBagConstraints.REMAINDER;
+			variavelGrid.gridwidth = GridBagConstraints.REMAINDER;
+			variavelGrid.insets = new Insets(5, 5, 5, 5);
+			variavelGrid.fill = GridBagConstraints.BOTH;
+			variavelGrid.ipadx = 375;
+			variavelGrid.ipady = 500;
+			
+			jPanelLogin.add(getjPanelCentroLogin(), variavelGrid);
+			
 			//adiciona o painel que fica no centro
 			
 		}
 	
 		return jPanelLogin;
-	}
-	
-	
-	public void getjPaenlLoginAddComponentes() {
-	    GridBagConstraints constranits = new GridBagConstraints();	
-	    constranits.ipadx = 375;
-	    constranits.ipady = 500;
-		this.getjPanelLogin().add(getjPanelCentroLogin(),constranits);
 	}
 	
 	
