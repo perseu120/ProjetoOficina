@@ -27,7 +27,7 @@ public class ControlMain {
 	           
 	     }
 	      
-		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
+		 getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
 		 getControlJPanelPricipal();
 	}
 	
