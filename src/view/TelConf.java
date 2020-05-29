@@ -28,7 +28,7 @@ public class TelConf {
     int width = (int)setResolucao.getWidth();
     int height = (int)setResolucao.getHeight();
     
-    //Deixa jFrom em tela cheia
+    //Deixa jFrame em tela cheia
     public void fullScree(Frame tela){
         tela.setExtendedState(MAXIMIZED_BOTH);
     }
@@ -76,15 +76,54 @@ public class TelConf {
         //seta a imagem do tamanho da label de fundo de tela 
          try {
             ImageIcon imageIcon = new ImageIcon(getClass().getResource(img));
-            System.out.println("ImageLabelRend"+wdt+ hgt);
+            
             Image image = imageIcon.getImage().getScaledInstance(wdt, hgt, 
                     Image.SCALE_DEFAULT);
+            System.out.println("ImageLabelRend"+wdt+ hgt);
             funTel.setIcon(new ImageIcon(image));
             
+            
          } catch (Exception e) {
-             System.out.println("ImageLabelRend Erro"+wdt+ hgt);
+            // System.out.println(jPanel.getWidth());
          }        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    public void iconRender(JFrame jFrame, JLabel jLabel,String imagem) {
+    	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));
+    	 Image img = imageIcon.getImage().getScaledInstance(jFrame.getWidth(), jFrame.getHeight(), 
+                 Image.SCALE_DEFAULT);
+    	jLabel.setIcon(new ImageIcon(img));
+    	 System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // Seta e renderiza o icon  de uma jlabel na resolução inserida.
     public void imageRend(JLabel label, String img, int width, int height){

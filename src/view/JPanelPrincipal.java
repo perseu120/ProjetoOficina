@@ -68,12 +68,10 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelNorth;		
 	// Fim da declaração de variáveis
 	
-	public JPanelPrincipal() {
-		
+	public JPanelPrincipal() {		
 		initComponents(); // inicializa os componentes da JFrame.	
 	}
-
-
+	
 
 	private void initComponents() { // Inicialização dos componetes visuais da classe.
 		

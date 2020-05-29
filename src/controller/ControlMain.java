@@ -27,7 +27,7 @@ public class ControlMain {
 	           
 	     }
 	      
-		 getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
+		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
 		 getControlJPanelPricipal();
 	}
 	
@@ -59,7 +59,7 @@ public class ControlMain {
 
 	public static JPanelLogin getjPanelLogin() {
 		if(jPanelLogin == null){
-			jPanelLogin = new JPanelLogin();
+			jPanelLogin = new JPanelLogin(getjFramePrincipal());
 		}
 		return jPanelLogin;}
 	

@@ -25,6 +25,9 @@ import javax.swing.OverlayLayout;
 import javax.swing.SwingConstants;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
 
 /**
  *
@@ -33,65 +36,61 @@ import java.awt.Insets;
 public class JPanelLogin extends JPanel {
 
 	
-    // declaracao de variaveis inicio
-    private JButton jButonEntrar = null;
-
+	// ### Inicio declaração de variáveis ###
+    private JButton jButonEntrar = null;    
     
+    private JPanel jPanelCentroHead;
+    private JPanel jPanelHead;
     
-    private JPanel jPanelCentroLogin;
+    private JPanel jPanelImagemFundoTela;
     private JPanel jPanel2;
     private JPanel jPanel3;
-    private JPanel jPanel4;
-    private JPanel jPanelLogin;
-     
-    private JLabel jLabel2;
-    private JLabel jLabelIcon;
-    private JLabel jLabelImageFundoPainelPrincipal;
-    private JLabel jLabelImagemPnl;
-    private JLabel jLabelSenha;
-    private JLabel jLabelSenhaErro;
-    private JLabel jLabelUsuario;
-    
-    
+    private JPanel jPanel4;     
+    private JLabel jLabel2;    
    
+    private JLabel jLabelIcon;
+    private JLabel jLabelUsuario;
+    private JLabel jLabelSenha;    
+    private JLabel jLabelSenhaErro;
+    private JLabel jLabelImagemPnl;
+    private JLabel jLabelImageFundoPainelPrincipal; 
     
-    private JTextField jTextFieldUsuario;
-    
+    private JTextField jTextFieldUsuario;    
     private JPasswordField jPasswordFieldSenha;
-    // declaracao de variaveis final
-	
-    // Cria objeto da classe TelConf.
-    private TelConf telaConf;
     
-    /** Creates new form TelaLogin */
+    // ### Fim dlecaração de variáveis ###
+    // ------------------------------------
+    // ### Inicio de criação de objetos ###
+     
+    TelConf telConf = new TelConf();
+    
+    // ### Fim  da  criação  de objetos ###
+  
+    
+
     // Inicializando atributos com os caminhos das imagens na pasta.
     private final String img = "/images/funTel1.jpg";
     private final String img1 = "/images/funLogin.png";
     private final String img2 = "/images/iconPrj.png";
+    private JPanel panel;
     
     
     
-    public JPanelLogin() { // metodo construtor.
-        initComponents(); // inicializa os componentes da JFrame.
-        // Chama o metodo a baixo para renderizaÃ§Ã£o da imagem de fundo da tela
-        // login.
-        //this.imgJFrameLogin(true);
-        // Metodo para configurar preferencias de componentes de JFrame.
-        //this.inicializeAplication();
-    }
-
- 
+    public JPanelLogin(JFramePrincipal jFrame) { 
+    	this.jFrame =  jFrame;
+    	this.getjPanelImagemFundoTela();
+    	this.addComponentesjPanelImagemFundoTela();
+    	this.getjPanelHead();
+    	this.addComponentesjPanelHead();
+    	this.getJPanelLgoin();
+    	this.addComponetesJPanelLogin();
+    } 
     
     private void initComponents() {
-
         //this.setOpaque(false);
     	// this.add( getTelaConf().imageLabelRend( this , getjLabelImageFundoPainelPrincipal(), img) );
         
-    	this.setLayout(new OverlayLayout(this));
-        this.setPreferredSize(new java.awt.Dimension(800, 600));
-        getjLabelImageFundoPainelPrincipal().setIcon(new ImageIcon(getClass().getResource(img)));
-        this.add( getjLabelImageFundoPainelPrincipal() );
-        this.add(getjPanelLogin());
+    	
 
         //this.add(getjButtonEntrar() );
 
@@ -101,15 +100,15 @@ public class JPanelLogin extends JPanel {
         jPanel4.setRequestFocusEnabled(false);
         jPanel4.setLayout(null);
 
-        jPanelLogin.setBackground(new java.awt.Color(28, 178, 188));
-        jPanelLogin.setForeground(new java.awt.Color(168, 168, 168));
-        jPanelLogin.setAutoscrolls(true);
-        jPanelLogin.setOpaque(false);
-        jPanelLogin.setPreferredSize(new java.awt.Dimension(390, 440));
-        jPanelLogin.setLayout(new java.awt.BorderLayout());
+        jPanelHead.setBackground(new java.awt.Color(28, 178, 188));
+        jPanelHead.setForeground(new java.awt.Color(168, 168, 168));
+        jPanelHead.setAutoscrolls(true);
+        jPanelHead.setOpaque(false);
+        jPanelHead.setPreferredSize(new java.awt.Dimension(390, 440));
+        jPanelHead.setLayout(new java.awt.BorderLayout());
 
-        jPanelCentroLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanelCentroLogin.setOpaque(false);
+        jPanelCentroHead.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanelCentroHead.setOpaque(false);
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconPrj.png"))); // NOI18N
@@ -120,9 +119,9 @@ public class JPanelLogin extends JPanel {
         jLabelIcon.setMinimumSize(new java.awt.Dimension(110, 110));
         jLabelIcon.setPreferredSize(new java.awt.Dimension(380, 110));
         jLabelIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanelCentroLogin.add(jLabelIcon);
+        jPanelCentroHead.add(jLabelIcon);
 
-        jPanelLogin.add(jPanelCentroLogin, java.awt.BorderLayout.NORTH);
+        jPanelHead.add(jPanelCentroHead, java.awt.BorderLayout.NORTH);
 
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(380, 220));
@@ -145,36 +144,6 @@ public class JPanelLogin extends JPanel {
         jPasswordFieldSenha.setPreferredSize(new java.awt.Dimension(205, 55));
       
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelUsuario)
-                    .addComponent(jLabelSenha))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                .addGap(29, 29, 29))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelUsuario))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSenha))
-                .addGap(32, 32, 32))
-        );
-
-        jPanelLogin.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new java.awt.Dimension(380, 105));
@@ -190,32 +159,11 @@ public class JPanelLogin extends JPanel {
 
        
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabelSenhaErro, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(getJButtonEntrar(), javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabelSenhaErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(getJButtonEntrar(), javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
+     
 
-        jPanelLogin.add(jPanel3, java.awt.BorderLayout.SOUTH);
-
-        jPanel4.add(jPanelLogin);
-        jPanelLogin.setBounds(0, 0, 390, 433);
-        jPanelLogin.getAccessibleContext().setAccessibleName("");
+        jPanel4.add(jPanelHead);
+        jPanelHead.setBounds(0, 0, 390, 433);
+        jPanelHead.getAccessibleContext().setAccessibleName("");
         pnlPrincipalFrame.setLayout(null); //coloca o get do painelprincipal
 
         jLabelImagemPnl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/funLogin.png"))); // NOI18N
@@ -236,46 +184,11 @@ public class JPanelLogin extends JPanel {
         setLocationRelativeTo(null);*/
     // </editor-fold>//GEN-END:initComponents
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // Quando o btnEntrar for Clicado.
-       // this.dispose();
-        new JPanelPrincipal().setVisible(true);
-    }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // Quando a JFrame for redimencionada pelo usuÃ¡rio durante a exucuÃ§Ã£o
-        // da aplicaÃ§Ã£o.
-        // Chama Classe para redimencionamento da imagem de fundo da JFrame.
-        this.imgJFrameLogin(false);
-    }//GEN-LAST:event_formComponentResized
-
-   
-    
-    // MÃ©todo para inicializar a aplicaÃ§Ã£o java.
-    private void inicializeAplication(){
-        // As linhas abaixo setam as dimensoes dos icones das JLabel's.
-       // telaConf.fullScree(JPanelLogin.this);
-        telaConf.imageRend(this.jLabelIcon, img2, 100, 100);
-        telaConf.imageLabelRend(this.jPanelLogin, this.jLabelImagemPnl, img1);
-        this.imgJFrameLogin(true);
-    }
-    
-    // Variavel seta imagem na tela princiapal de acordo com a etapa de execuÃ§Ã£o.
-    // true Para inicializaÃ§Ã£o no construtor da classe.
-    // false Para redimensionamento e minimizaÃ§Ã£o de JFrame.
-    private void imgJFrameLogin(boolean notIsInicial){
-        if(notIsInicial){
-            
-            telaConf.imageLabelRend(this.jLabelImageFundoPainelPrincipal, img);
-        }else{
-            //telaConf.imageLabelRend(TelaLogin.this, this.lblImageFrame, img);
-            telaConf.imageLabelRend(this, this.jLabelImageFundoPainelPrincipal, img);
-        }
-       
-    }
     
     
-    //inicio dos gets dos botões
+    // ### Inicio dos gets dos botões ###
+    
     public JButton getjButtonEntrar() {
     	
     	if(jButonEntrar == null) {
@@ -288,190 +201,155 @@ public class JPanelLogin extends JPanel {
     	return jButonEntrar;
     }
 
-	//final dos gets dos botoes
-	
-	//inicio dos get dos label
-	public JLabel getjLabel2() {
-		if(jLabel2 == null){
-	
-			jLabel2 = new JLabel();
-		}
-	
-		return jLabel2;
-	}
-	
-
+	// ### Final dos gets dos botoes ###
+    // ---------------------------------	
+	// ### Inicio  dos get dos label ###
+    
 	public JLabel getjLabelIcon() {
-		if(jLabelIcon == null){
-	
+		if(jLabelIcon == null){	
 			jLabelIcon = new JLabel();
-		}
-	
+		}	
 		return jLabelIcon;
 	}
+	
 
 	public JLabel getjLabelImageFundoPainelPrincipal() {
 		if(jLabelImageFundoPainelPrincipal == null){
-	
 			jLabelImageFundoPainelPrincipal = new JLabel();
-		
-			jLabelImageFundoPainelPrincipal.setBounds(0, 0, 800, 600);
-			jLabelImageFundoPainelPrincipal.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
-			jLabelImageFundoPainelPrincipal.setHorizontalTextPosition(SwingConstants.CENTER);
 			jLabelImageFundoPainelPrincipal.setOpaque(true);
-			
-		}
-	
+		}	
 		return jLabelImageFundoPainelPrincipal;
 	}
+	
 
 	public JLabel getjLabelImagemPnl() {
-		if(jLabelImagemPnl == null){
-	
+		if(jLabelImagemPnl == null){	
 			jLabelImagemPnl = new JLabel();
-		}
-	
+		}	
 		return jLabelImagemPnl;
 	}
+	
 
 	public JLabel getjLabelSenha() {
-		if(jLabelSenha == null){
-	
+		if(jLabelSenha == null){	
 			jLabelSenha = new JLabel();
-		}
-	
+		}	
 		return jLabelSenha;
 	}
 
+	
 	public JLabel getjLabelSenhaErro() {
 		if(jLabelSenhaErro == null){
 	
 			jLabelSenhaErro = new JLabel();
-		}
-	
+		}	
 		return jLabelSenhaErro;
 	}
-
+	
+	
 	public JLabel getjLabelUsuario() {
-		if(jLabelUsuario == null){
-	
+		if(jLabelUsuario == null){	
 			jLabelUsuario = new JLabel();
-		}
-	
+		}	
 		return jLabelUsuario;
 	}
-
-	//fim dos gets dos label
 	
-	//inicio dos gets do painel
+	// ### Fim  dos  gets dos  label ###
+	// ---------------------------------
+	// ### Inicio dos gets do painel ###
 	
-	public JPanel getjPanelCentroLogin() {
-		if(jPanelCentroLogin == null){
-	
-			jPanelCentroLogin = new JPanel();
-			jPanelCentroLogin.setLayout(new OverlayLayout(jPanelCentroLogin));
-			//jPanelCentroLogin.setSize(375, 500);
-			jPanelCentroLogin.setBackground(Color.BLUE);
-			
-		}
-	
-		return jPanelCentroLogin;
+	public JPanelLogin getJPanelLgoin() {
+		this.setLayout(new OverlayLayout(this));
+        this.setPreferredSize(new java.awt.Dimension(800, 600));        
+		return this;
 	}
 	
 	
-	public JPanel getjPanelLogin() {
-		
-		
-		if(jPanelLogin == null){
-	
-			jPanelLogin = new JPanel();
-			jPanelLogin.setLayout(new GridBagLayout());
-			jPanelLogin.setPreferredSize(null);
-			jPanelLogin.setOpaque(false);
-			
-			GridBagConstraints variavelGrid = new GridBagConstraints();
-			variavelGrid.gridx = 2; //seta a posição no eixo das coordenadas
-			variavelGrid.gridy = 2; //seta a posição no eixo das abissisas
-			variavelGrid.gridheight = GridBagConstraints.REMAINDER;
-			variavelGrid.gridwidth = GridBagConstraints.REMAINDER;
-			variavelGrid.insets = new Insets(5, 5, 5, 5);
-			variavelGrid.fill = GridBagConstraints.BOTH;
-			variavelGrid.ipadx = 375;
-			variavelGrid.ipady = 500;
-			
-			jPanelLogin.add(getjPanelCentroLogin(), variavelGrid);
-			
-			//adiciona o painel que fica no centro
-			
+	public JPanel getjPanelImagemFundoTela() {
+		if(jPanelImagemFundoTela == null) {
+			jPanelImagemFundoTela = new JPanel();
+			jPanelImagemFundoTela.setLayout(new BorderLayout(0,0));			
+			jPanelImagemFundoTela.setOpaque(false);
 		}
-	
-		return jPanelLogin;
+		return jPanelImagemFundoTela;
 	}
 	
 	
-	public JPanel getjPanel2() {
-		if(jPanel2 == null){
-	
-			jPanel2 = new JPanel();
-		}
-	
-		return jPanel2;
+	public JPanel getjPanelCentroHead() {
+		if(jPanelCentroHead == null){	
+			jPanelCentroHead = new JPanel();
+			jPanelCentroHead.setBackground(Color.BLUE);			
+			jPanelCentroHead.setLayout(new GridLayout(1, 0, 0, 0));
+		}	
+		return jPanelCentroHead;
 	}
-
-	public JPanel getjPanel3() {
-		if(jPanel3 == null){
 	
-			jPanel3 = new JPanel();
-		}
 	
-		return jPanel3;
-	}
-
-	public JPanel getjPanel4() {
-		if(jPanel4 == null){
-	
-			jPanel4 = new JPanel();
-		}
-	
-		return jPanel4;
-	}
-
+	public JPanel getjPanelHead() {		
+		if(jPanelHead == null){	
+			jPanelHead = new JPanel();
+			GridBagLayout layout = new GridBagLayout();
+			jPanelHead.setLayout(layout);
+			jPanelHead.setBackground(Color.CYAN);
+			jPanelHead.setPreferredSize(null);
+			jPanelHead.setOpaque(false);		
+			
+		}	
+		return jPanelHead;
+	}	
 
 	
-	//fim dos gets dos paineis
-	
-	//inicios dos gets textfild e derivados
+	// ### Fim    dos     gets    dos    paineis ###
+	// ---------------------------------------------
+	// ### Inicios dos gets textfild e derivados ###
 
 	public JTextField getjTextFieldUsuario() {
-		if(jTextFieldUsuario == null){
-	
+		if(jTextFieldUsuario == null){	
 			jTextFieldUsuario = new JTextField();
-		}
-	
+		}	
 		return jTextFieldUsuario;
 	}
+	
 
 	public JPasswordField getjPasswordFieldSenha() {
-		if(jPasswordFieldSenha == null){
-	
+		if(jPasswordFieldSenha == null){	
 			jPasswordFieldSenha = new JPasswordField();
-		}
-	
+		}	
 		return jPasswordFieldSenha;
 	}
 
-	//fim dos gets textfild e derivados
-	public TelConf getTelaConf() {
-		if(telaConf == null){
+	// ### Fim   dos   gets   textfild   e   derivados ###
+	// ---------------------------------------------------
+	// ### Inicio dos métodos de adição de componentes ###
 	
-			telaConf = new TelConf();
-		}
-	
-		return telaConf;
+	public void addComponetesJPanelLogin() {
+		this.add(this.getjPanelHead());
+		this.add(this.getjPanelImagemFundoTela());
+					
 	}
-    
-    
-    
-
-
+	
+	
+	public void addComponentesjPanelImagemFundoTela() {
+		telConf.iconRender(getjFrame(), getjLabelImageFundoPainelPrincipal(), img); // seta imagem no tamanho do jFrame
+		this.getjPanelImagemFundoTela().add(BorderLayout
+				.CENTER,this.getjLabelImageFundoPainelPrincipal()); // Add da jLabel no JPanel.
+	}
+	
+	
+	public void addComponentesjPanelHead() {
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.ipadx = 350;
+		constraints.ipady = 475;
+		jPanelHead.add(this.getjPanelCentroHead(), constraints);
+	}
+	
+	
+	public void addComponentesjPanelCentroHead() {
+		
+	}
+	JFramePrincipal jFrame;
+	public JFramePrincipal getjFrame() {
+				return jFrame;
+	}
+	
 }
