@@ -40,14 +40,9 @@ public class JPanelLogin extends JPanel {
     private JButton jButonEntrar = null;    
     
     private JPanel jPanelCentroHead;
-    private JPanel jPanelHead;
+    private JPanel jPanelHead;    
+    private JPanel jPanelImagemFundoTela; 
     
-    private JPanel jPanelImagemFundoTela;
-    private JPanel jPanel2;
-    private JPanel jPanel3;
-    private JPanel jPanel4;     
-    private JLabel jLabel2;    
-   
     private JLabel jLabelIcon;
     private JLabel jLabelUsuario;
     private JLabel jLabelSenha;    
@@ -59,56 +54,25 @@ public class JPanelLogin extends JPanel {
     private JPasswordField jPasswordFieldSenha;
     
     // ### Fim dlecaração de variáveis ###
-    // ------------------------------------
-    // ### Inicio de criação de objetos ###
-     
-    TelConf telConf = new TelConf();
     
-    // ### Fim  da  criação  de objetos ###
-  
+        
     
-
-    // Inicializando atributos com os caminhos das imagens na pasta.
-    private final String img = "/images/funTel1.jpg";
-    private final String img1 = "/images/funLogin.png";
-    private final String img2 = "/images/iconPrj.png";
-    private JPanel panel;
-    
-    
-    
-    public JPanelLogin(JFramePrincipal jFrame) { 
-    	this.jFrame =  jFrame;
+ 
+    public JPanelLogin() {
+		// TODO Auto-generated constructor stub
     	this.getjPanelImagemFundoTela();
     	this.addComponentesjPanelImagemFundoTela();
+    	this.getjPanelCentroHead();
+    	this.addComponentesjPanelCentroHead();
     	this.getjPanelHead();
     	this.addComponentesjPanelHead();
     	this.getJPanelLgoin();
     	this.addComponetesJPanelLogin();
-    } 
-    
-    private void initComponents() {
-        //this.setOpaque(false);
-    	// this.add( getTelaConf().imageLabelRend( this , getjLabelImageFundoPainelPrincipal(), img) );
-        
-    	
+	}
 
-        //this.add(getjButtonEntrar() );
-
+	private void initComponents() {
     }
-       /* jPanel4.setOpaque(false);
-        jPanel4.setPreferredSize(new java.awt.Dimension(390, 500));
-        jPanel4.setRequestFocusEnabled(false);
-        jPanel4.setLayout(null);
-
-        jPanelHead.setBackground(new java.awt.Color(28, 178, 188));
-        jPanelHead.setForeground(new java.awt.Color(168, 168, 168));
-        jPanelHead.setAutoscrolls(true);
-        jPanelHead.setOpaque(false);
-        jPanelHead.setPreferredSize(new java.awt.Dimension(390, 440));
-        jPanelHead.setLayout(new java.awt.BorderLayout());
-
-        jPanelCentroHead.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanelCentroHead.setOpaque(false);
+       /*     
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconPrj.png"))); // NOI18N
@@ -120,12 +84,7 @@ public class JPanelLogin extends JPanel {
         jLabelIcon.setPreferredSize(new java.awt.Dimension(380, 110));
         jLabelIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanelCentroHead.add(jLabelIcon);
-
-        jPanelHead.add(jPanelCentroHead, java.awt.BorderLayout.NORTH);
-
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(380, 220));
-        jPanel2.setRequestFocusEnabled(false);
+      
 
         jLabelUsuario.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
         jLabelUsuario.setForeground(new java.awt.Color(204, 204, 204));
@@ -145,9 +104,6 @@ public class JPanelLogin extends JPanel {
       
 
 
-        jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(380, 105));
-
         jLabelSenhaErro.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabelSenhaErro.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSenhaErro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -161,31 +117,13 @@ public class JPanelLogin extends JPanel {
 
      
 
-        jPanel4.add(jPanelHead);
-        jPanelHead.setBounds(0, 0, 390, 433);
-        jPanelHead.getAccessibleContext().setAccessibleName("");
-        pnlPrincipalFrame.setLayout(null); //coloca o get do painelprincipal
 
-        jLabelImagemPnl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/funLogin.png"))); // NOI18N
-        jPanel4.add(jLabelImagemPnl);
-        jLabelImagemPnl.setBounds(0, 0, 130, 120);
-
-        pnlPrincipalFrame.add(jPanel4);//coloca o get do painelprincipal
-
-        getContentPane().add(pnlPrincipalFrame); //coloca o get do painelprincipal
-        pnlPrincipalFrame.getAccessibleContext().setAccessibleDescription("");
-
-        jLabelImageFundoPainelPrincipal.setRequestFocusEnabled(false);
-        getContentPane().add(jLabelImageFundoPainelPrincipal);
-
-        getAccessibleContext().setAccessibleParent(pnlPrincipalFrame); //coloca o get do painelprincipal
-
-        setSize(new java.awt.Dimension(1260, 801));
-        setLocationRelativeTo(null);*/
-    // </editor-fold>//GEN-END:initComponents
+       
 
 
-    
+
+       ;*/
+    //     
     
     // ### Inicio dos gets dos botões ###
     
@@ -193,8 +131,9 @@ public class JPanelLogin extends JPanel {
     	
     	if(jButonEntrar == null) {
     		jButonEntrar = new JButton();
-    		jButonEntrar.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
+    		jButonEntrar.setFont(new java.awt.Font("Arial", 1, 26));
             jButonEntrar.setText("Entrar");
+            jButonEntrar.setSize(100,37);
             jButonEntrar.setBorder(null);
     	}
     	
@@ -279,7 +218,7 @@ public class JPanelLogin extends JPanel {
 		if(jPanelCentroHead == null){	
 			jPanelCentroHead = new JPanel();
 			jPanelCentroHead.setBackground(Color.BLUE);			
-			jPanelCentroHead.setLayout(new GridLayout(1, 0, 0, 0));
+			jPanelCentroHead.setLayout(null);
 		}	
 		return jPanelCentroHead;
 	}
@@ -324,13 +263,11 @@ public class JPanelLogin extends JPanel {
 	
 	public void addComponetesJPanelLogin() {
 		this.add(this.getjPanelHead());
-		this.add(this.getjPanelImagemFundoTela());
-					
+		this.add(this.getjPanelImagemFundoTela());					
 	}
 	
 	
-	public void addComponentesjPanelImagemFundoTela() {
-		telConf.iconRender(getjFrame(), getjLabelImageFundoPainelPrincipal(), img); // seta imagem no tamanho do jFrame
+	public void addComponentesjPanelImagemFundoTela() {		
 		this.getjPanelImagemFundoTela().add(BorderLayout
 				.CENTER,this.getjLabelImageFundoPainelPrincipal()); // Add da jLabel no JPanel.
 	}
@@ -345,11 +282,10 @@ public class JPanelLogin extends JPanel {
 	
 	
 	public void addComponentesjPanelCentroHead() {
+		this.getjButtonEntrar().setLocation(220, 425);
+		this.getjPanelCentroHead().add(this.getjButtonEntrar());
 		
-	}
-	JFramePrincipal jFrame;
-	public JFramePrincipal getjFrame() {
-				return jFrame;
-	}
+	}	
+
 	
 }

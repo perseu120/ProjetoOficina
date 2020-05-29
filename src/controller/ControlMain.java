@@ -7,10 +7,9 @@ import view.*;
 
 public class ControlMain {
 	
-	private static ControlJPanelPrincipal controlJPanelPricipal;
+	private static ControlJPanelLogin controlJPanelLogin;
 	
 	private static JFramePrincipal jFramePrincipal;
-	private static JPanelPrincipal jPanelPrincipal;
 	private static JPanelLogin jPanelLogin;
 		
 	
@@ -28,16 +27,17 @@ public class ControlMain {
 	     }
 	      
 		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
-		 getControlJPanelPricipal();
+		 getControlJPanelLogin();
 	}
 	
 	
 
-	public static ControlJPanelPrincipal getControlJPanelPricipal() {
-		if(controlJPanelPricipal == null){
-			controlJPanelPricipal = new ControlJPanelPrincipal(getjFramePrincipal(),getjPanelPrincipal());
+	public static ControlJPanelLogin getControlJPanelLogin() {
+		if(controlJPanelLogin == null){
+			controlJPanelLogin = new ControlJPanelLogin(getjFramePrincipal(), getjPanelLogin());
 		}
-		return controlJPanelPricipal;}
+		return controlJPanelLogin;
+	}
 
 
 	public static JFramePrincipal getjFramePrincipal() {
@@ -48,20 +48,12 @@ public class ControlMain {
 	}
 	
 
-	public static JPanelPrincipal getjPanelPrincipal() {
-		if(jPanelPrincipal == null){
-			jPanelPrincipal = new JPanelPrincipal();
-		}
-		return jPanelPrincipal;
-	}
-
-
-
 	public static JPanelLogin getjPanelLogin() {
 		if(jPanelLogin == null){
-			jPanelLogin = new JPanelLogin(getjFramePrincipal());
+			jPanelLogin = new JPanelLogin();
 		}
-		return jPanelLogin;}
+		return jPanelLogin;
+	}
 	
 	
 }
