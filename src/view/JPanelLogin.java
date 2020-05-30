@@ -78,6 +78,8 @@ public class JPanelLogin extends JPanel {
         //this.imgJFrameLogin(true);
         // Metodo para configurar preferencias de componentes de JFrame.
         //this.inicializeAplication();
+        this.add( getjLabelImageFundoPainelPrincipal() );
+        
     }
 
  
@@ -90,8 +92,12 @@ public class JPanelLogin extends JPanel {
     	this.setLayout(new OverlayLayout(this));
         this.setPreferredSize(new java.awt.Dimension(800, 600));
         getjLabelImageFundoPainelPrincipal().setIcon(new ImageIcon(getClass().getResource(img)));
-        this.add( getjLabelImageFundoPainelPrincipal() );
         this.add(getjPanelLogin());
+        
+        this.getjPanelLogin();
+        this.addComponentesJPanelLogin();
+        
+        
 
         //this.add(getjButtonEntrar() );
 
@@ -235,45 +241,6 @@ public class JPanelLogin extends JPanel {
         setSize(new java.awt.Dimension(1260, 801));
         setLocationRelativeTo(null);*/
     // </editor-fold>//GEN-END:initComponents
-
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // Quando o btnEntrar for Clicado.
-       // this.dispose();
-        new JPanelPrincipal().setVisible(true);
-    }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // Quando a JFrame for redimencionada pelo usu√°rio durante a exucu√ß√£o
-        // da aplica√ß√£o.
-        // Chama Classe para redimencionamento da imagem de fundo da JFrame.
-        this.imgJFrameLogin(false);
-    }//GEN-LAST:event_formComponentResized
-
-   
-    
-    // Metodo para inicializar a aplicaÁ„o java.
-    private void inicializeAplication(){
-        // As linhas abaixo setam as dimensoes dos icones das JLabel's.
-       // telaConf.fullScree(JPanelLogin.this);
-        telaConf.imageRend(this.jLabelIcon, img2, 100, 100);
-        telaConf.imageLabelRend(this.jPanelLogin, this.jLabelImagemPnl, img1);
-        this.imgJFrameLogin(true);
-    }
-    
-    // Variavel seta imagem na tela princiapal de acordo com a etapa de execu√ß√£o.
-    // true Para inicializa√ß√£o no construtor da classe.
-    // false Para redimensionamento e minimiza√ß√£o de JFrame.
-    private void imgJFrameLogin(boolean notIsInicial){
-        if(notIsInicial){
-            
-            telaConf.imageLabelRend(this.jLabelImageFundoPainelPrincipal, img);
-        }else{
-            //telaConf.imageLabelRend(TelaLogin.this, this.lblImageFrame, img);
-            telaConf.imageLabelRend(this, this.jLabelImageFundoPainelPrincipal, img);
-        }
-       
-    }
-    
     
     //inicio dos gets dos botıes
     public JButton getjButtonEntrar() {
@@ -315,9 +282,9 @@ public class JPanelLogin extends JPanel {
 	
 			jLabelImageFundoPainelPrincipal = new JLabel();
 		
-			jLabelImageFundoPainelPrincipal.setBounds(0, 0, 800, 600);
-			jLabelImageFundoPainelPrincipal.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
-			jLabelImageFundoPainelPrincipal.setHorizontalTextPosition(SwingConstants.CENTER);
+			jLabelImageFundoPainelPrincipal.setBounds(0, 0, 800, 800);
+			//jLabelImageFundoPainelPrincipal.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
+			//jLabelImageFundoPainelPrincipal.setHorizontalTextPosition(SwingConstants.LEADING);
 			jLabelImageFundoPainelPrincipal.setOpaque(true);
 			
 		}
@@ -370,7 +337,6 @@ public class JPanelLogin extends JPanel {
 	
 			jPanelCentroLogin = new JPanel();
 			jPanelCentroLogin.setLayout(new OverlayLayout(jPanelCentroLogin));
-			//jPanelCentroLogin.setSize(375, 500);
 			jPanelCentroLogin.setBackground(Color.BLUE);
 			
 		}
@@ -388,20 +354,6 @@ public class JPanelLogin extends JPanel {
 			jPanelLogin.setLayout(new GridBagLayout());
 			jPanelLogin.setPreferredSize(null);
 			jPanelLogin.setOpaque(false);
-			
-			GridBagConstraints variavelGrid = new GridBagConstraints();
-			variavelGrid.gridx = 2; //seta a posiÁ„o no eixo das coordenadas
-			variavelGrid.gridy = 2; //seta a posiÁ„o no eixo das abissisas
-			variavelGrid.gridheight = GridBagConstraints.REMAINDER;
-			variavelGrid.gridwidth = GridBagConstraints.REMAINDER;
-			variavelGrid.insets = new Insets(5, 5, 5, 5);
-			variavelGrid.fill = GridBagConstraints.BOTH;
-			variavelGrid.ipadx = 375;
-			variavelGrid.ipady = 500;
-			
-			jPanelLogin.add(getjPanelCentroLogin(), variavelGrid);
-			
-			//adiciona o painel que fica no centro
 			
 		}
 	
@@ -461,6 +413,9 @@ public class JPanelLogin extends JPanel {
 	}
 
 	//fim dos gets textfild e derivados
+	
+	
+	//####METODOS####
 	public TelConf getTelaConf() {
 		if(telaConf == null){
 	
@@ -470,6 +425,20 @@ public class JPanelLogin extends JPanel {
 		return telaConf;
 	}
     
+	public void addComponentesJPanelLogin() {
+		
+		GridBagConstraints variavelGrid = new GridBagConstraints();
+		variavelGrid.gridx = 0; //seta a posiÁ„o no eixo das coordenadas
+		variavelGrid.gridy = 0; //seta a posiÁ„o no eixo das abissisas
+		//variavelGrid.gridheight = GridBagConstraints.REMAINDER; // redimensiona o componete verticalmente
+		//variavelGrid.gridwidth = GridBagConstraints.REMAINDER; // redimensiona o componente horizontalmente
+		//variavelGrid.insets = new Insets(5, 5, 5, 5); // valores em pixel que vai fica na borda
+		variavelGrid.fill = GridBagConstraints.BOTH;
+		variavelGrid.ipadx = 375;
+		variavelGrid.ipady = 500;
+		this.getjPanelLogin().add(this.getjPanelCentroLogin(), variavelGrid);
+		
+	}
     
     
 

@@ -595,7 +595,7 @@ public class JPanelPrincipal extends JPanel {
 	
 	
 	public void getjScrollWestAddComponentes() {
-		jScrollWest.setViewportView(this.getjPanelButtons());
+		this.getjScrollWest().setViewportView(this.getjPanelButtons());
 	}
 	
 	
