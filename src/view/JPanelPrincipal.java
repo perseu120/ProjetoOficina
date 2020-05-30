@@ -23,6 +23,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.OverlayLayout;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 
 /**
@@ -34,8 +35,10 @@ public class JPanelPrincipal extends JPanel {
 	
 
 	private final String img = "/images/images_1.png";
+	
+	private JPanel alteraJPanelCentral;
 
-	// Declaração de variáveis
+	// ### Inicio declaração de variáveis ###
 	private JButton jButtonMenuBar;
 	private JButton jButtonHome;
 	private JButton jButtonOS;
@@ -66,10 +69,11 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelJButtonConfiguracao;
 	
 	private JPanel jPanelNorth;		
-	// Fim da declaração de variáveis
+	// ### Fim dlecaração de variáveis ###
 	
 	public JPanelPrincipal() {		
-		initComponents(); // inicializa os componentes da JFrame.	
+		initComponents(); // inicializa os componentes da JFrame.
+		this.alteraJPanelCentral = this.getjPanelHomeInicial();
 	}
 	
 
@@ -125,6 +129,7 @@ public class JPanelPrincipal extends JPanel {
 		 
 	}	
 	
+	// ### Inicio dos gets do jPanel ###
 	
 	public JPanelPrincipal getJPanelPrincipal() { // Retorna os parametros de definições da própia classe
 		this.setBackground(new Color(255, 255, 255));
@@ -132,14 +137,149 @@ public class JPanelPrincipal extends JPanel {
 		this.setOpaque(false);
 		this.setPreferredSize(new Dimension(800,600));
 		return this;
+	}	
+	
+	public JPanel getjPanelWestMenuLateral() {
+		if(jPanelWestMenuLateral == null){
+			jPanelWestMenuLateral = new JPanel();
+			jPanelWestMenuLateral.setBackground(new Color(51, 51, 51));
+			jPanelWestMenuLateral.setPreferredSize(new Dimension(0, 800));
+
+		}
+		return jPanelWestMenuLateral;
 	}
 
+	
+	public JPanel getjPanelWest() { //jPanelWest contém os dados do usuários de login
+		if(jPanelWest == null){
+			jPanelWest = new JPanel();
+			jPanelWest.setBackground(new Color(0, 51, 51));
+			jPanelWest.setBorder(null);
+			jPanelWest.setOpaque(false);
+			jPanelWest.setPreferredSize(new Dimension(265, 200));
+		}
+		return jPanelWest;
+	}
+
+	
+	public JScrollPane getjScrollWest() {
+		if(jScrollWest == null){
+			jScrollWest = new JScrollPane();
+			jScrollWest.setBackground(new Color(51, 51, 51));
+			jScrollWest.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+			jScrollWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			jScrollWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			jScrollWest.setViewportBorder(null);
+			jScrollWest.setAutoscrolls(true);
+			jScrollWest.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			jScrollWest.setFocusCycleRoot(true);
+			jScrollWest.setOpaque(true);
+			jScrollWest.setPreferredSize(new Dimension(265, 1100));
+
+		}
+		return jScrollWest;
+	}
+	
+
+	public JPanel getjPanelButtons() {
+		if(jPanelButtons == null){
+			jPanelButtons = new JPanel();
+			jPanelButtons.setBackground(new Color(51, 51, 51));
+			jPanelButtons.setBorder(null);
+			jPanelButtons.setPreferredSize(new Dimension(265, 825));
+
+		}
+		return jPanelButtons;
+	}
+		
+	
+	public JLabel getjLabelFundojPanelHome() {
+		if(jLabelFundojPanelHome == null){
+			jLabelFundojPanelHome = new JLabel();
+			jLabelFundojPanelHome.setBackground(Color.CYAN);
+			jLabelFundojPanelHome.setForeground(new Color(102, 102, 102));
+			jLabelFundojPanelHome.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelFundojPanelHome.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
+			jLabelFundojPanelHome.setHorizontalTextPosition(SwingConstants.CENTER);
+		}
+		return jLabelFundojPanelHome;
+	}
+	
+	
+
+	public JPanel getjPanelCenter() {
+		if(jPanelCenter == null){
+			jPanelCenter = new JPanel();
+			jPanelCenter.setBackground(new Color(255, 255, 255));
+			jPanelCenter.setLayout(new OverlayLayout(jPanelCenter));
+		}
+		return jPanelCenter;
+	}
+	
+	
+
+	public JPanel getjPanelNorth() {
+		if(jPanelNorth == null){
+			jPanelNorth = new JPanel();
+			jPanelNorth.setBackground(new Color(219, 131, 0));
+			jPanelNorth.setPreferredSize(new Dimension(1027, 60));
+		}
+		return jPanelNorth;
+	}
+	
+	
+
+	public JPanel getjPanelHome() {
+		if(jPanelHome == null){
+			jPanelHome = new JPanel();
+			jPanelHome.setBackground(SystemColor.desktop);
+			jPanelHome.setLayout(new BorderLayout());
+			
+		}
+		return jPanelHome;
+	}
+	
+	
+	public JPanel getjPanelJButtonOS() {
+		if(jPanelJButtonOS == null){
+			jPanelJButtonOS = new JPanel();
+			jPanelJButtonOS.setBackground(new Color(0, 0, 0));
+			jPanelJButtonOS.setRequestFocusEnabled(false);
+			jPanelJButtonOS.setVisible(false);
+		}
+		return jPanelJButtonOS;
+	}
+	
+
+	public JPanel getjPanelJButtonConfiguracao() {
+		if(jPanelJButtonConfiguracao == null){
+			jPanelJButtonConfiguracao = new JPanel();
+			jPanelJButtonConfiguracao.setBackground(new Color(0, 0, 0));
+			jPanelJButtonConfiguracao.setRequestFocusEnabled(false);
+			jPanelJButtonConfiguracao.setVisible(false);
+		}
+		return jPanelJButtonConfiguracao;
+	}
+	
+	
+	public JPanel getjPanelHomeInicial() {
+		if(jPanelHomeInicial == null){
+			jPanelHomeInicial = new JPanel();
+			jPanelHomeInicial.setBackground(SystemColor.desktop);
+			jPanelHomeInicial.setLayout(new BorderLayout());		
+			
+		}
+		return jPanelHomeInicial;
+	}
+	
+	// ### Fim  dos  gets  dos  paineis ###
+	// ------------------------------------
+	// ### Inicio  dos  get  dos  label ### 
 	
 	public JLabel getjLabelIconeUsuario() { // JLabel Para exibir imagem(opcional) do usuario que efeutuou o login.
 		if(jLabelIconeUsuario == null){
 			jLabelIconeUsuario = new JLabel();
 			jLabelIconeUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-			jLabelIconeUsuario.setIcon(new ImageIcon(getClass().getResource("/icons/user_100.png")));
 		}
 		return jLabelIconeUsuario;
 	}
@@ -158,7 +298,10 @@ public class JPanelPrincipal extends JPanel {
 		return jLabelNomeUsuario;
 	}
 	
-
+	// ### Fim  dos  gets dos  jLabel ###
+	// ---------------------------------
+	// ### Inicio dos gets dos jButtons ###
+	
 	public JButton getjButtonMenuBar() { // JButton controlador do menu lateral "jPanelWestMenuLateral".
 		if (jButtonMenuBar == null) {
 			jButtonMenuBar = new JButton();
@@ -401,139 +544,10 @@ public class JPanelPrincipal extends JPanel {
 		}
 		return jButton11;
 	}
-
 	
-	public JPanel getjPanelWestMenuLateral() {
-		if(jPanelWestMenuLateral == null){
-			jPanelWestMenuLateral = new JPanel();
-			jPanelWestMenuLateral.setBackground(new Color(51, 51, 51));
-			jPanelWestMenuLateral.setPreferredSize(new Dimension(0, 800));
-
-		}
-		return jPanelWestMenuLateral;
-	}
-
-	
-	public JPanel getjPanelWest() { //jPanelWest contém os dados do usuários de login
-		if(jPanelWest == null){
-			jPanelWest = new JPanel();
-			jPanelWest.setBackground(new Color(0, 51, 51));
-			jPanelWest.setBorder(null);
-			jPanelWest.setOpaque(false);
-			jPanelWest.setPreferredSize(new Dimension(265, 200));
-		}
-		return jPanelWest;
-	}
-
-	
-	public JScrollPane getjScrollWest() {
-		if(jScrollWest == null){
-			jScrollWest = new JScrollPane();
-			jScrollWest.setBackground(new Color(51, 51, 51));
-			jScrollWest.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-			jScrollWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			jScrollWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			jScrollWest.setViewportBorder(null);
-			jScrollWest.setAutoscrolls(true);
-			jScrollWest.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			jScrollWest.setFocusCycleRoot(true);
-			jScrollWest.setOpaque(true);
-			jScrollWest.setPreferredSize(new Dimension(265, 1100));
-
-		}
-		return jScrollWest;
-	}
-	
-
-	public JPanel getjPanelButtons() {
-		if(jPanelButtons == null){
-			jPanelButtons = new JPanel();
-			jPanelButtons.setBackground(new Color(51, 51, 51));
-			jPanelButtons.setBorder(null);
-			jPanelButtons.setPreferredSize(new Dimension(265, 825));
-
-		}
-		return jPanelButtons;
-	}
-		
-	
-	public JLabel getjLabelFundojPanelHome() {
-		if(jLabelFundojPanelHome == null){
-			jLabelFundojPanelHome = new JLabel();
-			jLabelFundojPanelHome.setBackground(new Color(255, 255, 255));
-			jLabelFundojPanelHome.setForeground(new Color(102, 102, 102));
-			jLabelFundojPanelHome.setHorizontalAlignment(SwingConstants.CENTER);
-			jLabelFundojPanelHome.setIcon(new ImageIcon(getClass().getResource("/images/images_1.png")));
-			jLabelFundojPanelHome.setHorizontalTextPosition(SwingConstants.CENTER);
-			jLabelFundojPanelHome.setOpaque(true);
-		}
-		return jLabelFundojPanelHome;
-	}
-	
-	
-
-	public JPanel getjPanelCenter() {
-		if(jPanelCenter == null){
-			jPanelCenter = new JPanel();
-			jPanelCenter.setBackground(new Color(255, 255, 255));
-			jPanelCenter.setLayout(new OverlayLayout(jPanelCenter));
-		}
-		return jPanelCenter;
-	}
-	
-	
-
-	public JPanel getjPanelNorth() {
-		if(jPanelNorth == null){
-			jPanelNorth = new JPanel();
-			jPanelNorth.setBackground(new Color(219, 131, 0));
-			jPanelNorth.setPreferredSize(new Dimension(1027, 60));
-		}
-		return jPanelNorth;
-	}
-	
-	
-
-	public JPanel getjPanelHome() {
-		if(jPanelHome == null){
-			jPanelHome = new JPanel();
-			jPanelHome.setLayout(new BorderLayout());
-			
-		}
-		return jPanelHome;
-	}
-	
-	
-	public JPanel getjPanelJButtonOS() {
-		if(jPanelJButtonOS == null){
-			jPanelJButtonOS = new JPanel();
-			jPanelJButtonOS.setBackground(new Color(0, 0, 0));
-			jPanelJButtonOS.setRequestFocusEnabled(false);
-			jPanelJButtonOS.setVisible(false);
-		}
-		return jPanelJButtonOS;
-	}
-	
-
-	public JPanel getjPanelJButtonConfiguracao() {
-		if(jPanelJButtonConfiguracao == null){
-			jPanelJButtonConfiguracao = new JPanel();
-			jPanelJButtonConfiguracao.setBackground(new Color(0, 0, 0));
-			jPanelJButtonConfiguracao.setRequestFocusEnabled(false);
-			jPanelJButtonConfiguracao.setVisible(false);
-		}
-		return jPanelJButtonConfiguracao;
-	}
-	
-	
-	public JPanel getjPanelHomeInicial() {
-		if(jPanelHomeInicial == null){
-			jPanelHomeInicial = new JPanel();
-			jPanelHomeInicial.setLayout(new BorderLayout());		
-			
-		}
-		return jPanelHomeInicial;
-	}
+	// ### Final      dos      gets     dos     botoes ###
+    // ---------------------------------------------------
+	// ### Inicio dos métodos de adição de componentes ###
 	
 	public void getJPanelPrincipalAddComponentes() {
 		this.add(this.getjPanelWestMenuLateral(), BorderLayout.WEST);
@@ -716,6 +730,19 @@ public class JPanelPrincipal extends JPanel {
 								.addGap(1, 1, 1)));
 	}		
 	
+	// ### Final dos métodos de adição de componentes ###
+	// --------------------------------------------------
+	// ### Inicio    de     métodos     da     classe ###
+	
+	public void alteraJPanelCentral(JPanel jPanel) {
+		if(alteraJPanelCentral != null) {
+			this.remove(alteraJPanelCentral);
+		}
+		this.add(BorderLayout.CENTER, jPanel);
+		this.alteraJPanelCentral = jPanel;
+	}
+	
+	// ### Final de métodos da classe ###
 }
 
 

@@ -65,8 +65,11 @@ public class JPanelLogin extends JPanel {
     
  
     public JPanelLogin() {
-		// TODO Auto-generated constructor stub
-    	this.getjPanelImagemFundoTela();
+    	initComponents(); // inicializa os componentes da JFrame.
+	}
+
+	private void initComponents() {
+		this.getjPanelImagemFundoTela();
     	this.addComponentesjPanelImagemFundoTela();
     	this.getjPanelCentroHead();
     	this.addComponentesjPanelCentroHead();
@@ -74,64 +77,9 @@ public class JPanelLogin extends JPanel {
     	this.addComponentesjPanelHead();
     	this.getJPanelLgoin();
     	this.addComponetesJPanelLogin();
-	}
-
-	private void initComponents() {
     }
-       /*     
-
-        jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconPrj.png"))); // NOI18N
-        jLabelIcon.setToolTipText("");
-        jLabelIcon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabelIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabelIcon.setInheritsPopupMenu(false);
-        jLabelIcon.setMinimumSize(new java.awt.Dimension(110, 110));
-        jLabelIcon.setPreferredSize(new java.awt.Dimension(380, 110));
-        jLabelIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanelCentroHead.add(jLabelIcon);
-      
-
-        jLabelUsuario.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
-        jLabelUsuario.setForeground(new java.awt.Color(204, 204, 204));
-        jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelUsuario.setText("UsuÃ¡rio:");
-
-        txfUsuario.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        txfUsuario.setPreferredSize(new java.awt.Dimension(205, 55));
-
-        jLabelSenha.setFont(new java.awt.Font("Arial", 1, 26)); // NOI18N
-        jLabelSenha.setForeground(new java.awt.Color(204, 204, 204));
-        jLabelSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelSenha.setText("Senha:");
-
-        jPasswordFieldSenha.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jPasswordFieldSenha.setPreferredSize(new java.awt.Dimension(205, 55));
-      
-
-
-        jLabelSenhaErro.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jLabelSenhaErro.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelSenhaErro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSenhaErro.setText("UsuÃ¡rio e/ou senha iconrretos");
-        jLabelSenhaErro.setToolTipText("");
-        jLabelSenhaErro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabelSenhaErro.setPreferredSize(new java.awt.Dimension(380, 35));
-        jLabelSenhaErro.setVisible(false);
-
-       
-
-     
-
-
-       
-
-
-
-       ;*/
-    //     
-    
-    // ### Inicio dos gets dos botões ###
+	
+    // ### Inicio dos gets dos jButtons ###
     
     public JButton getjButtonEntrar() {
     	
@@ -228,9 +176,9 @@ public class JPanelLogin extends JPanel {
 		return jLabelUsuario;
 	}
 	
-	// ### Fim  dos  gets dos  label ###
+	// ### Fim  dos  gets dos  jLabel ###
 	// ---------------------------------
-	// ### Inicio dos gets do painel ###
+	// ### Inicio dos gets do jPanel ###
 	
 	public JPanelLogin getJPanelLgoin() {
 		this.setLayout(new OverlayLayout(this));
@@ -351,5 +299,5 @@ public class JPanelLogin extends JPanel {
 		
 	}	
 
-	
+	// ### Final dos métodos de adição de componentes ###
 }

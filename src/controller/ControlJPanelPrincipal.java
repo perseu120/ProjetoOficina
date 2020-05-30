@@ -3,6 +3,8 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -12,23 +14,43 @@ import javax.swing.JPanel;
 
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
+import view.TelConf;
 
-public class ControlJPanelPrincipal implements MouseListener {
+public class ControlJPanelPrincipal implements MouseListener, ComponentListener {
 	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
+	private JButton jButtonAnterior;
 	
 	private int cor1 = 103, cor2 = 103, cor3 = 103;
 	
+	private final String img = "/images/fundoPreto2.jpg";
+	private final String img1 = "/images/fundoPreto2.jpg";
+	
+	// ### Fim dlecaração de  variáveis ###
+    // ------------------------------------
+	// ### Inicio de criação de objetos ###
+    
+    TelConf telConf = new TelConf();
+    
+    // ### Fim  da  criação  de objetos ###
+    
 	public ControlJPanelPrincipal(JFramePrincipal jFramePrincipal, JPanelPrincipal jPanelPrincipal) {
+		
+		this.jButtonAnterior = getjPanelPrincipal().getjButtonHome();		
 		this.jFramePrincipal = jFramePrincipal;
 		this.jPanelPrincipal = jPanelPrincipal;
+		
+		telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
+		getjPanelPrincipal().repaint();
+		
 		AddEvent();
-		jButtonAnterior = getjPanelPrincipal().getjButtonHome();
+		
 	}
 	
 	
 	private void AddEvent() {
+		this.getjFramePrincipal().addComponentListener(this);
 		this.getjPanelPrincipal().getjButtonMenuBar().addMouseListener(this);
 		this.getjPanelPrincipal().getjButtonHome().addMouseListener(this);
 		this.getjPanelPrincipal().getjButtonOS().addMouseListener(this);
@@ -140,7 +162,6 @@ public class ControlJPanelPrincipal implements MouseListener {
 		
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonVeiculos()) { // Qando o JButton jButtonVeiculos for clicado:
-			JOptionPane.showMessageDialog(null, "deu ruim");
 			mudarCorJButton(getjPanelPrincipal().getjButtonVeiculos());
 		}
 		
@@ -255,8 +276,39 @@ public class ControlJPanelPrincipal implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	@Override
+	public void componentHidden(ComponentEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
-	private JButton jButtonAnterior;
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void componentResized(ComponentEvent evt) {
+		// TODO Auto-generated method stub
+		if((evt.getSource() == getjFramePrincipal()) // Quando a JFrame for redimencionada...
+				&&  (getjFramePrincipal().getjPanelAnterior() == getjPanelPrincipal())) { // E o JPanel setado na JFrame for "JPanelLogin"...
+			telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
+			getjPanelPrincipal().repaint();		
+	}
+	}
+
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
     private void mudarCorJButton(JButton jButton) {
     	jButton.setBackground(new Color(cor1,cor2,cor3));
@@ -279,62 +331,6 @@ public class ControlJPanelPrincipal implements MouseListener {
     }
 
 
-	/*private void btnClick(int num) {
-		this.num = num;
-		if (num != 1)
-			this.setColor(51, 51, 51);
-		int c = 103;
-		int c1 = 103;
-		int c2 = 103;
-		switch (num) {
-		case 1:
-			this.JButtonMenuBar.setBackground(new Color(109, 65, 0));
-			break;
-		case 2:
-			this.JButtonHome.setBackground(new Color(c, c1, c2));
-			break;
-		case 3:
-			this.JButtonOS.setBackground(new Color(c, c1, c2));
-			break;
-		case 4:
-			this.JButtonOrcamento.setBackground(new Color(c, c1, c2));
-			break;
-		case 5:
-			this.JButtonVeiculos.setBackground(new Color(c, c1, c2));
-			break;
-		case 6:
-			this.JButtonClientes.setBackground(new Color(c, c1, c2));
-			break;
-		case 7:
-			this.JButtonAddUsuarios.setBackground(new Color(c, c1, c2));
-			break;
-		case 8:
-			this.JButtonFaturamento.setBackground(new Color(c, c1, c2));
-			break;
-
-		case 9:
-			this.JButtonConfiguracao.setBackground(new Color(c, c1, c2));
-			break;
-		}
-	}
-
-	private void setColor(int c, int c1, int c2) {
-		this.JButtonHome.setBackground(new Color(c, c1, c2));
-		this.JButtonOS.setBackground(new Color(c, c1, c2));
-		this.JButtonOrcamento.setBackground(new Color(c, c1, c2));
-		this.JButtonVeiculos.setBackground(new Color(c, c1, c2));
-		this.JButtonClientes.setBackground(new Color(c, c1, c2));
-		this.JButtonAddUsuarios.setBackground(new Color(c, c1, c2));
-		this.JButtonFaturamento.setBackground(new Color(c, c1, c2));
-		this.JButtonConfiguracao.setBackground(new Color(c, c1, c2));
-	}
-
-	private void mouseExited(JButton btn, int numEx) {
 	
-		if (num != numEx) {
-			btn.setBackground(new Color(sc, sc1, sc2));
-		}
-	}
-	*/
-	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 }

@@ -107,7 +107,8 @@ public class TelConf {
     	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));
     	 Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), 
                  Image.SCALE_DEFAULT);
-    	jLabel.setIcon(new ImageIcon(img));    	
+    	jLabel.setIcon(new ImageIcon(img)); 
+    	System.out.println(jLabel.getWidth()+" , "+jLabel.getHeight());
     }
     
     

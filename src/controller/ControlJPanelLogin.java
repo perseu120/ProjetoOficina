@@ -22,19 +22,17 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 	private JPanelLogin jPanelLogin;
 	private JFramePrincipal jFramePricipal;
 	
+	private final String img = "/images/funTel1.jpg";
+    private final String img1 = "/images/funLogin.png";
+    private final String img2 = "/images/iconPrj.png";
+	
 	// ### Fim dlecaração de  variáveis ###
     // ------------------------------------
 	// ### Inicio de criação de objetos ###
     
     TelConf telConf = new TelConf();
     
-    // ### Fim  da  criação  de objetos ###
-
-
-    private final String img = "/images/funTel1.jpg";
-    private final String img1 = "/images/funLogin.png";
-    private final String img2 = "/images/iconPrj.png";
-    
+    // ### Fim  da  criação  de objetos ###    
     
 	public ControlJPanelLogin(JFramePrincipal jFramePricipal, JPanelLogin jPanelLogin) {		
 		this.jPanelLogin = jPanelLogin;
