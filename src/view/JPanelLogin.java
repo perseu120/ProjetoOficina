@@ -11,6 +11,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
@@ -28,6 +29,10 @@ import java.awt.Insets;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 /**
  *
@@ -44,10 +49,11 @@ public class JPanelLogin extends JPanel {
     private JPanel jPanelImagemFundoTela; 
     
     private JLabel jLabelIcon;
+    private JLabel jLabelDescricao;
     private JLabel jLabelUsuario;
     private JLabel jLabelSenha;    
     private JLabel jLabelSenhaErro;
-    private JLabel jLabelImagemPnl;
+    private JLabel jLabelImagemCentroHead;
     private JLabel jLabelImageFundoPainelPrincipal; 
     
     private JTextField jTextFieldUsuario;    
@@ -131,10 +137,10 @@ public class JPanelLogin extends JPanel {
     	
     	if(jButonEntrar == null) {
     		jButonEntrar = new JButton();
-    		jButonEntrar.setFont(new java.awt.Font("Arial", 1, 26));
+    		jButonEntrar.setFont(new Font("Arial", Font.BOLD, 24));
             jButonEntrar.setText("Entrar");
-            jButonEntrar.setSize(100,37);
-            jButonEntrar.setBorder(null);
+            jButonEntrar.setSize(118,37);
+            jButonEntrar.setBorder(UIManager.getBorder("CheckBox.border"));
     	}
     	
     	return jButonEntrar;
@@ -142,16 +148,8 @@ public class JPanelLogin extends JPanel {
 
 	// ### Final dos gets dos botoes ###
     // ---------------------------------	
-	// ### Inicio  dos get dos label ###
-    
-	public JLabel getjLabelIcon() {
-		if(jLabelIcon == null){	
-			jLabelIcon = new JLabel();
-		}	
-		return jLabelIcon;
-	}
+	// ### Inicio  dos get dos label ###    
 	
-
 	public JLabel getjLabelImageFundoPainelPrincipal() {
 		if(jLabelImageFundoPainelPrincipal == null){
 			jLabelImageFundoPainelPrincipal = new JLabel();
@@ -161,26 +159,58 @@ public class JPanelLogin extends JPanel {
 	}
 	
 
-	public JLabel getjLabelImagemPnl() {
-		if(jLabelImagemPnl == null){	
-			jLabelImagemPnl = new JLabel();
+	public JLabel getjLabelImagemCentroHead() {
+		if(jLabelImagemCentroHead == null){	
+			jLabelImagemCentroHead = new JLabel();
+			jLabelImagemCentroHead.setSize(348,473);
 		}	
-		return jLabelImagemPnl;
+		return jLabelImagemCentroHead;
 	}
 	
+	
+	public JLabel getjLabelIcon() {
+		if(jLabelIcon == null){	
+			jLabelIcon = new JLabel();
+			jLabelIcon.setSize(110,110);
+		}	
+		return jLabelIcon;
+	}
+		
 
+	public JLabel getjLabelDescricao() {
+		if(jLabelDescricao == null) {
+			jLabelDescricao = new JLabel();
+			jLabelDescricao.setForeground(SystemColor.controlHighlight);
+			jLabelDescricao.setFont(new Font("Comic Sans MS", Font.BOLD, 26));
+			jLabelDescricao.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelDescricao.setText("Workshop Manager");
+			jLabelDescricao.setSize(344,35);
+		}
+		return jLabelDescricao;
+	}
+	
+	
 	public JLabel getjLabelSenha() {
 		if(jLabelSenha == null){	
 			jLabelSenha = new JLabel();
+			jLabelSenha.setForeground(SystemColor.controlHighlight);
+			jLabelSenha.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelSenha.setFont(new Font("Arial", Font.BOLD, 24));
+			jLabelSenha.setText("Senha :");
+			jLabelSenha.setSize(110,37);
 		}	
 		return jLabelSenha;
 	}
 
 	
 	public JLabel getjLabelSenhaErro() {
-		if(jLabelSenhaErro == null){
-	
+		if(jLabelSenhaErro == null){	
 			jLabelSenhaErro = new JLabel();
+			jLabelSenhaErro.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelSenhaErro.setFont(new Font("Tahoma", Font.PLAIN, 19));
+			jLabelSenhaErro.setForeground(Color.RED);
+			jLabelSenhaErro.setText("Usuário ou senha incorretos");
+			jLabelSenhaErro.setSize(344,28);
 		}	
 		return jLabelSenhaErro;
 	}
@@ -189,6 +219,11 @@ public class JPanelLogin extends JPanel {
 	public JLabel getjLabelUsuario() {
 		if(jLabelUsuario == null){	
 			jLabelUsuario = new JLabel();
+			jLabelUsuario.setForeground(SystemColor.controlHighlight);
+			jLabelUsuario.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelUsuario.setFont(new Font("Arial", Font.BOLD, 24));
+			jLabelUsuario.setText("Usu\u00E1rio :");
+			jLabelUsuario.setSize(110,37);
 		}	
 		return jLabelUsuario;
 	}
@@ -216,9 +251,9 @@ public class JPanelLogin extends JPanel {
 	
 	public JPanel getjPanelCentroHead() {
 		if(jPanelCentroHead == null){	
-			jPanelCentroHead = new JPanel();
-			jPanelCentroHead.setBackground(Color.BLUE);			
+			jPanelCentroHead = new JPanel();			
 			jPanelCentroHead.setLayout(null);
+			jPanelCentroHead.setOpaque(false);
 		}	
 		return jPanelCentroHead;
 	}
@@ -245,6 +280,8 @@ public class JPanelLogin extends JPanel {
 	public JTextField getjTextFieldUsuario() {
 		if(jTextFieldUsuario == null){	
 			jTextFieldUsuario = new JTextField();
+			jTextFieldUsuario.setFont(new Font("Arial", Font.BOLD, 25));
+			jTextFieldUsuario.setSize(178,37);
 		}	
 		return jTextFieldUsuario;
 	}
@@ -253,6 +290,8 @@ public class JPanelLogin extends JPanel {
 	public JPasswordField getjPasswordFieldSenha() {
 		if(jPasswordFieldSenha == null){	
 			jPasswordFieldSenha = new JPasswordField();
+			jPasswordFieldSenha.setFont(new Font("Arial", Font.BOLD, 24));
+			jPasswordFieldSenha.setSize(178,37);
 		}	
 		return jPasswordFieldSenha;
 	}
@@ -282,8 +321,33 @@ public class JPanelLogin extends JPanel {
 	
 	
 	public void addComponentesjPanelCentroHead() {
-		this.getjButtonEntrar().setLocation(220, 425);
+				
+		this.getjLabelIcon().setLocation(120, 20);
+		this.getjPanelCentroHead().add(this.getjLabelIcon());
+		
+		this.getjLabelDescricao().setLocation(3, 140);
+		this.getjPanelCentroHead().add(this.getjLabelDescricao());
+		
+		this.getjLabelUsuario().setLocation(20, 240);
+		this.getjPanelCentroHead().add(this.getjLabelUsuario());
+		
+		this.getjTextFieldUsuario().setLocation(147, 242);
+		this.getjPanelCentroHead().add(this.getjTextFieldUsuario());
+		
+		this.getjLabelSenha().setLocation(20,305);
+		this.getjPanelCentroHead().add(this.getjLabelSenha());
+		
+		this.getjPasswordFieldSenha().setLocation(147, 308);
+		this.getjPanelCentroHead().add(this.getjPasswordFieldSenha());
+		
+		this.getjLabelSenhaErro().setLocation(3,375);
+		this.getjPanelCentroHead().add(this.getjLabelSenhaErro());
+		
+		this.getjButtonEntrar().setLocation(210, 418);
 		this.getjPanelCentroHead().add(this.getjButtonEntrar());
+		
+		this.getjLabelImagemCentroHead().setLocation(1, 1);
+		this.getjPanelCentroHead().add(this.getjLabelImagemCentroHead());
 		
 	}	
 

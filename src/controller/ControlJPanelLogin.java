@@ -43,6 +43,13 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 		telConf.iconRender(getjFramePricipal(), getjPanelLogin()
 				.getjLabelImageFundoPainelPrincipal(), img); // seta imagem no tamanho do jFrame
 		getjPanelLogin().repaint();
+		
+		telConf.iconRender(getjPanelLogin().getjLabelImagemCentroHead(), img1); // seta imagem no tamanho da jLabel
+		getjPanelLogin().repaint();
+		
+		telConf.iconRender(getjPanelLogin().getjLabelIcon(), img2); // seta imagem no tamanho da jLabel
+		getjPanelLogin().repaint();
+		
 		AddEvent();
 	}
 
@@ -65,18 +72,17 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 		
 	}
 	
-int inti;
+
 	@Override
 	public void componentResized(ComponentEvent evt) {
 		// TODO Auto-generated method stub	
 
-		if(evt.getSource() == getjFramePricipal()) {
+		if((evt.getSource() == getjFramePricipal()) // Quando a JFrame for redimencionada...
+					&&  (getjFramePricipal().getjPanelAnterior() == getjPanelLogin())) { // E o JPanel setado na JFrame for "JPanelLogin"...
 			telConf.iconRender(getjFramePricipal(), getjPanelLogin()
-					.getjLabelImageFundoPainelPrincipal(), img); // seta imagem no tamanho do jFrame
-			getjPanelLogin().repaint();
-			
-		}
-		
+					.getjLabelImageFundoPainelPrincipal(), img); // Seta imagem no tamanho do jFrame.
+			getjPanelLogin().repaint();			
+		}		
 	}
 	
 
@@ -85,39 +91,6 @@ int inti;
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	public ControlJPanelPrincipal getControlJPanelPrincipal() {
-		if(controlJPanelPrincipal == null){
-			controlJPanelPrincipal = new ControlJPanelPrincipal(getjFramePricipal(),getjPanelPrincipal());
-		}
-		return controlJPanelPrincipal;
-	}
-
-
-	public JPanelPrincipal getjPanelPrincipal() {
-		if(jPanelPrincipal == null){
-			jPanelPrincipal = new JPanelPrincipal();
-		}
-		return jPanelPrincipal;
-	}
-
-
-	public JPanelLogin getjPanelLogin() {
-		if(jPanelLogin == null){
-			jPanelLogin = new JPanelLogin();
-		}
-		return jPanelLogin;
-	}
-
-
-	public JFramePrincipal getjFramePricipal() {
-		if(jFramePricipal == null){
-			jFramePricipal = new JFramePrincipal();
-		}
-		return jFramePricipal;}
-
-
 	@Override
 	public void mouseClicked(MouseEvent evt) {
 		// TODO Auto-generated method stub
@@ -125,12 +98,7 @@ int inti;
 		if(evt.getSource() == getjPanelLogin().getjButtonEntrar()) {
 			getjFramePricipal().alterarJPanel(getjPanelPrincipal());
 			getControlJPanelPrincipal();
-			try {
-				this.finalize();
-			} catch (Throwable e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 	}
 
@@ -163,5 +131,39 @@ int inti;
 	}
 	
 	
+
+
+
+	public ControlJPanelPrincipal getControlJPanelPrincipal() {
+		if(controlJPanelPrincipal == null){
+			controlJPanelPrincipal = new ControlJPanelPrincipal(getjFramePricipal(),getjPanelPrincipal());
+		}
+		return controlJPanelPrincipal;
+	}
+
+
+	public JPanelPrincipal getjPanelPrincipal() {
+		if(jPanelPrincipal == null){
+			jPanelPrincipal = new JPanelPrincipal();
+		}
+		return jPanelPrincipal;
+	}
+
+
+	public JPanelLogin getjPanelLogin() {
+		if(jPanelLogin == null){
+			jPanelLogin = new JPanelLogin();
+		}
+		return jPanelLogin;
+	}
+
+
+	public JFramePrincipal getjFramePricipal() {
+		if(jFramePricipal == null){
+			jFramePricipal = new JFramePrincipal();
+		}
+		return jFramePricipal;
+	}
+
 
 }

@@ -10,12 +10,17 @@ import javax.swing.JPanel;
 
 public class JFramePrincipal extends JFrame{
 	
+	
 	private JPanel jPanelAnterior;
 	
+	TelConf telConf = new TelConf();
+	
+	
 	public JFramePrincipal() {
-		
+		telConf.fullScree(this);
 		initicomponents();
 	}
+	
 	
 	public void initicomponents() {
 		this.setTitle("Oficina 1.0");
@@ -27,14 +32,25 @@ public class JFramePrincipal extends JFrame{
 		this.setVisible(true);
 	}
 	
+	
 	public void alterarJPanel(JPanel jPanel) {
-		if(jPanelAnterior != null) {
-			this.remove(jPanelAnterior);
+		if(getjPanelAnterior() != null) { // Condição para retirar jPanel do JFrame, caso haja algum.
+			this.remove(getjPanelAnterior());
 		}
 		this.getContentPane().add(BorderLayout.CENTER,jPanel);
 		this.repaint();
 		this.validate();
-		jPanelAnterior = jPanel;
+		setjPanelAnterior(jPanel); // Guarda o jPanel que esta setado no jFrame.
+	}
+	
+	
+	public JPanel getjPanelAnterior() {
+		return jPanelAnterior;
+	}
+	
+	
+	public void setjPanelAnterior(JPanel jPanel) {
+		this.jPanelAnterior = jPanel;
 	}
 
 }

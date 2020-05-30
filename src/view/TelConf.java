@@ -28,10 +28,7 @@ public class TelConf {
     int width = (int)setResolucao.getWidth();
     int height = (int)setResolucao.getHeight();
     
-    //Deixa jFrame em tela cheia
-    public void fullScree(Frame tela){
-        tela.setExtendedState(MAXIMIZED_BOTH);
-    }
+    
     
     // Renderiza a jlabel e o icon na resolução da tela do sistema.
     public void imageLabelRend(JLabel funTel, String img){  
@@ -91,8 +88,10 @@ public class TelConf {
     
     
     
-    
-    
+    // Deixa jFrame em tela cheia
+    public void fullScree(Frame tela){
+        tela.setExtendedState(MAXIMIZED_BOTH);
+    }    
     
     
     public void iconRender(JFrame jFrame, JLabel jLabel,String imagem) {
@@ -100,12 +99,16 @@ public class TelConf {
     	 Image img = imageIcon.getImage().getScaledInstance(jFrame.getWidth(), jFrame.getHeight(), 
                  Image.SCALE_DEFAULT);
     	jLabel.setIcon(new ImageIcon(img));
-    	 System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());
-    	
+    	 System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());    	
     }
     
     
-    
+    public void iconRender(JLabel jLabel,String imagem) {
+    	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));
+    	 Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), 
+                 Image.SCALE_DEFAULT);
+    	jLabel.setIcon(new ImageIcon(img));    	
+    }
     
     
     
