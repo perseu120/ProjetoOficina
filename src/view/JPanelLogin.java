@@ -33,6 +33,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *

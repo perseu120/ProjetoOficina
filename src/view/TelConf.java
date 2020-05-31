@@ -99,7 +99,7 @@ public class TelConf {
     	 Image img = imageIcon.getImage().getScaledInstance(jFrame.getWidth(), jFrame.getHeight(), 
                  Image.SCALE_DEFAULT);
     	jLabel.setIcon(new ImageIcon(img));
-    	 System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());    	
+    	 //System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());    	
     }
     
     
@@ -108,7 +108,7 @@ public class TelConf {
     	 Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), 
                  Image.SCALE_DEFAULT);
     	jLabel.setIcon(new ImageIcon(img)); 
-    	System.out.println(jLabel.getWidth()+" , "+jLabel.getHeight());
+    	//System.out.println(jLabel.getWidth()+" , "+jLabel.getHeight());
     }
     
     

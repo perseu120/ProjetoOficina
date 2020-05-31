@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import view.JFramePrincipal;
@@ -9,7 +12,7 @@ import view.JPanelLogin;
 import view.JPanelPrincipal;
 import view.TelConf;
 
-public class ControlJPanelLogin implements ComponentListener, MouseListener {
+public class ControlJPanelLogin implements ComponentListener, MouseListener, KeyListener {
 	
 	// ### Inicio declaração de variáveis ###
 	
@@ -46,12 +49,31 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 		getjPanelLogin().repaint();
 		
 		AddEvent();
+		
 	}
 
 
 	private void AddEvent() {
 		getjFramePricipal().addComponentListener(this);	
 		getjPanelLogin().getjButtonEntrar().addMouseListener(this);
+		getjPanelLogin().getjTextFieldUsuario().requestFocus();
+		getjPanelLogin().getjTextFieldUsuario().addKeyListener(this);
+		getjPanelLogin().getjButtonEntrar().addKeyListener(this);
+		getjPanelLogin().getjPasswordFieldSenha().addKeyListener(this);
+		
+		getjPanelLogin().getjPasswordFieldSenha().addKeyListener( new KeyAdapter() {} );
+
+		/*getjPanelLogin().getjButtonEntrar().addKeyListener( new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e){
+					if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+						getjFramePricipal().alterarJPanel(getjPanelPrincipal());
+						getControlJPanelPrincipal();
+					}
+				}
+			}
+		);*/
+		
 	}
 	
 	@Override
@@ -69,10 +91,10 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 	
 
 	@Override
-	public void componentResized(ComponentEvent evt) {
+	public void componentResized(ComponentEvent e) {
 		// TODO Auto-generated method stub	
 
-		if((evt.getSource() == getjFramePricipal()) // Quando a JFrame for redimencionada...
+		if((e.getSource() == getjFramePricipal()) // Quando a JFrame for redimencionada...
 					&&  (getjFramePricipal().getjPanelAnterior() == getjPanelLogin())) { // E o JPanel setado na JFrame for "JPanelLogin"...
 			telConf.iconRender(getjFramePricipal(), getjPanelLogin()
 					.getjLabelImageFundoPainelPrincipal(), img); // Seta imagem no tamanho do jFrame.
@@ -87,16 +109,16 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 		
 	}
 	@Override
-	public void mouseClicked(MouseEvent evt) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(evt.getSource() == getjPanelLogin().getjButtonEntrar()) {
+		if(e.getSource() == getjPanelLogin().getjButtonEntrar()) {
 			getjFramePricipal().alterarJPanel(getjPanelPrincipal());
 			getControlJPanelPrincipal();
 			
 		}
 	}
-
+	
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -124,9 +146,45 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getSource() == getjPanelLogin().getjTextFieldUsuario()) {
+			
+			if( e.getKeyCode() == KeyEvent.VK_ENTER ){
+				getjPanelLogin().getjPasswordFieldSenha().requestFocus();
+				
+			}
+			
+		}
+		
+		if(e.getSource() == getjPanelLogin().getjPasswordFieldSenha()) {
+			
+			if( e.getKeyCode() == KeyEvent.VK_ENTER ){
+				getjFramePricipal().alterarJPanel(getjPanelPrincipal());	
+				getControlJPanelPrincipal();
+				
+			}
+			
+		}
+		
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	public ControlJPanelPrincipal getControlJPanelPrincipal() {
@@ -159,6 +217,11 @@ public class ControlJPanelLogin implements ComponentListener, MouseListener {
 		}
 		return jFramePricipal;
 	}
+
+
+
+
+
 
 
 }
