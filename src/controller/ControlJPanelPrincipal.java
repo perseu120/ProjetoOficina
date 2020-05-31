@@ -37,7 +37,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     
 	public ControlJPanelPrincipal(JFramePrincipal jFramePrincipal, JPanelPrincipal jPanelPrincipal) {
 		
-		this.jButtonAnterior = getjPanelPrincipal().getjButtonHome();		
+				
 		this.jFramePrincipal = jFramePrincipal;
 		this.jPanelPrincipal = jPanelPrincipal;
 		
@@ -45,6 +45,8 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		getjPanelPrincipal().repaint();
 		
 		AddEvent();
+		
+		this.jButtonAnterior = getjPanelPrincipal().getjButtonHome();
 		
 	}
 	
@@ -197,7 +199,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 	public void mouseEntered(MouseEvent evt) {
 		// TODO Auto-generated method stub
 		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
-			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(109, 65, 0));
+			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(0, 0, 85));
 		}
 		
 		
@@ -254,12 +256,17 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 
 	@Override
 	public void mouseExited(MouseEvent evt) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
+		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
-			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(219, 131, 0));
+			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(0, 0, 0));
+		}		
+		
+		
+		if(jButtonAnteriorEntered != null) {
+			this.jButtonAnteriorEntered.setBackground(new Color(51,51,51));
+			this.jButtonAnterior.setBackground(new Color(cor1,cor2,cor3));
 		}
-		
-		
 		
 	}
 

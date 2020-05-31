@@ -4,9 +4,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import com.sun.javafx.embed.swing.Disposer;
-
 import view.JFramePrincipal;
 import view.JPanelLogin;
 import view.JPanelPrincipal;
