@@ -18,6 +18,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	
 	private Color azulMarinho = new Color(100, 132, 147);
 	private Color cinzaEscuro = new Color(51,51,51);
+	private Color cinzaClaro = new Color(235,235,235);
 	private Color foregroudJButton = new Color(204,204,204);
 	
 	private Font fontJButton = new Font("Arial",1,24);
@@ -40,12 +41,15 @@ public class JScrollPaneGerarOS extends JScrollPane {
     private JLabel jLabelVin;
     private JLabel jLabelNum;
     private JLabel jLabelPlaca;
-    private JTextField jTextField1;     
-    private JTextField jTextField2;     
-    private JTextField jTextField4;
+    private JTextField jTextFieldVin;     
+    private JTextField jTextFieldNum;     
+    private JTextField jTextFieldPlaca;
     
 
 	public JScrollPaneGerarOS() {
+		this.getjPanelInformacaoVeiculo();
+		this.getjPanelBordaInformacaoVeiculo();
+		this.addComponentesJPanelBordaInformacaoVeiculo();
 		this.getjPanelBuscarVeiculo();
 		this.addComponentesJPanelBuscarVeiculo();
 		this.getjPanelCentroGerarOS();
@@ -103,6 +107,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 			jPanelBordaInformacaoVeiculo = new JPanel();
 	        jPanelBordaInformacaoVeiculo.setLayout(null);
 			jPanelBordaInformacaoVeiculo.setBackground(cinzaEscuro);
+			jPanelBordaInformacaoVeiculo.setSize(850,520);
 		}
 		return jPanelBordaInformacaoVeiculo;
 	}
@@ -112,7 +117,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jPanelInformacaoVeiculo == null){
 			jPanelInformacaoVeiculo = new JPanel();
 			jPanelInformacaoVeiculo.setBackground(Color.WHITE); 
-	        jPanelInformacaoVeiculo.setPreferredSize(new Dimension(838, 830));
+	        jPanelInformacaoVeiculo.setSize(838, 510);
 	        jPanelInformacaoVeiculo.setLayout(null);
 		}
 		return jPanelInformacaoVeiculo;
@@ -206,27 +211,39 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	}
 
 
-	public JTextField getjTextField1() {
-		if(jTextField1 == null){
-			jTextField1 = new JTextField();
+	public JTextField getjTextFieldVin() {
+		if(jTextFieldVin == null){
+			jTextFieldVin = new JTextField();
+			jTextFieldVin.setBackground(cinzaClaro);
+	        jTextFieldVin.setFont(new java.awt.Font("Arial", 0, 18));
+	        jTextFieldVin.setHorizontalAlignment(JTextField.RIGHT);
+	        jTextFieldVin.setSize(250,34);
 		}
-		return jTextField1;
+		return jTextFieldVin;
 	}
 
 
-	public JTextField getjTextField2() {
-		if(jTextField2 == null){
-			jTextField2 = new JTextField();
+	public JTextField getjTextFieldNum() {
+		if(jTextFieldNum == null){
+			jTextFieldNum = new JTextField();
+			jTextFieldNum.setBackground(cinzaClaro);
+	        jTextFieldNum.setFont(new java.awt.Font("Arial", 0, 18));
+	        jTextFieldNum.setHorizontalAlignment(JTextField.RIGHT);
+	        jTextFieldNum.setSize(100,34);
 		}
-		return jTextField2;
+		return jTextFieldNum;
 	}
 
 
-	public JTextField getjTextField4() {
-		if(jTextField4 == null){
-			jTextField4 = new JTextField();
+	public JTextField getjTextFieldPlaca() {
+		if(jTextFieldPlaca == null){
+			jTextFieldPlaca = new JTextField();
+			jTextFieldPlaca.setBackground(cinzaClaro);
+	        jTextFieldPlaca.setFont(new java.awt.Font("Arial", 0, 18));
+	        jTextFieldPlaca.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+	        jTextFieldPlaca.setSize(150,34);
 		}
-		return jTextField4;
+		return jTextFieldPlaca;
 	}
 	
 	
@@ -253,6 +270,11 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		
 		getjPanelBuscarVeiculo().setLocation(0, 109);
 		getjPanelCentroGerarOS().add(getjPanelBuscarVeiculo());
+		
+		getjPanelBordaInformacaoVeiculo().setLocation(0, 167);
+		getjPanelCentroGerarOS().add(getjPanelBordaInformacaoVeiculo());
+		
+		
 	}
 	
 	public void addComponentesJPanelBuscarVeiculo() {
@@ -265,5 +287,19 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		
 		getjLabelVin().setLocation(415, 12);
 		getjPanelBuscarVeiculo().add(getjLabelVin());
+		
+		getjTextFieldNum().setLocation(42, 12);
+		getjPanelBuscarVeiculo().add(getjTextFieldNum());
+		
+		getjTextFieldPlaca().setLocation(242, 12);
+		getjPanelBuscarVeiculo().add(getjTextFieldPlaca());
+		
+		getjTextFieldVin().setLocation(472, 12);
+		getjPanelBuscarVeiculo().add(getjTextFieldVin());
+	}
+	
+	public void addComponentesJPanelBordaInformacaoVeiculo() {
+		getjPanelInformacaoVeiculo().setLocation(6, 4);
+		getjPanelBordaInformacaoVeiculo().add(getjPanelInformacaoVeiculo());
 	}
 }
