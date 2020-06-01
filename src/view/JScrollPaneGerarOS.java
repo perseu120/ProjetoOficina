@@ -215,7 +215,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jTextFieldVin == null){
 			jTextFieldVin = new JTextField();
 			jTextFieldVin.setBackground(cinzaClaro);
-	        jTextFieldVin.setFont(new java.awt.Font("Arial", 0, 18));
+	        jTextFieldVin.setFont(new java.awt.Font("Arial", 1, 24));
 	        jTextFieldVin.setHorizontalAlignment(JTextField.RIGHT);
 	        jTextFieldVin.setSize(250,34);
 		}
@@ -227,7 +227,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jTextFieldNum == null){
 			jTextFieldNum = new JTextField();
 			jTextFieldNum.setBackground(cinzaClaro);
-	        jTextFieldNum.setFont(new java.awt.Font("Arial", 0, 18));
+	        jTextFieldNum.setFont(new java.awt.Font("Arial", 1, 24));
 	        jTextFieldNum.setHorizontalAlignment(JTextField.RIGHT);
 	        jTextFieldNum.setSize(100,34);
 		}
@@ -239,7 +239,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jTextFieldPlaca == null){
 			jTextFieldPlaca = new JTextField();
 			jTextFieldPlaca.setBackground(cinzaClaro);
-	        jTextFieldPlaca.setFont(new java.awt.Font("Arial", 0, 18));
+	        jTextFieldPlaca.setFont(new java.awt.Font("Arial", 1, 24));
 	        jTextFieldPlaca.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 	        jTextFieldPlaca.setSize(150,34);
 		}
