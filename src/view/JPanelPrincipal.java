@@ -36,7 +36,7 @@ public class JPanelPrincipal extends JPanel {
 
 	private final String img = "/images/images_1.png";
 	
-	private JPanel alteraJPanelCentral;
+	public JScrollPane alteraJScrollPaneCentral;
 
 	// ### Inicio declaração de variáveis ###
 	private JButton jButtonMenuBar;
@@ -59,7 +59,6 @@ public class JPanelPrincipal extends JPanel {
 	
 	private JPanel jPanelCenter;
 	private JPanel jPanelHomeInicial;
-	private JPanel jPanelHome;
 	
 	private JPanel jPanelWest;
 	private JPanel jPanelWestMenuLateral;
@@ -69,15 +68,17 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelJButtonConfiguracao;
 	
 	private JPanel jPanelNorth;		
+	private JPanel jPanelDescricaoTela;
+	private JLabel lblNewLabel;
 	// ### Fim dlecaração de variáveis ###
 	
 	public JPanelPrincipal() {		
 		initComponents(); // inicializa os componentes da JFrame.
-		this.alteraJPanelCentral = this.getjPanelHomeInicial();
+		
 	}
 	
 
-	private void initComponents() { // Inicialização dos componetes visuais da classe.
+	private void initComponents() {
 		
 		// ##Parte West do JPanelPrincipal##
 		this.getjButtonHome();
@@ -119,7 +120,6 @@ public class JPanelPrincipal extends JPanel {
 		
 		// ##Parte Center do JPanelPrincipal##
 		this.getjLabelFundojPanelHome();
-		this.getjPanelHome();
 		this.getjPanelHomeInicial();
 		this.getjPanelHomeInicialAddComponentes();
 		this.getjPanelCenter();
@@ -209,8 +209,7 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelCenter() {
 		if(jPanelCenter == null){
 			jPanelCenter = new JPanel();
-			jPanelCenter.setBackground(new Color(255, 255, 255));
-			jPanelCenter.setLayout(new OverlayLayout(jPanelCenter));
+			jPanelCenter.setLayout(new BorderLayout());
 		}
 		return jPanelCenter;
 	}
@@ -224,18 +223,6 @@ public class JPanelPrincipal extends JPanel {
 			jPanelNorth.setPreferredSize(new Dimension(1027, 60));
 		}
 		return jPanelNorth;
-	}
-	
-	
-
-	public JPanel getjPanelHome() {
-		if(jPanelHome == null){
-			jPanelHome = new JPanel();
-			jPanelHome.setBackground(SystemColor.desktop);
-			jPanelHome.setLayout(new BorderLayout());
-			
-		}
-		return jPanelHome;
 	}
 	
 	
@@ -265,7 +252,7 @@ public class JPanelPrincipal extends JPanel {
 		if(jPanelHomeInicial == null){
 			jPanelHomeInicial = new JPanel();
 			jPanelHomeInicial.setBackground(SystemColor.desktop);
-			jPanelHomeInicial.setLayout(new BorderLayout());		
+			jPanelHomeInicial.setLayout(new BorderLayout());
 			
 		}
 		return jPanelHomeInicial;
@@ -558,13 +545,14 @@ public class JPanelPrincipal extends JPanel {
 	
 	
 	public void getjPanelHomeInicialAddComponentes() {
-		jPanelHomeInicial.add(this.getjLabelFundojPanelHome(), BorderLayout.CENTER);
+		getjPanelHomeInicial().add(this.getjLabelFundojPanelHome(), BorderLayout.CENTER);
+		
 	}
 	
 	
 	public void getjPanelCenterAddComponentes() {
-		jPanelCenter.add(this.getjPanelHomeInicial());
-		jPanelCenter.add(this.getjPanelHome());
+		getjPanelCenter().add(this.getjPanelHomeInicial());
+		getjPanelCenter().add(this.getjPanelDescricaoTela(), BorderLayout.NORTH);
 	}
 	
 		
@@ -735,15 +723,56 @@ public class JPanelPrincipal extends JPanel {
 	// --------------------------------------------------
 	// ### Inicio    de     métodos     da     classe ###
 	
-	public void alteraJPanelCentral(JPanel jPanel) {
-		if(alteraJPanelCentral != null) {
-			this.remove(alteraJPanelCentral);
-		}
-		this.add(BorderLayout.CENTER, jPanel);
-		this.alteraJPanelCentral = jPanel;
+	public void alteraJScrollPaneCentral(JPanel jPanel) {
+		alteraJScrollPaneCentral(null,jPanel);
 	}
 	
+	
+	public void alteraJScrollPaneCentral(JScrollPane jScrollPane) {
+		alteraJScrollPaneCentral(jScrollPane,null);				
+	}
+	
+	private void alteraJScrollPaneCentral(JScrollPane jScrollPane, JPanel jPanel) {
+		
+		if(alteraJScrollPaneCentral == null) {
+			this.getjPanelCenter().remove(getjPanelHomeInicial());
+		}else {
+			this.getjPanelCenter().remove(alteraJScrollPaneCentral);
+		}
+		
+		if(jPanel == null) {			
+			this.getjPanelCenter().add(BorderLayout.CENTER, jScrollPane);
+			alteraJScrollPaneCentral = jScrollPane;
+		}else {
+			this.getjPanelCenter().add(BorderLayout.CENTER, jPanel);
+			alteraJScrollPaneCentral = null;
+		}
+		
+		this.repaint();
+		this.validate();
+	}	
+	
 	// ### Final de métodos da classe ###
+	
+	private JPanel getjPanelDescricaoTela() {
+		if (jPanelDescricaoTela == null) {
+			jPanelDescricaoTela = new JPanel();
+			jPanelDescricaoTela.setBackground(new Color(51,51,51));
+			jPanelDescricaoTela.setPreferredSize(new Dimension(500,58));
+			jPanelDescricaoTela.setVisible(false);
+			jPanelDescricaoTela.add(getLblNewLabel());
+		}
+		return jPanelDescricaoTela;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("New");
+			lblNewLabel.setForeground(new Color(240,240,240));
+			lblNewLabel.setFont(new Font("Arial", Font.BOLD, 24));
+			//lblNewLabel.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/OS_48.png")));
+		}
+		return lblNewLabel;
+	}
 }
 
 
