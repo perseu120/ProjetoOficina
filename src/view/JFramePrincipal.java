@@ -11,18 +11,18 @@ import javax.swing.JPanel;
 public class JFramePrincipal extends JFrame{
 	
 	
-	private JPanel jPanelAnterior;
+	private JPanel jPanelAnterior; // variavel que recebe o painel atual
 	
-	TelConf telConf = new TelConf();
+	TelConf telConf = new TelConf();// instancia da classe de configurações de tela
 	
 	
-	public JFramePrincipal() {
+	public JFramePrincipal() { //construtor
 		telConf.fullScree(this);
 		initicomponents();
 	}
 	
 	
-	public void initicomponents() {
+	public void initicomponents() {// classe para inicializar os componentes no construtor
 		this.setTitle("Oficina 1.0");
 		this.getContentPane().setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
