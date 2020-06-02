@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 public class JScrollPaneGerarOS extends JScrollPane {
 	
-	private Color azulMarinho = new Color(100, 132, 147);
+	private Color azulMarinho = new Color(100, 132, 147); //salvando as cores
 	private Color cinzaEscuro = new Color(51,51,51);
 	private Color cinzaClaro = new Color(235,235,235);
 	private Color foregroudJButton = new Color(204,204,204);
@@ -248,12 +248,12 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	
 	
 	public void addComponentesJScrollPaneGerarOS() {
-		this.setViewportView(getjPanelGerarOS());
+		this.setViewportView(getjPanelGerarOS());// seta o jpanel dentro do jscroll
 	}
 	
 	
 	public void addComponentesJPanelGerarOS() {		
-		getjPanelGerarOS().add(getjPanelCentroGerarOS());
+		getjPanelGerarOS().add(getjPanelCentroGerarOS());// seta o jpanel no centro
 	}
 	
      

@@ -1,7 +1,4 @@
 
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -69,14 +66,14 @@ public class JPanelLogin extends JPanel {
 	}
 
 	private void initComponents() {
-		this.getjPanelImagemFundoTela();
-    	this.addComponentesjPanelImagemFundoTela();
-    	this.getjPanelCentroHead();
-    	this.addComponentesjPanelCentroHead();
-    	this.getjPanelHead();
-    	this.addComponentesjPanelHead();
-    	this.getJPanelLgoin();
-    	this.addComponetesJPanelLogin();
+		this.getjPanelImagemFundoTela();//imagem do fundo
+    	this.addComponentesjPanelImagemFundoTela(); // adiciona componentes da imagem de fundo do jpanellogin
+    	this.getjPanelCentroHead(); // painel do centro da tela de login
+    	this.addComponentesjPanelCentroHead(); // adicionas os componentes no painel do centro
+    	this.getjPanelHead(); //retorna o painel que armazena o painel da imagem do fundo setado com gridbeglayout
+    	this.addComponentesjPanelHead();//adiciona os componentes do painel do fundo ( o painel do centro é adicionado aqui )
+    	this.getJPanelLgoin(); // inicialização dos componentes da classe atual
+    	this.addComponetesJPanelLogin(); // adiciona os paineis na classe atual
     }
 	
     // ### Inicio dos gets dos jButtons ###
@@ -98,7 +95,7 @@ public class JPanelLogin extends JPanel {
     // ---------------------------------	
 	// ### Inicio  dos get dos label ###    
 	
-	public JLabel getjLabelImageFundoPainelPrincipal() {
+	public JLabel getjLabelImageFundoPainelPrincipal() { // imagem do fundo
 		if(jLabelImageFundoPainelPrincipal == null){
 			jLabelImageFundoPainelPrincipal = new JLabel();
 			jLabelImageFundoPainelPrincipal.setOpaque(true);
@@ -107,7 +104,7 @@ public class JPanelLogin extends JPanel {
 	}
 	
 
-	public JLabel getjLabelImagemCentroHead() {
+	public JLabel getjLabelImagemCentroHead() { // imagem do painel do centro
 		if(jLabelImagemCentroHead == null){	
 			jLabelImagemCentroHead = new JLabel();
 			jLabelImagemCentroHead.setSize(348,473);
@@ -116,7 +113,7 @@ public class JPanelLogin extends JPanel {
 	}
 	
 	
-	public JLabel getjLabelIcon() {
+	public JLabel getjLabelIcon() { // incone do painel do centro ( ou incone do projeto )
 		if(jLabelIcon == null){	
 			jLabelIcon = new JLabel();
 			jLabelIcon.setSize(110,110);
@@ -124,7 +121,7 @@ public class JPanelLogin extends JPanel {
 		return jLabelIcon;
 	}
 		
-	public JLabel getjLabelDescricao() {
+	public JLabel getjLabelDescricao() { // titulo do projeto
 		if(jLabelDescricao == null) {
 			jLabelDescricao = new JLabel();
 			jLabelDescricao.setForeground(SystemColor.controlHighlight);
@@ -137,7 +134,7 @@ public class JPanelLogin extends JPanel {
 	}
 	
 	
-	public JLabel getjLabelSenha() {
+	public JLabel getjLabelSenha() { // nome do campo "senha "
 		if(jLabelSenha == null){	
 			jLabelSenha = new JLabel();
 			jLabelSenha.setForeground(SystemColor.controlHighlight);
@@ -150,20 +147,24 @@ public class JPanelLogin extends JPanel {
 	}
 
 	
-	public JLabel getjLabelSenhaErro() {
-		if(jLabelSenhaErro == null){	
+	public JLabel getjLabelSenhaErro() { // nome com erro de senha que ficara invisivel ate a senha ser errada
+		
+		if(jLabelSenhaErro == null){
+			
 			jLabelSenhaErro = new JLabel();
 			jLabelSenhaErro.setHorizontalAlignment(SwingConstants.CENTER);
 			jLabelSenhaErro.setFont(new Font("Tahoma", Font.PLAIN, 19));
 			jLabelSenhaErro.setForeground(Color.RED);
 			jLabelSenhaErro.setText("Usuário ou senha incorretos");
 			jLabelSenhaErro.setSize(344,28);
-		}	
+			jLabelSenhaErro.setVisible(false);
+		}
+		
 		return jLabelSenhaErro;
 	}
 	
 	
-	public JLabel getjLabelUsuario() {
+	public JLabel getjLabelUsuario() { // nome do campo que esta com "usuario"
 		if(jLabelUsuario == null){	
 			jLabelUsuario = new JLabel();
 			jLabelUsuario.setForeground(SystemColor.controlHighlight);
@@ -180,14 +181,14 @@ public class JPanelLogin extends JPanel {
 	// ---------------------------------
 	// ### Inicio dos gets do jPanel ###
 	
-	public JPanelLogin getJPanelLgoin() {
+	public JPanelLogin getJPanelLgoin() { //setando a propria tela
 		this.setLayout(new OverlayLayout(this));
         this.setPreferredSize(new java.awt.Dimension(800, 600));        
 		return this;
 	}
 	
 	
-	public JPanel getjPanelImagemFundoTela() {
+	public JPanel getjPanelImagemFundoTela() {// paienl que tem a imagem dentro
 		if(jPanelImagemFundoTela == null) {
 			jPanelImagemFundoTela = new JPanel();
 			jPanelImagemFundoTela.setLayout(new BorderLayout(0,0));			
@@ -261,14 +262,14 @@ public class JPanelLogin extends JPanel {
 
 	
 	public void addComponentesjPanelHead() {
-		GridBagConstraints constraints = new GridBagConstraints();
+		GridBagConstraints constraints = new GridBagConstraints(); // variavel que coloca as posiçoes e componentes do Gridbeglayout
 		constraints.ipadx = 350;
 		constraints.ipady = 475;
-		jPanelHead.add(this.getjPanelCentroHead(), constraints);
+		jPanelHead.add(this.getjPanelCentroHead(), constraints);// adicionando o componente no centro da gridbeg 
 	}
 	
 	
-	public void addComponentesjPanelCentroHead() {
+	public void addComponentesjPanelCentroHead() { //inicialização dos compontes da tela
 				
 		this.getjLabelIcon().setLocation(120, 20);
 		this.getjPanelCentroHead().add(this.getjLabelIcon());

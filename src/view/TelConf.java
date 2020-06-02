@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  * @author willian Lago
  */
 public class TelConf {
-    // pega a resolu√ß√£o do sistema
+    // pega a resoluÁ„o do sistema
     Toolkit resolucao = Toolkit.getDefaultToolkit(); 
     Dimension setResolucao = resolucao.getScreenSize();
     int width = (int)setResolucao.getWidth();
@@ -30,7 +30,7 @@ public class TelConf {
     
     
     
-    // Renderiza a jlabel e o icon na resolu√ß√£o da tela do sistema.
+    // Renderiza a jlabel e o icon na resoluÁ„o da tela do sistema.
     public void imageLabelRend(JLabel funTel, String img){  
         //seta a label de fundo na dimens√£o da tela
         funTel.setSize(width, height);
@@ -95,17 +95,17 @@ public class TelConf {
     
     
     public void iconRender(JFrame jFrame, JLabel jLabel,String imagem) {
-    	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));
-    	 Image img = imageIcon.getImage().getScaledInstance(jFrame.getWidth(), jFrame.getHeight(), 
+    	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));// seta imagem
+    	 Image img = imageIcon.getImage().getScaledInstance(jFrame.getWidth(), jFrame.getHeight(), //pega a largura do frame para poder seta a imagem com o mesmo tamanho
                  Image.SCALE_DEFAULT);
-    	jLabel.setIcon(new ImageIcon(img));
+    	jLabel.setIcon(new ImageIcon(img)); // set da imagem no label
     	 //System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());    	
     }
     
     
     public void iconRender(JLabel jLabel,String imagem) {
-    	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));
-    	 Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), 
+    	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem)); // adicniona o caminho da imagem 
+    	 Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), // pega a largura do incone que vai ser a mesma da label
                  Image.SCALE_DEFAULT);
     	jLabel.setIcon(new ImageIcon(img)); 
     	//System.out.println(jLabel.getWidth()+" , "+jLabel.getHeight());
