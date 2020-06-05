@@ -23,6 +23,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
 
 
 /**
@@ -68,7 +69,7 @@ public class JPanelPrincipal extends JPanel {
 	
 	private JPanel jPanelNorth;		
 	private JPanel jPanelDescricaoTela;
-	private JLabel lblNewLabel;
+	private JLabel jLabelNomeDaTela;
 	// ### Fim dlecaração de variáveis ###
 	
 	public JPanelPrincipal() {		
@@ -261,10 +262,12 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel getjPanelDescricaoTela() {
 		if (jPanelDescricaoTela == null) {
 			jPanelDescricaoTela = new JPanel();
+			jPanelDescricaoTela.setBorder(BorderFactory
+						.createMatteBorder(3, 0, 0, 0, new Color(100,132,147)));
 			jPanelDescricaoTela.setBackground(new Color(51,51,51));
 			jPanelDescricaoTela.setPreferredSize(new Dimension(500,58));
 			jPanelDescricaoTela.setVisible(false);
-			jPanelDescricaoTela.add(getLblNewLabel());
+			jPanelDescricaoTela.add(getJLabelNomeDaTela());
 		}
 		return jPanelDescricaoTela;
 	}
@@ -299,14 +302,14 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("New");
-			lblNewLabel.setForeground(new Color(240,240,240));
-			lblNewLabel.setFont(new Font("Arial", Font.BOLD, 24));
+	private JLabel getJLabelNomeDaTela() {
+		if (jLabelNomeDaTela == null) {
+			jLabelNomeDaTela = new JLabel("New");
+			jLabelNomeDaTela.setForeground(new Color(240,240,240));
+			jLabelNomeDaTela.setFont(new Font("Arial", Font.BOLD, 24));
 			//lblNewLabel.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/OS_48.png")));
 		}
-		return lblNewLabel;
+		return jLabelNomeDaTela;
 	}
 	
 	
@@ -748,15 +751,20 @@ public class JPanelPrincipal extends JPanel {
 	// ### Inicio    de     métodos     da     classe ###
 	
 	public void alteraJScrollPaneCentral(JPanel jPanel) { // Se passar um jPanel como parâmetro
-		alteraJScrollPaneCentral(null,jPanel);
+		
+		alteraJScrollPaneCentral(null,jPanel, null);
+		
 	}
 	
 	
-	public void alteraJScrollPaneCentral(JScrollPane jScrollPane) { // Se passar um jScrollPanel
-		alteraJScrollPaneCentral(jScrollPane,null);				
+	public void alteraJScrollPaneCentral(JScrollPane jScrollPane, JLabel jLabel) { // Se passar um jScrollPanel
+		
+		alteraJScrollPaneCentral(jScrollPane,null, jLabel);				
+		
 	}
 	
-	private void alteraJScrollPaneCentral(JScrollPane jScrollPane, JPanel jPanel) { // Método que faz os tratamentos nessessários
+	
+	private void alteraJScrollPaneCentral(JScrollPane jScrollPane, JPanel jPanel, JLabel jLabel) { // Método que faz os tratamentos nessessários
 			// para trocar a tela do centro da classe
 		
 		if(alteraJScrollPaneCentral == null) { // Se estiver na tela incial e for trocar para outra tela
@@ -766,10 +774,14 @@ public class JPanelPrincipal extends JPanel {
 		}
 		
 		if(jPanel == null) { // Se for passado um jScrollPane como parametro o método adiciona o mesmo na parte central da classe
+			
 			this.getjPanelCenter().add(BorderLayout.CENTER, jScrollPane);
 			alteraJScrollPaneCentral = jScrollPane; // E essa variável recebe a nova tela
 			this.getjPanelDescricaoTela().setVisible(true);
+			this.jLabelNomeDaTela = jLabel;
+		
 		}else { // Se for passado um jPanel como parâmetro, o método adiciona o mesmo na parte central da classe
+			
 			this.getjPanelCenter().add(BorderLayout.CENTER, jPanel);
 			alteraJScrollPaneCentral = null; // Seta variável como nulo, para "informar" ao método "alteraJScrollPaneCentral" para 
 					//na proxima troca de tela retiara o jPanel Central

@@ -33,14 +33,16 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	private JPanel jPanelBuscarVeiculo;
 	private JPanel jPanelBordaInformacaoVeiculo;
 	private JPanel jPanelInformacaoVeiculo;
+	
 	private JButton jButtonVeiculo;
 	private JButton jButtonCliente;
-	private JButton jButtonServico;
-	 
+	private JButton jButtonServico;	 
      
-    private JLabel jLabelVin;
+    private JLabel jLabelTitulo;  
+	private JLabel jLabelVin;
     private JLabel jLabelNum;
     private JLabel jLabelPlaca;
+    
     private JTextField jTextFieldVin;     
     private JTextField jTextFieldNum;     
     private JTextField jTextFieldPlaca;
@@ -116,7 +118,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JPanel getjPanelInformacaoVeiculo() {
 		if(jPanelInformacaoVeiculo == null){
 			jPanelInformacaoVeiculo = new JPanel();
-			jPanelInformacaoVeiculo.setBackground(Color.WHITE); 
+			jPanelInformacaoVeiculo.setBackground(new Color(100,132,147)); 
 	        jPanelInformacaoVeiculo.setSize(838, 510);
 	        jPanelInformacaoVeiculo.setLayout(null);
 		}
@@ -301,5 +303,16 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public void addComponentesJPanelBordaInformacaoVeiculo() {
 		getjPanelInformacaoVeiculo().setLocation(6, 4);
 		getjPanelBordaInformacaoVeiculo().add(getjPanelInformacaoVeiculo());
+	}
+	
+	// ### Métodos da classe ###
+	
+	public JLabel getJLabelTitulo() {
+		if( jLabelTitulo == null) {
+			jLabelTitulo = new JLabel();
+			jLabelTitulo.setText("Gerar ordem de serviço");
+			jLabelTitulo.setIcon(new ImageIcon(getClass().getResource(iconGerarOS)));
+		}
+		return jLabelTitulo;
 	}
 }

@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -157,7 +158,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 			//mudarCorJButton(getjPanelPrincipal().getjButtonHome()); // Altera cor do JButtonHome, quando clicado.			
 			//getjPanelPrincipal().alteraJScrollPaneCentral(getjPanelPrincipal().getjPanelHomeInicial());
 			questionar(getjPanelPrincipal().getjButtonHome(), "Gerar OS", "Deseja sair mesmo?", 
-						getjPanelPrincipal().getjPanelHomeInicial(), null);
+						getjPanelPrincipal().getjPanelHomeInicial(), null, null);
 		}
 		
 		
@@ -172,7 +173,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
-			getjPanelPrincipal().alteraJScrollPaneCentral(getjScrollPaneGerarOS());
+			getjPanelPrincipal().alteraJScrollPaneCentral(getjScrollPaneGerarOS(), getjScrollPaneGerarOS().getJLabelTitulo());
 		}
 		
 		
@@ -360,7 +361,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     }
 
 
-    private void questionar(JButton jButton, String titulo, String mensagem, JPanel jPanel, JScrollPane jScrollPane) {
+    private void questionar(JButton jButton, String titulo, String mensagem, JPanel jPanel, JScrollPane jScrollPane, JLabel jLabel) {
     	if(getjPanelPrincipal().alteraJScrollPaneCentral != null) {
     		
 			Object[] options = { "Sim", "Não" }; // Texto dos botões da tela de alerta.
@@ -370,7 +371,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 			
 			if(confimacao == 0) { // se for confirmada a mensagem de alerta.
 				if(jPanel == null) {
-					getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane);
+					getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, jLabel);
 				}else {
 					getjPanelPrincipal().alteraJScrollPaneCentral(jPanel);
 				}
