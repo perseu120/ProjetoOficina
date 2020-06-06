@@ -34,10 +34,8 @@ import javax.swing.border.LineBorder;
 public class JPanelPrincipal extends JPanel {
 	
 
-	private final String img = "/images/images_1.png"; // Salva caminho da imagem de fundo da tela
+	private final String img = "/images/images_1.png"; // Salva caminho da imagem de fundo da tela	
 	
-	public JScrollPane alteraJScrollPaneCentral; // Variavel que recebe a o novo JScrollPane da parte central da classe.
-
 	// ### Inicio declaração de variáveis ###
 	private JButton jButtonMenuBar;
 	private JButton jButtonHome;
@@ -63,6 +61,7 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelWest;
 	private JPanel jPanelWestMenuLateral;
 	private JScrollPane jScrollWest;
+	private JScrollPane alteraJScrollPaneCentral; // Variavel que recebe a o novo JScrollPane da parte central da classe.
 	private JPanel jPanelButtons;
 	private JPanel jPanelJButtonOS;
 	private JPanel jPanelJButtonConfiguracao;
@@ -178,6 +177,11 @@ public class JPanelPrincipal extends JPanel {
 
 		}
 		return jScrollWest;
+	}
+	
+	
+	public JScrollPane getAlteraJScrollPaneCentral() {
+		return alteraJScrollPaneCentral;
 	}
 	
 
@@ -310,6 +314,12 @@ public class JPanelPrincipal extends JPanel {
 			//lblNewLabel.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/OS_48.png")));
 		}
 		return jLabelNomeDaTela;
+	}
+	
+	
+	private void setJlabel(String string, ImageIcon icon) {
+		jLabelNomeDaTela.setText(string);
+		jLabelNomeDaTela.setIcon(icon);
 	}
 	
 	
@@ -752,24 +762,25 @@ public class JPanelPrincipal extends JPanel {
 	
 	public void alteraJScrollPaneCentral(JPanel jPanel) { // Se passar um jPanel como parâmetro
 		
-		alteraJScrollPaneCentral(null,jPanel, null);
+		alteraJScrollPaneCentral(jPanel,null);
 		
 	}
 	
 	
-	public void alteraJScrollPaneCentral(JScrollPane jScrollPane, JLabel jLabel) { // Se passar um jScrollPanel
+	public void alteraJScrollPaneCentral(JScrollPane jScrollPane, String string, ImageIcon icon) { // Se passar um jScrollPanel	
 		
-		alteraJScrollPaneCentral(jScrollPane,null, jLabel);				
+		alteraJScrollPaneCentral(null,jScrollPane);
+		this.setJlabel(string, icon);
 		
 	}
 	
 	
-	private void alteraJScrollPaneCentral(JScrollPane jScrollPane, JPanel jPanel, JLabel jLabel) { // Método que faz os tratamentos nessessários
-			// para trocar a tela do centro da classe
+	public void alteraJScrollPaneCentral(JPanel jPanel, JScrollPane jScrollPane) { // Método que faz os tratamentos nessessários
+		//		para trocar a tela do centro da classe
 		
-		if(alteraJScrollPaneCentral == null) { // Se estiver na tela incial e for trocar para outra tela
+		if(alteraJScrollPaneCentral == null) { 	// Se estiver na tela incial e for trocar para outra tela
 			this.getjPanelCenter().remove(getjPanelHomeInicial());
-		}else { // Se estiver em uma tela qualquer e for outra tela
+		}else {									// Se estiver em uma tela qualquer e for outra tela
 			this.getjPanelCenter().remove(alteraJScrollPaneCentral);
 		}
 		
@@ -778,9 +789,8 @@ public class JPanelPrincipal extends JPanel {
 			this.getjPanelCenter().add(BorderLayout.CENTER, jScrollPane);
 			alteraJScrollPaneCentral = jScrollPane; // E essa variável recebe a nova tela
 			this.getjPanelDescricaoTela().setVisible(true);
-			this.jLabelNomeDaTela = jLabel;
 		
-		}else { // Se for passado um jPanel como parâmetro, o método adiciona o mesmo na parte central da classe
+		}else { 			// Se for passado um jPanel como parâmetro, o método adiciona o mesmo na parte central da classe
 			
 			this.getjPanelCenter().add(BorderLayout.CENTER, jPanel);
 			alteraJScrollPaneCentral = null; // Seta variável como nulo, para "informar" ao método "alteraJScrollPaneCentral" para 
@@ -788,8 +798,8 @@ public class JPanelPrincipal extends JPanel {
 			this.getjPanelDescricaoTela().setVisible(false);
 		}
 		
-		this.repaint();
-		this.validate();
+		this.getjPanelCenter().repaint();
+		this.getjPanelCenter().validate();
 	}	
 	
 	// ### Final de métodos da classe ###

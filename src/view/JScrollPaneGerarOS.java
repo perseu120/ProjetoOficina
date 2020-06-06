@@ -16,12 +16,16 @@ import javax.swing.JTextField;
 
 public class JScrollPaneGerarOS extends JScrollPane {
 	
-	private Color azulMarinho = new Color(100, 132, 147); //salvando as cores
-	private Color cinzaEscuro = new Color(51,51,51);
-	private Color cinzaClaro = new Color(235,235,235);
-	private Color foregroudJButton = new Color(204,204,204);
+	// ### Início declaração de variáveis ###
 	
-	private Font fontJButton = new Font("Arial",1,24);
+	private Color corIntermediaria = new Color(100, 132, 147); // Azul marinho
+	private Color corEscura = new Color(51,51,51); // Cinza escuro
+	private Color corClara = new Color(235,235,235); // Cinza claro
+	private Color foregroudJButtonClaro = new Color(204,204,204); // Cinza
+	private Color foregroudJButtonEscuro = new Color(0,0,0); // Preto
+	private Font fontJButton = new Font("Arial",1,24); // Fonte dos jButons da classe
+	private Font fontJTextField = new Font("Arial", 1, 24); // Fonte dos jTextField da classe
+    private Font fontJLabel = new Font("Arial", 1, 24); // Font dos jLabel da classe
 	
 	private String iconGerarOS = "/icons/OS_48.png";
 	private String iconVeiculoBlue = "/icons/car_48_blue.png";
@@ -47,6 +51,15 @@ public class JScrollPaneGerarOS extends JScrollPane {
     private JTextField jTextFieldNum;     
     private JTextField jTextFieldPlaca;
     
+    private String stringTitulo = "Gerar ordem de serviço";
+    
+    // ### Fim dlecaração de  variáveis ###
+    // ------------------------------------
+	// ### Inicio de criação de objetos ###
+    
+	private ImageIcon iconTitulo = new ImageIcon(getClass().getResource(iconGerarOS));
+	
+	// ### Fim  da  criação  de objetos ###
 
 	public JScrollPaneGerarOS() {
 		this.getjPanelInformacaoVeiculo();
@@ -61,8 +74,102 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		this.getjScrollPaneOS();
 		this.addComponentesJScrollPaneGerarOS();
     }
+	
+    // ### Inicio dos gets dos jButtons ###
+	
+	public JButton getjButtonVeiculo() {
+		if(jButtonVeiculo == null){
+			jButtonVeiculo = new JButton();
+			jButtonVeiculo.setBackground(corEscura);
+	        jButtonVeiculo.setFont(fontJButton);
+	        jButtonVeiculo.setForeground(foregroudJButtonClaro);
+	        jButtonVeiculo.setIcon(new ImageIcon(getClass().getResource(iconVeiculoBlue)));
+	        jButtonVeiculo.setText(" Veículo");
+	        jButtonVeiculo.setContentAreaFilled(false);
+	        jButtonVeiculo.setOpaque(true);
+	        jButtonVeiculo.setSize(190,61);
+	        jButtonVeiculo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+		}
+		return jButtonVeiculo;
+	}
 
 
+	public JButton getjButtonCliente() {
+		if(jButtonCliente == null){
+			jButtonCliente = new JButton();
+			jButtonCliente.setBackground(corEscura);
+	        jButtonCliente.setFont(fontJButton);
+	        jButtonCliente.setForeground(foregroudJButtonClaro);
+	        jButtonCliente.setIcon(new ImageIcon(getClass().getResource(iconClienteBlue)));
+	        jButtonCliente.setText(" Cliente");
+	        jButtonCliente.setContentAreaFilled(false);
+	        jButtonCliente.setOpaque(true);
+	        jButtonCliente.setSize(190,58);
+	        jButtonCliente.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+		}
+		return jButtonCliente;
+	}
+
+
+	public JButton getjButtonServico() {
+		if(jButtonServico == null){
+			jButtonServico = new JButton();
+			jButtonServico.setBackground(corEscura);
+	        jButtonServico.setFont(fontJButton);
+	        jButtonServico.setForeground(foregroudJButtonClaro);
+	        jButtonServico.setIcon(new ImageIcon(getClass().getResource(iconServico)));
+	        jButtonServico.setText(" Serviço");
+	        jButtonServico.setContentAreaFilled(false);
+	        jButtonServico.setOpaque(true);
+	        jButtonServico.setSize(190,58);
+	        jButtonServico.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+		}
+		return jButtonServico;
+	}
+	
+	// ### Final dos gets dos botoes ###
+    // ---------------------------------	
+	// ### Inicio  dos get dos label ### 
+
+	public JLabel getjLabelVin() {
+		if(jLabelVin == null){
+			jLabelVin = new JLabel();
+			jLabelVin.setFont(fontJLabel);
+	        jLabelVin.setForeground(foregroudJButtonClaro);
+	        jLabelVin.setText("Vin :");
+	        jLabelVin.setSize(80,29);
+		}
+		return jLabelVin;
+	}
+
+
+	public JLabel getjLabelNum() {
+		if(jLabelNum == null){
+			jLabelNum = new JLabel();
+			jLabelNum.setFont(fontJLabel);
+	        jLabelNum.setForeground(foregroudJButtonClaro);
+	        jLabelNum.setText("Nº");
+	        jLabelNum.setSize(26,29);
+		}
+		return jLabelNum;
+	}
+
+
+	public JLabel getjLabelPlaca() {
+		if(jLabelPlaca == null){
+			jLabelPlaca = new JLabel();
+			jLabelPlaca.setFont(fontJLabel);
+	        jLabelPlaca.setForeground(foregroudJButtonClaro);
+	        jLabelPlaca.setText("Placa :");
+	        jLabelPlaca.setSize(80,29);
+		}
+		return jLabelPlaca;
+	}
+	
+	// ### Fim  dos  gets dos  jLabel ###
+	// ---------------------------------
+	// ### Inicio dos gets do jPanel ###
+	
 	public JScrollPaneGerarOS getjScrollPaneOS() {
 		this.setBorder(null);
 		//this.setPreferredSize(new Dimension(870,600));
@@ -73,7 +180,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JPanel getjPanelGerarOS() {
 		if(jPanelGerarOS == null){
 			jPanelGerarOS = new JPanel();
-			jPanelGerarOS.setBackground(azulMarinho);
+			jPanelGerarOS.setBackground(corIntermediaria);
 			jPanelGerarOS.setBorder(null);
 			jPanelGerarOS.setPreferredSize(new Dimension(1000,1000));
 		}
@@ -85,7 +192,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jPanelCentroGerarOS == null){
 			jPanelCentroGerarOS = new JPanel();
 	        jPanelCentroGerarOS.setLayout(null);
-			jPanelCentroGerarOS.setBackground(azulMarinho);
+			jPanelCentroGerarOS.setBackground(corIntermediaria);
 	        jPanelCentroGerarOS.setBorder(null);
 	        jPanelCentroGerarOS.setPreferredSize(new Dimension(850, 950));
 		}
@@ -96,7 +203,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JPanel getjPanelBuscarVeiculo() {
 		if(jPanelBuscarVeiculo == null){
 			jPanelBuscarVeiculo = new JPanel();
-			jPanelBuscarVeiculo.setBackground(cinzaEscuro);
+			jPanelBuscarVeiculo.setBackground(corEscura);
 	        jPanelBuscarVeiculo.setLayout(null);
 	        jPanelBuscarVeiculo.setSize(850,58);
 		}
@@ -108,7 +215,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jPanelBordaInformacaoVeiculo == null){
 			jPanelBordaInformacaoVeiculo = new JPanel();
 	        jPanelBordaInformacaoVeiculo.setLayout(null);
-			jPanelBordaInformacaoVeiculo.setBackground(cinzaEscuro);
+			jPanelBordaInformacaoVeiculo.setBackground(corEscura);
 			jPanelBordaInformacaoVeiculo.setSize(850,520);
 		}
 		return jPanelBordaInformacaoVeiculo;
@@ -124,100 +231,16 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		}
 		return jPanelInformacaoVeiculo;
 	}
-
-
-	public JButton getjButtonVeiculo() {
-		if(jButtonVeiculo == null){
-			jButtonVeiculo = new JButton();
-			jButtonVeiculo.setBackground(cinzaEscuro);
-	        jButtonVeiculo.setFont(new Font("Arial", 1, 24));
-	        jButtonVeiculo.setForeground(new Color(204, 204, 204));
-	        jButtonVeiculo.setIcon(new ImageIcon(getClass().getResource(iconVeiculoBlue)));
-	        jButtonVeiculo.setText(" Veículo");
-	        jButtonVeiculo.setContentAreaFilled(false);
-	        jButtonVeiculo.setOpaque(true);
-	        jButtonVeiculo.setSize(190,61);
-	        jButtonVeiculo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-		}
-		return jButtonVeiculo;
-	}
-
-
-	public JButton getjButtonCliente() {
-		if(jButtonCliente == null){
-			jButtonCliente = new JButton();
-			jButtonCliente.setBackground(cinzaEscuro);
-	        jButtonCliente.setFont(fontJButton);
-	        jButtonCliente.setForeground(foregroudJButton);
-	        jButtonCliente.setIcon(new ImageIcon(getClass().getResource(iconClienteBlue)));
-	        jButtonCliente.setText(" Cliente");
-	        jButtonCliente.setContentAreaFilled(false);
-	        jButtonCliente.setOpaque(true);
-	        jButtonCliente.setSize(190,58);
-	        jButtonCliente.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-		}
-		return jButtonCliente;
-	}
-
-
-	public JButton getjButtonServico() {
-		if(jButtonServico == null){
-			jButtonServico = new JButton();
-			jButtonServico.setBackground(cinzaEscuro);
-	        jButtonServico.setFont(fontJButton);
-	        jButtonServico.setForeground(foregroudJButton);
-	        jButtonServico.setIcon(new ImageIcon(getClass().getResource(iconServico)));
-	        jButtonServico.setText(" Serviço");
-	        jButtonServico.setContentAreaFilled(false);
-	        jButtonServico.setOpaque(true);
-	        jButtonServico.setSize(190,58);
-	        jButtonServico.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-		}
-		return jButtonServico;
-	}
-
-
-	public JLabel getjLabelVin() {
-		if(jLabelVin == null){
-			jLabelVin = new JLabel();
-			jLabelVin.setFont(fontJButton);
-	        jLabelVin.setForeground(foregroudJButton);
-	        jLabelVin.setText("Vin :");
-	        jLabelVin.setSize(80,29);
-		}
-		return jLabelVin;
-	}
-
-
-	public JLabel getjLabelNum() {
-		if(jLabelNum == null){
-			jLabelNum = new JLabel();
-			jLabelNum.setFont(fontJButton);
-	        jLabelNum.setForeground(foregroudJButton);
-	        jLabelNum.setText("Nº");
-	        jLabelNum.setSize(26,29);
-		}
-		return jLabelNum;
-	}
-
-
-	public JLabel getjLabelPlaca() {
-		if(jLabelPlaca == null){
-			jLabelPlaca = new JLabel();
-			jLabelPlaca.setFont(fontJButton);
-	        jLabelPlaca.setForeground(foregroudJButton);
-	        jLabelPlaca.setText("Placa :");
-	        jLabelPlaca.setSize(80,29);
-		}
-		return jLabelPlaca;
-	}
-
-
+	
+	// ### Fim    dos     gets    dos    paineis ###
+	// ---------------------------------------------
+	// ### Inicios dos gets textfild e derivados ###
+	
 	public JTextField getjTextFieldVin() {
 		if(jTextFieldVin == null){
 			jTextFieldVin = new JTextField();
-			jTextFieldVin.setBackground(cinzaClaro);
-	        jTextFieldVin.setFont(new java.awt.Font("Arial", 1, 24));
+			jTextFieldVin.setBackground(corClara);
+	        jTextFieldVin.setFont(fontJTextField);
 	        jTextFieldVin.setHorizontalAlignment(JTextField.RIGHT);
 	        jTextFieldVin.setSize(250,34);
 		}
@@ -228,8 +251,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JTextField getjTextFieldNum() {
 		if(jTextFieldNum == null){
 			jTextFieldNum = new JTextField();
-			jTextFieldNum.setBackground(cinzaClaro);
-	        jTextFieldNum.setFont(new java.awt.Font("Arial", 1, 24));
+			jTextFieldNum.setBackground(corClara);
+	        jTextFieldNum.setFont(fontJTextField);
 	        jTextFieldNum.setHorizontalAlignment(JTextField.RIGHT);
 	        jTextFieldNum.setSize(100,34);
 		}
@@ -240,15 +263,20 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JTextField getjTextFieldPlaca() {
 		if(jTextFieldPlaca == null){
 			jTextFieldPlaca = new JTextField();
-			jTextFieldPlaca.setBackground(cinzaClaro);
-	        jTextFieldPlaca.setFont(new java.awt.Font("Arial", 1, 24));
+			jTextFieldPlaca.setBackground(corClara);
+	        jTextFieldPlaca.setFont(fontJTextField);
 	        jTextFieldPlaca.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 	        jTextFieldPlaca.setSize(150,34);
 		}
 		return jTextFieldPlaca;
 	}
 	
+	// ### Fim   dos   gets   textfild   e   derivados ###
+	// ---------------------------------------------------
+	// ### Inicio dos métodos de adição de componentes ###
 	
+	// --------------Inicio tela veículo--------------
+
 	public void addComponentesJScrollPaneGerarOS() {
 		this.setViewportView(getjPanelGerarOS());// seta o jpanel dentro do jscroll
 	}
@@ -305,14 +333,19 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		getjPanelBordaInformacaoVeiculo().add(getjPanelInformacaoVeiculo());
 	}
 	
-	// ### Métodos da classe ###
+	// --------------Final tela veículo--------------
+
+	// ### Final dos métodos de adição de componentes ###
+	// --------------------------------------------------
+	// ### Métodos              da             classe ###
 	
-	public JLabel getJLabelTitulo() {
-		if( jLabelTitulo == null) {
-			jLabelTitulo = new JLabel();
-			jLabelTitulo.setText("Gerar ordem de serviço");
-			jLabelTitulo.setIcon(new ImageIcon(getClass().getResource(iconGerarOS)));
-		}
-		return jLabelTitulo;
+	public String getStringTitulo() {
+		return stringTitulo;
 	}
+	
+	public ImageIcon getIconTitulo() {
+		return iconTitulo;
+	}
+	
+	// ### Final dos métodos da classe ###
 }

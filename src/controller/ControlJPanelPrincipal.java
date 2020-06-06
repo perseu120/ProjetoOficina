@@ -8,6 +8,7 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ import view.*;
 
 public class ControlJPanelPrincipal implements MouseListener, ComponentListener {
 	
+	// ### Início declaração de variáveis ###
+	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	private JScrollPaneGerarOS jScrollPaneGerarOS;
@@ -26,6 +29,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 	
 	private JButton jButtonAnterior;
 	private JButton jButtonAnteriorEntered;
+	private String telaAnterior;
 	
 	private int cor1 = 103, cor2 = 103, cor3 = 103;
 	
@@ -141,8 +145,8 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 				}
 			};thread.start();			
 		}
-	}
-
+	}	
+	
 
 	@Override
 	public void mouseClicked(MouseEvent evt) {
@@ -152,13 +156,13 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestMenuLateral(), 0, 265, 1100); // Abre ou fecha o jPanelWestMenuLateral
 			//mudarCorJButton(getjPanelPrincipal().getjButtonMenuBar());
 		}
-		
+									
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:			
 			//mudarCorJButton(getjPanelPrincipal().getjButtonHome()); // Altera cor do JButtonHome, quando clicado.			
 			//getjPanelPrincipal().alteraJScrollPaneCentral(getjPanelPrincipal().getjPanelHomeInicial());
-			questionar(getjPanelPrincipal().getjButtonHome(), "Gerar OS", "Deseja sair mesmo?", 
-						getjPanelPrincipal().getjPanelHomeInicial(), null, null);
+			questionar(getjPanelPrincipal().getjButtonHome(),null, "Deseja sair mesmo?", 
+						getjPanelPrincipal().getjPanelHomeInicial(), null,null,null);
 		}
 		
 		
@@ -173,7 +177,8 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
-			getjPanelPrincipal().alteraJScrollPaneCentral(getjScrollPaneGerarOS(), getjScrollPaneGerarOS().getJLabelTitulo());
+			questionar(getjPanelPrincipal().getjButtonOS(), getjScrollPaneGerarOS().getStringTitulo(), "Deseja sair mesmo?", 
+					null, getjScrollPaneGerarOS(),getjScrollPaneGerarOS().getStringTitulo(), getjScrollPaneGerarOS().getIconTitulo());
 		}
 		
 		
@@ -361,22 +366,35 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     }
 
 
-    private void questionar(JButton jButton, String titulo, String mensagem, JPanel jPanel, JScrollPane jScrollPane, JLabel jLabel) {
-    	if(getjPanelPrincipal().alteraJScrollPaneCentral != null) {
+    private void questionar(JButton jButton, String titulo, String mensagem, JPanel jPanel, JScrollPane jScrollPane, String string, ImageIcon icon) {
+    	
+    	if(getjPanelPrincipal().getAlteraJScrollPaneCentral() != null) {
     		
 			Object[] options = { "Sim", "Não" }; // Texto dos botões da tela de alerta.
 			
-			int confimacao = JOptionPane.showOptionDialog(null, mensagem, titulo,
+			int confimacao = JOptionPane.showOptionDialog(null, mensagem, this.telaAnterior,
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			
 			if(confimacao == 0) { // se for confirmada a mensagem de alerta.
-				if(jPanel == null) {
-					getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, jLabel);
-				}else {
+				
+				if(jPanel == null) { // se foi passado um JScrollPane
+					
+					getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, string, icon);
+					
+				}else { // Se foi passado um JPanel
+					
 					getjPanelPrincipal().alteraJScrollPaneCentral(jPanel);
+					
 				}
+				
 				mudarCorJButton(jButton); // Altera cor do JButtonHome, quando clicado.	
 			}
+			
+			telaAnterior = titulo;
+			
+    	}else {
+    		getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, string, icon);
+			mudarCorJButton(jButton); // Altera cor do JButtonHome, quando clicado.	
     	}
     }
 
