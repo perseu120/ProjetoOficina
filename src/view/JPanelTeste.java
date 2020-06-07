@@ -10,5 +10,7 @@ public class JPanelTeste extends JPanel{
 		this.setVisible(true);
 		this.setBackground(Color.BLUE);
 	}
+	
+
 
 }

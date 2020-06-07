@@ -269,7 +269,7 @@ public class JPanelPrincipal extends JPanel {
 			jPanelDescricaoTela.setBorder(BorderFactory
 						.createMatteBorder(3, 0, 0, 0, new Color(100,132,147)));
 			jPanelDescricaoTela.setBackground(new Color(51,51,51));
-			jPanelDescricaoTela.setPreferredSize(new Dimension(500,58));
+			jPanelDescricaoTela.setPreferredSize(new Dimension(500,62));
 			jPanelDescricaoTela.setVisible(false);
 			jPanelDescricaoTela.add(getJLabelNomeDaTela());
 		}
