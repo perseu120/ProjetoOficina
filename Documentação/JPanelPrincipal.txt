@@ -1,0 +1,55 @@
+// Estruturas de paineis da classe JPanelPrincipal
+
+1- JPanelPrincipal
+
+	2- jPanelCenterPrincipal
+
+		4- jPanelWestCenter
+		5- jPanelEastCenter
+
+	3- jPanelWestPrincipal
+
+		6- jPanelUsuarioWest
+
+		7- jScrollPaneButtonsWest
+
+			8- jPanelButtons
+				
+				9- jPanelJButtonOS
+				10- jPanelJButtonCongiguracao
+
+
+// Componentes contidos nos Paineis
+
+4- jPanelWestCenter
+
+	jButtonMenuBar
+	jLabelLogoProjeto
+	jLabelDescricaoTela
+
+5- jPanelEastCenter
+
+	jButtonMinimiza
+	jButtonRedimenciona
+	jButtonFecharPrograma
+
+8- jPanelButtons
+	
+	jButtonHome
+	jButtonOS
+	jButtonOrcamento
+	jButtonVeiculos
+	jButtonClientes
+	jButtonFaturamento
+	jButtonAddUsuario
+	jButtonConfiguracao
+
+9- jPanelJButtonOS
+
+	jButtonGerarOS
+	jButtonConsultarOS
+
+10- jPanelJButtonCofiguracao
+
+	jButton10
+	jButton11

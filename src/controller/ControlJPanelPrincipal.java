@@ -288,12 +288,12 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		// TODO Auto-generated method stub		
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
-			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(0, 0, 0));
+			getjPanelPrincipal().getjButtonMenuBar().setBackground(getjPanelPrincipal().getCorDaBarraMenuEButton());
 		}		
 		
 		
 		if(jButtonAnteriorEntered != null) {
-			this.jButtonAnteriorEntered.setBackground(new Color(51,51,51));
+			this.jButtonAnteriorEntered.setBackground(getjPanelPrincipal().getCorDosBotoesEMenuLateral());
 			this.jButtonAnterior.setBackground(new Color(cor1,cor2,cor3));
 		}
 		
@@ -349,7 +349,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     private void mudarCorJButton(JButton jButton) {
     	jButton.setBackground(new Color(cor1,cor2,cor3));
     	if((jButtonAnterior != null)&&(jButtonAnterior != jButton)) {
-    		jButtonAnterior.setBackground(new Color(51,51,51));
+    		jButtonAnterior.setBackground(getjPanelPrincipal().getCorDosBotoesEMenuLateral());
     	}
     	this.jButtonAnterior = jButton;
     }    
@@ -360,7 +360,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     	getjPanelPrincipal().getjPanelJButtonOS().setVisible(false);
     	getjPanelPrincipal().getjPanelJButtonConfiguracao().setVisible(false);
     	if((jButtonAnteriorEntered != null)&&(jButtonAnteriorEntered != jButtonAnterior)) {
-    		jButtonAnteriorEntered.setBackground(new Color(51,51,51));
+    		jButtonAnteriorEntered.setBackground(getjPanelPrincipal().getCorDosBotoesEMenuLateral());
     	}
     	this.jButtonAnteriorEntered = jButton;
     }

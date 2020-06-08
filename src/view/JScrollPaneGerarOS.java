@@ -18,7 +18,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	
 	// ### Início declaração de variáveis ###
 	
-	private Color corIntermediaria = new Color(100, 132, 147); // Azul marinho
+	private Color corIntermediaria = new Color(0,151,172); // Azul marinho
 	private Color corEscura = new Color(51,51,51); // Cinza escuro
 	private Color corClara = new Color(235,235,235); // Cinza claro
 	private Color foregroudJButtonClaro = new Color(204,204,204); // Cinza
@@ -37,13 +37,15 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	private JPanel jPanelBuscarVeiculo;
 	private JPanel jPanelBaseInformacaoVeiculo;
 	private JPanel jPanelInformacaoVeiculo;
+	private JPanel jPanelBaseInformacaoCliente;
+	private JPanel jPanelInformacaoCliente;	
 	
 	private JButton jButtonVeiculo;
 	private JButton jButtonCliente;
 	private JButton jButtonServico;	     
 
 	private JLabel jLabelVin;
-    private JLabel jLabelNum;
+    private JLabel jLabelNumVeiculo;
     private JLabel jLabelPlaca;
     private JLabel jLabelMarca;
     private JLabel jLabelMotor;
@@ -51,6 +53,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
     private JLabel jLabelCombustivel;
     private JLabel jLabelAno;
     private JLabel jLabelKm;
+    private JLabel jLabelNumCliente;
+    private JLabel jLavelNomeCliente;
     
     
     private JTextField jTextFieldVin;     
@@ -62,6 +66,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
     private JTextField jTextFieldCombustivel;
     private JTextField jTextFieldAno;
     private JTextField jTextFieldKm;
+    private JTextField jTextFieldNumCliente;
+    private JTextField jTextFieldNomeCliente;
     
     private String stringTitulo = "Gerar ordem de serviço";
     
@@ -158,15 +164,15 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	}
 
 
-	public JLabel getjLabelNum() {
-		if(jLabelNum == null){
-			jLabelNum = new JLabel();
-			jLabelNum.setFont(fontJLabel);
-	        jLabelNum.setForeground(foregroudJButtonClaro);
-	        jLabelNum.setText("Nº");
-	        jLabelNum.setSize(26,29);
+	public JLabel getjLabelNumVeiculo() {
+		if(jLabelNumVeiculo == null){
+			jLabelNumVeiculo = new JLabel();
+			jLabelNumVeiculo.setFont(fontJLabel);
+	        jLabelNumVeiculo.setForeground(foregroudJButtonClaro);
+	        jLabelNumVeiculo.setText("Nº");
+	        jLabelNumVeiculo.setSize(26,29);
 		}
-		return jLabelNum;
+		return jLabelNumVeiculo;
 	}
 
 
@@ -288,6 +294,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		return jPanelCentroGerarOS;
 	}
 
+	// --------------Início tela veículo--------------
 
 	public JPanel getjPanelBuscarVeiculo() {
 		if(jPanelBuscarVeiculo == null){
@@ -304,7 +311,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jPanelBaseInformacaoVeiculo == null){
 			jPanelBaseInformacaoVeiculo = new JPanel();
 	        jPanelBaseInformacaoVeiculo.setLayout(null);
-			jPanelBaseInformacaoVeiculo.setBackground(corEscura);
+			jPanelBaseInformacaoVeiculo.setBackground(new Color(0,0,0,20));
 			jPanelBaseInformacaoVeiculo.setSize(850,578);
 		}
 		return jPanelBaseInformacaoVeiculo;
@@ -314,12 +321,38 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JPanel getjPanelInformacaoVeiculo() {
 		if(jPanelInformacaoVeiculo == null){
 			jPanelInformacaoVeiculo = new JPanel();
-			jPanelInformacaoVeiculo.setBackground(new Color(100,132,147)); 
+			jPanelInformacaoVeiculo.setBackground(new Color(0,0,0,20)); 
 	        jPanelInformacaoVeiculo.setSize(838, 510);
 	        jPanelInformacaoVeiculo.setLayout(null);
 		}
 		return jPanelInformacaoVeiculo;
 	}
+	
+	// --------------Final tela veículo--------------
+	// --------------Início tela cliente--------------
+	
+	public JPanel getjPanelInformacaoCliente() {
+		if(jPanelInformacaoCliente == null) {
+			jPanelInformacaoCliente = new JPanel();
+			jPanelInformacaoCliente.setBackground(corIntermediaria); 
+			jPanelInformacaoCliente.setSize(838, 510);
+			jPanelInformacaoCliente.setLayout(null);
+		}
+		return jPanelInformacaoCliente;
+	}
+	
+	
+	public JPanel getjPanelBaseIformacaoCliente() {
+		if(jPanelBaseInformacaoCliente == null) {
+			jPanelBaseInformacaoCliente = new JPanel();
+			jPanelBaseInformacaoCliente.setLayout(null);
+			jPanelBaseInformacaoCliente.setBackground(corEscura);
+			jPanelBaseInformacaoCliente.setSize(850,578);
+	}
+	return jPanelBaseInformacaoVeiculo;
+	}
+	
+	// --------------Final tela cliete--------------
 	
 	// ### Fim    dos     gets    dos    paineis ###
 	// ---------------------------------------------
@@ -458,9 +491,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	
 	// ### Fim   dos   gets   textfild   e   derivados ###
 	// ---------------------------------------------------
-	// ### Inicio dos métodos de adição de componentes ###
-	
-	// --------------Inicio tela veículo--------------
+	// ### Inicio dos métodos de adição de componentes ###	
 
 
 	public void addComponentesJScrollPaneGerarOS() {
@@ -490,11 +521,12 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		
 	}
 	
+	// --------------Inicio tela veículo--------------
 	
 	public void addComponentesJPanelBuscarVeiculo() {
 		
-		getjLabelNum().setLocation(10, 12);
-		getjPanelBuscarVeiculo().add(getjLabelNum());
+		getjLabelNumVeiculo().setLocation(10, 12);
+		getjPanelBuscarVeiculo().add(getjLabelNumVeiculo());
 		
 		getjLabelPlaca().setLocation(160, 12);
 		getjPanelBuscarVeiculo().add(getjLabelPlaca());
@@ -563,6 +595,18 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	}
 	
 	// --------------Final tela veículo--------------
+	// --------------Inicio tela cliente--------------
+	
+	public void addComponentesJPanelBuscarCliente() {
+		
+	}
+	
+	
+	public void addComponentesJPanelBaseInformacaoCliente() {
+		
+	}
+
+	// --------------Final tela cliente--------------
 
 	// ### Final dos métodos de adição de componentes ###
 	// --------------------------------------------------

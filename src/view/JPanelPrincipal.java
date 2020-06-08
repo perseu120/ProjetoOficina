@@ -37,6 +37,11 @@ public class JPanelPrincipal extends JPanel {
 	private final String img = "/images/images_1.png"; // Salva caminho da imagem de fundo da tela	
 	
 	// ### Inicio declaração de variáveis ###
+	
+	private Color corDosBotoesEMenuLateral = new Color(5,5,5);
+	private Color corDaBarraMenuEButton = new Color(54,54,54);
+	private Color corDoJPanelUsuario = new Color(5,5,5);
+	
 	private JButton jButtonMenuBar;
 	private JButton jButtonHome;
 	private JButton jButtonOS;
@@ -65,8 +70,9 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelButtons;
 	private JPanel jPanelJButtonOS;
 	private JPanel jPanelJButtonConfiguracao;
-	
 	private JPanel jPanelNorth;		
+	private JPanel jPanelWestBarra;
+	private JPanel jPanelEastBarra;
 	private JPanel jPanelDescricaoTela;
 	private JLabel jLabelNomeDaTela;
 	// ### Fim dlecaração de variáveis ###
@@ -113,7 +119,9 @@ public class JPanelPrincipal extends JPanel {
 		this.getjPanelWestMenuLateralAddComponentes();//
 		
 		// ##Parte North do JPanelPrincipal## // Barra de menu
-		this.getjButtonMenuBar();
+		this.getjPanelWest();
+		this.addComponentesJPanelWestBarra();
+		this.getjPanelEastBarra();
 		this.getjPanelNorth();
 		this.getjPanelNorthtAddComponentes();
 		
@@ -141,8 +149,8 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelWestMenuLateral() { // Que contem os componentes do menú lateral
 		if(jPanelWestMenuLateral == null){
 			jPanelWestMenuLateral = new JPanel();
-			jPanelWestMenuLateral.setBackground(new Color(51, 51, 51));
-			jPanelWestMenuLateral.setPreferredSize(new Dimension(0, 800)); // Setado como zero para evitar conflitos com o layout BorderLayout
+			jPanelWestMenuLateral.setBackground(corDoJPanelUsuario);
+			jPanelWestMenuLateral.setPreferredSize(new Dimension(65, 800)); // Setado como zero para evitar conflitos com o layout BorderLayout
 
 		}
 		return jPanelWestMenuLateral;
@@ -152,9 +160,9 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelWest() { //jPanelWest contém os dados do usuários de login
 		if(jPanelWest == null){
 			jPanelWest = new JPanel();
-			jPanelWest.setBackground(new Color(0, 51, 51));
+			jPanelWest.setBackground(corDoJPanelUsuario);
 			jPanelWest.setBorder(null);
-			jPanelWest.setOpaque(false);
+			jPanelWest.setOpaque(true);
 			jPanelWest.setPreferredSize(new Dimension(265, 200));
 		}
 		return jPanelWest;
@@ -164,8 +172,8 @@ public class JPanelPrincipal extends JPanel {
 	public JScrollPane getjScrollWest() { // JScroolPane que contém o JPanel que contem os JButtons do Menu Lateral
 		if(jScrollWest == null){
 			jScrollWest = new JScrollPane();
-			jScrollWest.setBackground(new Color(51, 51, 51));
-			jScrollWest.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+			jScrollWest.setBackground(corDoJPanelUsuario);
+			jScrollWest.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 			jScrollWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			jScrollWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			jScrollWest.setViewportBorder(null);
@@ -188,26 +196,13 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelButtons() { // JPanel que contem os jButtons do menu lateral
 		if(jPanelButtons == null){
 			jPanelButtons = new JPanel();
-			jPanelButtons.setBackground(new Color(51, 51, 51));
+			jPanelButtons.setBackground(corDosBotoesEMenuLateral);
 			jPanelButtons.setBorder(null);
 			jPanelButtons.setPreferredSize(new Dimension(265, 825));
 
 		}
 		return jPanelButtons;
 	}
-		
-	
-	public JLabel getjLabelFundojPanelHome() { // Imagem de fundo da parte central da classe
-		if(jLabelFundojPanelHome == null){
-			jLabelFundojPanelHome = new JLabel();
-			jLabelFundojPanelHome.setBackground(Color.CYAN);
-			jLabelFundojPanelHome.setForeground(new Color(102, 102, 102));
-			jLabelFundojPanelHome.setHorizontalAlignment(SwingConstants.CENTER);
-			jLabelFundojPanelHome.setHorizontalTextPosition(SwingConstants.CENTER);
-		}
-		return jLabelFundojPanelHome;
-	}
-	
 	
 
 	public JPanel getjPanelCenter() {
@@ -223,10 +218,33 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelNorth() {
 		if(jPanelNorth == null){
 			jPanelNorth = new JPanel();
-			jPanelNorth.setBackground(Color.BLACK);
+			jPanelNorth.setLayout(new BorderLayout());
+			jPanelNorth.setBackground(corDaBarraMenuEButton);
 			jPanelNorth.setPreferredSize(new Dimension(1027, 60));
 		}
 		return jPanelNorth;
+	}
+	
+	
+	public JPanel getjPanelWestBarra() {
+		if(jPanelWestBarra == null) {
+			jPanelWestBarra = new JPanel();
+			jPanelWestBarra.setLayout(null);
+			jPanelWestBarra.setOpaque(false);
+			jPanelWestBarra.setPreferredSize(new Dimension(65,100));
+		}
+		return jPanelWestBarra;
+	}
+	
+	
+	public JPanel getjPanelEastBarra() {
+		if(jPanelEastBarra == null) {
+			jPanelEastBarra = new JPanel();
+			jPanelEastBarra.setLayout(null);
+			jPanelEastBarra.setOpaque(false);
+			jPanelEastBarra.setPreferredSize(new Dimension(85,100));
+		}
+		return jPanelEastBarra;
 	}
 	
 	
@@ -277,9 +295,22 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	// ### Fim  dos  gets  dos  paineis ###
+	// ### Fim  dos  gets  dos  jPanel ###
 	// ------------------------------------
 	// ### Inicio  dos  get  dos  label ### 
+	
+	
+	public JLabel getjLabelFundojPanelHome() { // Imagem de fundo da parte central da classe
+		if(jLabelFundojPanelHome == null){
+			jLabelFundojPanelHome = new JLabel();
+			jLabelFundojPanelHome.setBackground(Color.CYAN);
+			jLabelFundojPanelHome.setForeground(new Color(102, 102, 102));
+			jLabelFundojPanelHome.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelFundojPanelHome.setHorizontalTextPosition(SwingConstants.CENTER);
+		}
+		return jLabelFundojPanelHome;
+	}
+	
 	
 	public JLabel getjLabelIconeUsuario() { // JLabel Para exibir imagem(opcional) do usuario que efeutuou o login.
 		if(jLabelIconeUsuario == null){
@@ -330,14 +361,13 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonMenuBar() { // JButton controlador do menu lateral "jPanelWestMenuLateral".
 		if (jButtonMenuBar == null) {
 			jButtonMenuBar = new JButton();
-			jButtonMenuBar.setBackground(Color.BLACK);
-			jButtonMenuBar.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/menu_64 _blue.png")));
+			jButtonMenuBar.setBackground(corDaBarraMenuEButton);
+			jButtonMenuBar.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/menu_64.png")));
 			jButtonMenuBar.setBorder(null);
 			jButtonMenuBar.setBorderPainted(false);
 			jButtonMenuBar.setContentAreaFilled(false);
 			jButtonMenuBar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			jButtonMenuBar.setDisabledIcon(null);
-			jButtonMenuBar.setDisabledSelectedIcon(null);
+			jButtonMenuBar.setSize(65,65);
 			jButtonMenuBar.setOpaque(true);
 			
 		}
@@ -348,7 +378,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonHome() { 
 		if (jButtonHome == null) {
 			jButtonHome = new JButton();
-			jButtonHome.setBackground(new Color(103, 103, 103));
+			jButtonHome.setBackground(corDosBotoesEMenuLateral);
 			jButtonHome.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonHome.setForeground(new Color(204, 204, 204));
 			jButtonHome.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/home_48_blue.png"))); 
@@ -368,7 +398,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonOS() {
 		if (jButtonOS == null) {
 			jButtonOS = new JButton();
-			jButtonOS.setBackground(new Color(51, 51, 51));
+			jButtonOS.setBackground(corDosBotoesEMenuLateral);
 			jButtonOS.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonOS.setForeground(new Color(204, 204, 204));
 			jButtonOS.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/OS_48_blue.png"))); 
@@ -387,7 +417,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonOrcamento() {
 		if (jButtonOrcamento == null) {
 			jButtonOrcamento = new JButton();
-			jButtonOrcamento.setBackground(new Color(51, 51, 51));
+			jButtonOrcamento.setBackground(corDosBotoesEMenuLateral);
 			jButtonOrcamento.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonOrcamento.setForeground(new Color(204, 204, 204));
 			jButtonOrcamento.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/car_orcam_48_blue.png"))); 
@@ -406,7 +436,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonVeiculos() {
 		if (jButtonVeiculos == null) {
 			jButtonVeiculos = new JButton();
-			jButtonVeiculos.setBackground(new Color(51, 51, 51));
+			jButtonVeiculos.setBackground(corDosBotoesEMenuLateral);
 			jButtonVeiculos.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonVeiculos.setForeground(new Color(204, 204, 204));
 			jButtonVeiculos.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/car_48_blue.png"))); 
@@ -425,7 +455,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonClientes() {
 		if (jButtonClientes == null) {
 			jButtonClientes = new JButton();
-			jButtonClientes.setBackground(new Color(51, 51, 51));
+			jButtonClientes.setBackground(corDosBotoesEMenuLateral);
 			jButtonClientes.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonClientes.setForeground(new Color(204, 204, 204));
 			jButtonClientes.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/users_48_blue.png"))); 
@@ -444,7 +474,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonFaturamento() {
 		if (jButtonFaturamento == null) {
 			jButtonFaturamento = new JButton();
-			jButtonFaturamento.setBackground(new Color(51, 51, 51));
+			jButtonFaturamento.setBackground(corDosBotoesEMenuLateral);
 			jButtonFaturamento.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonFaturamento.setForeground(new Color(204, 204, 204));
 			jButtonFaturamento.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/estimate-48_blue.png"))); 
@@ -464,7 +494,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonAddUsuarios() {
 		if (jButtonAddUsuarios == null) {
 			jButtonAddUsuarios = new JButton();
-			jButtonAddUsuarios.setBackground(new Color(51, 51, 51));
+			jButtonAddUsuarios.setBackground(corDosBotoesEMenuLateral);
 			jButtonAddUsuarios.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
 			jButtonAddUsuarios.setForeground(new Color(204, 204, 204));
 			jButtonAddUsuarios.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/use_conf_48_blue.png"))); 
@@ -484,7 +514,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonConfiguracao() {
 		if (jButtonConfiguracao == null) {
 			jButtonConfiguracao = new JButton();
-			jButtonConfiguracao.setBackground(new Color(51, 51, 51));
+			jButtonConfiguracao.setBackground(corDosBotoesEMenuLateral);
 			jButtonConfiguracao.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 			jButtonConfiguracao.setForeground(new Color(204, 204, 204));
 			jButtonConfiguracao.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/conf_48_blue.png")));
@@ -608,7 +638,7 @@ public class JPanelPrincipal extends JPanel {
 								.addComponent(this.getjPanelWest(), GroupLayout.PREFERRED_SIZE,
 										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(this.getjScrollWest(), GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)));
+								.addComponent(this.getjScrollWest(), GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)));
 	}
 		
 	
@@ -685,23 +715,17 @@ public class JPanelPrincipal extends JPanel {
 		this.getjPanelButtons().setLayout(jPanelButtons_Layout);
 
 	}
-
+	
+	
+	public void addComponentesJPanelWestBarra() {
+		getjButtonMenuBar().setLocation(2,0);
+		getjPanelWestBarra().add(getjButtonMenuBar());
+	}
 	
 				
 	public void getjPanelNorthtAddComponentes() {
-		GroupLayout jPanelNorth_Layout = new GroupLayout(this.getjPanelNorth());
-		this.getjPanelNorth().setLayout(jPanelNorth_Layout);
-		jPanelNorth_Layout
-				.setHorizontalGroup(jPanelNorth_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(jPanelNorth_Layout.createSequentialGroup()
-								.addComponent(this.getjButtonMenuBar(), GroupLayout.PREFERRED_SIZE, 65,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(1142, Short.MAX_VALUE)));
-		jPanelNorth_Layout.setVerticalGroup(jPanelNorth_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(jPanelNorth_Layout.createSequentialGroup().addComponent(this.getjButtonMenuBar(),
-						GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-						.addGap(0, 0, Short.MAX_VALUE)));
-
+		getjPanelNorth().add(BorderLayout.WEST,getjPanelWestBarra());
+		getjPanelNorth().add(BorderLayout.EAST, getjPanelEastBarra());
 	}
 	
 	
@@ -804,7 +828,13 @@ public class JPanelPrincipal extends JPanel {
 	
 	// ### Final de métodos da classe ###
 	
+	public Color getCorDosBotoesEMenuLateral() {
+		return corDosBotoesEMenuLateral;
+	}
 	
+	public Color getCorDaBarraMenuEButton() {
+		return corDaBarraMenuEButton;
+	}
 	
 }
 
