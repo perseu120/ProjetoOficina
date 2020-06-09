@@ -111,17 +111,20 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 
 	private void JPanel_Open_Close(JPanel panel, int width_close, int width_open, int height) {
 		
-		if(panel.getWidth() > 0) {			
+		if(panel.getWidth() > width_close) {			
 		    panel.setSize(width_open, height);		    
 			Thread thread = new Thread() {
 								
 				@Override
 				public void run() {
 					try {
+						
 						for (int i = width_open; i >= width_close; i--) {
 							Thread.sleep(1);
 							panel.setSize(i, height);
-						}						
+							panel.repaint();
+							panel.validate();
+						}	
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e);
 					}					
@@ -134,17 +137,30 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 				@Override
 				public void run() {
 					try {
+						
 						for (int i = width_close; i <= width_open; i++) {
 							Thread.sleep(1);
 							panel.setSize(i, height);
+							getjPanelPrincipal().getjPanelCenterPrincipal().setSize(getjFramePrincipal().getWidth()-(panel.getWidth()-width_close),height);
+							panel.repaint();
+							panel.validate();
+							
 						}
-						
+						getjPanelPrincipal().setSize(getjFramePrincipal().getWidth(),getjFramePrincipal().getHeight());
+						getjPanelPrincipal().repaint();
+						getjPanelPrincipal().validate();
+
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e);
 					}
 				}
 			};thread.start();			
 		}
+		
+		/*getjPanelPrincipal().getjScrollPaneButtonsWest().repaint();
+		getjPanelPrincipal().getjScrollPaneButtonsWest().validate();
+		getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
+		getjPanelPrincipal().getjPanelCenterPrincipal().validate();*/
 	}	
 	
 
@@ -153,16 +169,17 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		// TODO Auto-generated method stub		
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
-			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestMenuLateral(), 0, 265, 1100); // Abre ou fecha o jPanelWestMenuLateral
-			//mudarCorJButton(getjPanelPrincipal().getjButtonMenuBar());
+			
+			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 85, 265, 1100); // Abre ou fecha o jPanelWestMenuLateral
+			
 		}
 									
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:			
-			//mudarCorJButton(getjPanelPrincipal().getjButtonHome()); // Altera cor do JButtonHome, quando clicado.			
-			//getjPanelPrincipal().alteraJScrollPaneCentral(getjPanelPrincipal().getjPanelHomeInicial());
+		if(evt.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:
+			
 			questionar(getjPanelPrincipal().getjButtonHome(),null, "Deseja sair mesmo?", 
-						getjPanelPrincipal().getjPanelHomeInicial(), null,null,null);
+						getjPanelPrincipal().getjPanelHome(), null,null,null);
+			
 		}
 		
 		
@@ -395,7 +412,10 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     	}else {
     		getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, string, icon);
 			mudarCorJButton(jButton); // Altera cor do JButtonHome, quando clicado.	
+
+			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 85, 265, 1100);
     	}
     }
+    
 
 }

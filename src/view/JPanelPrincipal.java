@@ -60,19 +60,20 @@ public class JPanelPrincipal extends JPanel {
 	private JLabel jLabelIconeUsuario;
 	private JLabel jLabelNomeUsuario;
 	
-	private JPanel jPanelCenter;
-	private JPanel jPanelHomeInicial;
+	private JPanel jPanelCenterPrincipal;
+	private JPanel jPanelHome;
 	
-	private JPanel jPanelWest;
-	private JPanel jPanelWestMenuLateral;
-	private JScrollPane jScrollWest;
+	private JPanel jPanelUsuarioWest;
+	private JPanel jPanelWestPrincipal;
+	private JScrollPane jScrollPaneButtonsWest;
 	private JScrollPane alteraJScrollPaneCentral; // Variavel que recebe a o novo JScrollPane da parte central da classe.
 	private JPanel jPanelButtons;
 	private JPanel jPanelJButtonOS;
 	private JPanel jPanelJButtonConfiguracao;
-	private JPanel jPanelNorth;		
-	private JPanel jPanelWestBarra;
-	private JPanel jPanelEastBarra;
+	private JPanel jPanelNorthCenter;		
+	private JPanel jPanelWestNorth;
+	private JPanel jPanelEastNorth;
+	
 	private JPanel jPanelDescricaoTela;
 	private JLabel jLabelNomeDaTela;
 	// ### Fim dlecaração de variáveis ###
@@ -104,35 +105,37 @@ public class JPanelPrincipal extends JPanel {
 		this.getJPanelButtonConfiguracaoAddComponentes();
 		
 		this.getjPanelButtons();
-		this.getjPanelButtonsAddComponentes(4,4,4);
+		this.getjPanelButtonsAddComponentes();
 		
-		this.getjScrollWest();
-		this.getjScrollWestAddComponentes();		
+		this.getjScrollPaneButtonsWest();
+		this.getjScrollPaneButtonsWestAddComponentes();		
 		
 		this.getjLabelIconeUsuario();
 		this.getjLabelNomeUsuario();
 		
-		this.getjPanelWest();
+		this.getjPanelUsuarioWest();
 		this.getjPanelWestAddComponentes();
 		
-		this.getjPanelWestMenuLateral();
-		this.getjPanelWestMenuLateralAddComponentes();//
+		this.getjPanelWestPrincipal();
+		this.AddComponentesJPanelWestPrincipal();
 		
 		// ##Parte North do JPanelPrincipal## // Barra de menu
-		this.getjPanelWest();
-		this.addComponentesJPanelWestBarra();
-		this.getjPanelEastBarra();
-		this.getjPanelNorth();
-		this.getjPanelNorthtAddComponentes();
+		this.getjPanelWestNorth();
+		this.addComponentesJPanelWestNorth();
+		this.getjPanelEastNorth();
+		this.addComponentesJPanelEastNorth();
+		this.getjPanelEastNorth();
+		this.getjPanelNorthCenter();
+		this.AddComponentesJPanelNorthCenter();
 		
 		// ##Parte Center do JPanelPrincipal## // Imagem da parte central
 		this.getjLabelFundojPanelHome();
-		this.getjPanelHomeInicial();
-		this.getjPanelHomeInicialAddComponentes();
-		this.getjPanelCenter();
-		this.getjPanelCenterAddComponentes();
+		this.getjPanelHome();
+		this.getjPanelHomeAddComponentes();
+		this.getjPanelCenterPrincipal();
+		this.AddComponentesJPanelCenterPrincipal();
 		this.getJPanelPrincipal();
-		this.getJPanelPrincipalAddComponentes();
+		this.AddComponentesJPanelPrincipal();
 		 
 	}	
 	
@@ -146,45 +149,46 @@ public class JPanelPrincipal extends JPanel {
 		return this;
 	}	
 	
-	public JPanel getjPanelWestMenuLateral() { // Que contem os componentes do menú lateral
-		if(jPanelWestMenuLateral == null){
-			jPanelWestMenuLateral = new JPanel();
-			jPanelWestMenuLateral.setBackground(corDoJPanelUsuario);
-			jPanelWestMenuLateral.setPreferredSize(new Dimension(65, 800)); // Setado como zero para evitar conflitos com o layout BorderLayout
+	public JPanel getjPanelWestPrincipal() { // Que contem os componentes do menú lateral
+		if(jPanelWestPrincipal == null){
+			jPanelWestPrincipal = new JPanel();
+			jPanelWestPrincipal.setLayout(new BorderLayout());
+			jPanelWestPrincipal.setBackground(corDoJPanelUsuario);
+			jPanelWestPrincipal.setPreferredSize(new Dimension(85, 800)); // Setado como zero para evitar conflitos com o layout BorderLayout
 
 		}
-		return jPanelWestMenuLateral;
+		return jPanelWestPrincipal;
 	}
 
 	
-	public JPanel getjPanelWest() { //jPanelWest contém os dados do usuários de login
-		if(jPanelWest == null){
-			jPanelWest = new JPanel();
-			jPanelWest.setBackground(corDoJPanelUsuario);
-			jPanelWest.setBorder(null);
-			jPanelWest.setOpaque(true);
-			jPanelWest.setPreferredSize(new Dimension(265, 200));
+	public JPanel getjPanelUsuarioWest() { //jPanelUsuarioWest contém os dados do usuários de login
+		if(jPanelUsuarioWest == null){
+			jPanelUsuarioWest = new JPanel();
+			jPanelUsuarioWest.setBackground(corDoJPanelUsuario);
+			jPanelUsuarioWest.setBorder(null);
+			jPanelUsuarioWest.setOpaque(true);
+			jPanelUsuarioWest.setPreferredSize(new Dimension(265, 200));
 		}
-		return jPanelWest;
+		return jPanelUsuarioWest;
 	}
 
 	
-	public JScrollPane getjScrollWest() { // JScroolPane que contém o JPanel que contem os JButtons do Menu Lateral
-		if(jScrollWest == null){
-			jScrollWest = new JScrollPane();
-			jScrollWest.setBackground(corDoJPanelUsuario);
-			jScrollWest.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-			jScrollWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			jScrollWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			jScrollWest.setViewportBorder(null);
-			jScrollWest.setAutoscrolls(true);
-			jScrollWest.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			jScrollWest.setFocusCycleRoot(true);
-			jScrollWest.setOpaque(true);
-			jScrollWest.setPreferredSize(new Dimension(265, 1100));
+	public JScrollPane getjScrollPaneButtonsWest() { // JScroolPane que contém o JPanel que contem os JButtons do Menu Lateral
+		if(jScrollPaneButtonsWest == null){
+			jScrollPaneButtonsWest = new JScrollPane();
+			jScrollPaneButtonsWest.setBackground(corDoJPanelUsuario);
+			jScrollPaneButtonsWest.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+			jScrollPaneButtonsWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			jScrollPaneButtonsWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			jScrollPaneButtonsWest.setViewportBorder(null);
+			jScrollPaneButtonsWest.setAutoscrolls(true);
+			jScrollPaneButtonsWest.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			jScrollPaneButtonsWest.setFocusCycleRoot(true);
+			jScrollPaneButtonsWest.setOpaque(true);
+			jScrollPaneButtonsWest.setPreferredSize(new Dimension(265, 1100));
 
 		}
-		return jScrollWest;
+		return jScrollPaneButtonsWest;
 	}
 	
 	
@@ -205,46 +209,45 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 
-	public JPanel getjPanelCenter() {
-		if(jPanelCenter == null){
-			jPanelCenter = new JPanel();
-			jPanelCenter.setLayout(new BorderLayout());
+	public JPanel getjPanelCenterPrincipal() {
+		if(jPanelCenterPrincipal == null){
+			jPanelCenterPrincipal = new JPanel();
+			jPanelCenterPrincipal.setLayout(new BorderLayout());
 		}
-		return jPanelCenter;
+		return jPanelCenterPrincipal;
 	}
 	
 	
 
-	public JPanel getjPanelNorth() {
-		if(jPanelNorth == null){
-			jPanelNorth = new JPanel();
-			jPanelNorth.setLayout(new BorderLayout());
-			jPanelNorth.setBackground(corDaBarraMenuEButton);
-			jPanelNorth.setPreferredSize(new Dimension(1027, 60));
+	public JPanel getjPanelNorthCenter() {
+		if(jPanelNorthCenter == null){
+			jPanelNorthCenter = new JPanel();
+			jPanelNorthCenter.setLayout(new BorderLayout());
+			jPanelNorthCenter.setBackground(corDaBarraMenuEButton);
+			jPanelNorthCenter.setPreferredSize(new Dimension(1027, 60));
 		}
-		return jPanelNorth;
+		return jPanelNorthCenter;
 	}
 	
 	
-	public JPanel getjPanelWestBarra() {
-		if(jPanelWestBarra == null) {
-			jPanelWestBarra = new JPanel();
-			jPanelWestBarra.setLayout(null);
-			jPanelWestBarra.setOpaque(false);
-			jPanelWestBarra.setPreferredSize(new Dimension(65,100));
+	public JPanel getjPanelWestNorth() {
+		if(jPanelWestNorth == null) {
+			jPanelWestNorth = new JPanel();
+			jPanelWestNorth.setLayout(null);
+			jPanelWestNorth.setOpaque(false);
+			jPanelWestNorth.setPreferredSize(new Dimension(68,100));
 		}
-		return jPanelWestBarra;
+		return jPanelWestNorth;
 	}
 	
 	
-	public JPanel getjPanelEastBarra() {
-		if(jPanelEastBarra == null) {
-			jPanelEastBarra = new JPanel();
-			jPanelEastBarra.setLayout(null);
-			jPanelEastBarra.setOpaque(false);
-			jPanelEastBarra.setPreferredSize(new Dimension(85,100));
+	public JPanel getjPanelEastNorth() {
+		if(jPanelEastNorth == null) {
+			jPanelEastNorth = new JPanel();
+			jPanelEastNorth.setOpaque(false);
+			jPanelEastNorth.setPreferredSize(new Dimension(85,100));
 		}
-		return jPanelEastBarra;
+		return jPanelEastNorth;
 	}
 	
 	
@@ -270,14 +273,14 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	public JPanel getjPanelHomeInicial() {
-		if(jPanelHomeInicial == null){
-			jPanelHomeInicial = new JPanel();
-			jPanelHomeInicial.setBackground(SystemColor.desktop);
-			jPanelHomeInicial.setLayout(new BorderLayout());
+	public JPanel getjPanelHome() {
+		if(jPanelHome == null){
+			jPanelHome = new JPanel();
+			jPanelHome.setBackground(SystemColor.desktop);
+			jPanelHome.setLayout(new BorderLayout());
 			
 		}
-		return jPanelHomeInicial;
+		return jPanelHome;
 	}
 	
 	
@@ -358,7 +361,7 @@ public class JPanelPrincipal extends JPanel {
 	// ---------------------------------
 	// ### Inicio dos gets dos jButtons ###
 	
-	public JButton getjButtonMenuBar() { // JButton controlador do menu lateral "jPanelWestMenuLateral".
+	public JButton getjButtonMenuBar() { // JButton controlador do menu lateral "jPanelWestPrincipal".
 		if (jButtonMenuBar == null) {
 			jButtonMenuBar = new JButton();
 			jButtonMenuBar.setBackground(corDaBarraMenuEButton);
@@ -604,47 +607,33 @@ public class JPanelPrincipal extends JPanel {
     // ---------------------------------------------------
 	// ### Inicio dos métodos de adição de componentes ###
 	
-	public void getJPanelPrincipalAddComponentes() {
-		this.add(this.getjPanelWestMenuLateral(), BorderLayout.WEST);
-		this.add(jPanelNorth, BorderLayout.NORTH);
-		this.add(jPanelCenter, BorderLayout.CENTER);
+	public void AddComponentesJPanelPrincipal() {
+		this.add(getjPanelWestPrincipal(), BorderLayout.WEST);
+		this.add(getjPanelCenterPrincipal(), BorderLayout.CENTER);
 	}
 	
 	
-	public void getjPanelHomeInicialAddComponentes() {
-		getjPanelHomeInicial().add(this.getjLabelFundojPanelHome(), BorderLayout.CENTER);
+	public void getjPanelHomeAddComponentes() {
+		getjPanelHome().add(this.getjLabelFundojPanelHome(), BorderLayout.CENTER);
 		
 	}
 	
 	
-	public void getjPanelCenterAddComponentes() {
-		getjPanelCenter().add(this.getjPanelHomeInicial());
-		getjPanelCenter().add(this.getjPanelDescricaoTela(), BorderLayout.NORTH);
+	public void AddComponentesJPanelCenterPrincipal() {
+		getjPanelCenterPrincipal().add(BorderLayout.NORTH,getjPanelNorthCenter());
+		getjPanelCenterPrincipal().add(BorderLayout.CENTER, getjPanelHome());
 	}
 	
 		
-	public void getjPanelWestMenuLateralAddComponentes() {
-		GroupLayout jPanelWestMenuLateral_Layout = new GroupLayout(this.getjPanelWestMenuLateral());
-		this.getjPanelWestMenuLateral().setLayout(jPanelWestMenuLateral_Layout);
-		jPanelWestMenuLateral_Layout.setHorizontalGroup(
-				jPanelWestMenuLateral_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addComponent(this.getjPanelWest(), GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(this.getjScrollWest(), GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE));
-		jPanelWestMenuLateral_Layout.setVerticalGroup(
-				jPanelWestMenuLateral_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(jPanelWestMenuLateral_Layout.createSequentialGroup()
-								.addComponent(this.getjPanelWest(), GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(this.getjScrollWest(), GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)));
+	public void AddComponentesJPanelWestPrincipal() {
+		getjPanelWestPrincipal().add(BorderLayout.NORTH, getjPanelUsuarioWest());
+		getjPanelWestPrincipal().add(BorderLayout.CENTER, getjScrollPaneButtonsWest());
 	}
 		
 	
 	public void getjPanelWestAddComponentes() {
-		GroupLayout jPanelWest_Layout = new GroupLayout(this.getjPanelWest());
-		this.getjPanelWest().setLayout(jPanelWest_Layout);
+		GroupLayout jPanelWest_Layout = new GroupLayout(this.getjPanelUsuarioWest());
+		this.getjPanelUsuarioWest().setLayout(jPanelWest_Layout);
 		jPanelWest_Layout.setHorizontalGroup(jPanelWest_Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(this.getjLabelNomeUsuario(), GroupLayout.DEFAULT_SIZE,
 						GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -662,12 +651,12 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	public void getjScrollWestAddComponentes() {
-		this.getjScrollWest().setViewportView(this.getjPanelButtons());
+	public void getjScrollPaneButtonsWestAddComponentes() {
+		this.getjScrollPaneButtonsWest().setViewportView(this.getjPanelButtons());
 	}
 	
 	
-	public void getjPanelButtonsAddComponentes(int a, int b, int c) {
+	public void getjPanelButtonsAddComponentes() {
 		GroupLayout jPanelButtons_Layout = new GroupLayout(this.getjPanelButtons());
 		jPanelButtons_Layout.setHorizontalGroup(
 			jPanelButtons_Layout.createParallelGroup(Alignment.LEADING)
@@ -717,15 +706,20 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	public void addComponentesJPanelWestBarra() {
+	public void addComponentesJPanelWestNorth() {
 		getjButtonMenuBar().setLocation(2,0);
-		getjPanelWestBarra().add(getjButtonMenuBar());
+		getjPanelWestNorth().add(getjButtonMenuBar());
+	}
+	
+	
+	public void addComponentesJPanelEastNorth() {
+		getjPanelEastNorth().add(new JLabel("new"));
 	}
 	
 				
-	public void getjPanelNorthtAddComponentes() {
-		getjPanelNorth().add(BorderLayout.WEST,getjPanelWestBarra());
-		getjPanelNorth().add(BorderLayout.EAST, getjPanelEastBarra());
+	public void AddComponentesJPanelNorthCenter() {
+		getjPanelNorthCenter().add(BorderLayout.WEST,getjPanelWestNorth());
+		getjPanelNorthCenter().add(BorderLayout.EAST, getjPanelEastNorth());
 	}
 	
 	
@@ -803,27 +797,27 @@ public class JPanelPrincipal extends JPanel {
 		//		para trocar a tela do centro da classe
 		
 		if(alteraJScrollPaneCentral == null) { 	// Se estiver na tela incial e for trocar para outra tela
-			this.getjPanelCenter().remove(getjPanelHomeInicial());
+			this.getjPanelCenterPrincipal().remove(getjPanelHome());
 		}else {									// Se estiver em uma tela qualquer e for outra tela
-			this.getjPanelCenter().remove(alteraJScrollPaneCentral);
+			this.getjPanelCenterPrincipal().remove(alteraJScrollPaneCentral);
 		}
 		
 		if(jPanel == null) { // Se for passado um jScrollPane como parametro o método adiciona o mesmo na parte central da classe
 			
-			this.getjPanelCenter().add(BorderLayout.CENTER, jScrollPane);
+			this.getjPanelCenterPrincipal().add(BorderLayout.CENTER, jScrollPane);
 			alteraJScrollPaneCentral = jScrollPane; // E essa variável recebe a nova tela
 			this.getjPanelDescricaoTela().setVisible(true);
 		
 		}else { 			// Se for passado um jPanel como parâmetro, o método adiciona o mesmo na parte central da classe
 			
-			this.getjPanelCenter().add(BorderLayout.CENTER, jPanel);
+			this.getjPanelCenterPrincipal().add(BorderLayout.CENTER, jPanel);
 			alteraJScrollPaneCentral = null; // Seta variável como nulo, para "informar" ao método "alteraJScrollPaneCentral" para 
 					//na proxima troca de tela retiara o jPanel Central
 			this.getjPanelDescricaoTela().setVisible(false);
 		}
 		
-		this.getjPanelCenter().repaint();
-		this.getjPanelCenter().validate();
+		this.getjPanelCenterPrincipal().repaint();
+		this.getjPanelCenterPrincipal().validate();
 	}	
 	
 	// ### Final de métodos da classe ###
