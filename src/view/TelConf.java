@@ -90,16 +90,20 @@ public class TelConf {
     
     // Deixa jFrame em tela cheia
     public void fullScree(Frame tela){
+    	
         tela.setExtendedState(MAXIMIZED_BOTH);
+        
     }    
     
     
     public void iconRender(JFrame jFrame, JLabel jLabel,String imagem) {
+    	
     	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem));// seta imagem
     	 Image img = imageIcon.getImage().getScaledInstance(jFrame.getWidth(), jFrame.getHeight(), //pega a largura do frame para poder seta a imagem com o mesmo tamanho
                  Image.SCALE_DEFAULT);
     	jLabel.setIcon(new ImageIcon(img)); // set da imagem no label
-    	 //System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());    	
+    	 //System.out.println(jFrame.getWidth()+" , "+jFrame.getHeight());
+    	
     }
     
     
@@ -143,6 +147,7 @@ public class TelConf {
             System.out.println("Erro");
         }                  
     }  
+    
     // Centraliza uma JPanel no centro da tela, de acordo com a resolução do 
     // sistema e o tamanho do JPanel. (verificar forma de centralizar no JFrame).  
     public void centralizeJPanel(JPanel pane, int wdt, int hgt){

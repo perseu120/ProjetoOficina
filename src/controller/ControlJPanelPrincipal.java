@@ -25,16 +25,14 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	private JScrollPaneGerarOS jScrollPaneGerarOS;
-	private JPanelTeste jPanelTeste;
 	
-	private JButton jButtonAnterior;
-	private JButton jButtonAnteriorEntered;
-	private String telaAnterior;
+	private JButton jButtonAnterior; // Variável para guardar o jButton que foi clicado pela ultima vez
+	private JButton jButtonAnteriorEntered; // Variavel que quada o jButton que o mouse entrou pela ultima vez
+	private String telaAnterior; // Variavel que contem o titulo da ultima tela que foi aberta.
 	
-	private int cor1 = 103, cor2 = 103, cor3 = 103;
+	private int cor1 = 103, cor2 = 103, cor3 = 103; // Cor dos jButtons quando e acionado algum evento de click ou entered.
 	
-	private final String img = "/images/fundoPreto2.jpg";
-	private final String img1 = "/images/fundoPreto2.jpg";
+	private final String img = "/images/fundoPreto2.jpg"; //imagem de fundo do jpanelCenterPrincipal(verificar se esta correto).
 	
 	// ### Fim dlecaração de  variáveis ###
     // ------------------------------------
@@ -44,14 +42,12 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     
     // ### Fim  da  criação  de objetos ###
     
-	public ControlJPanelPrincipal(JFramePrincipal jFramePrincipal, JPanelPrincipal jPanelPrincipal) {
-		
+	public ControlJPanelPrincipal(JFramePrincipal jFramePrincipal, JPanelPrincipal jPanelPrincipal) {		
 				
 		this.jFramePrincipal = jFramePrincipal;
 		this.jPanelPrincipal = jPanelPrincipal;
 		
-		telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
-		getjPanelPrincipal().repaint();
+		reajustaFrame(85); // Reajusta os jpanel para ocuparem completamente o jFrame		
 		
 		AddEvent();
 		
@@ -60,7 +56,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 	}
 	
 	
-	private void AddEvent() {
+	private void AddEvent() { // Método para adição de enventos aos componentes
 		this.getjFramePrincipal().addComponentListener(this);
 		this.getjPanelPrincipal().getjButtonMenuBar().addMouseListener(this);
 		this.getjPanelPrincipal().getjButtonHome().addMouseListener(this);
@@ -98,15 +94,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 			jScrollPaneGerarOS = new JScrollPaneGerarOS();
 		}
 		return jScrollPaneGerarOS;
-	}
-
-	
-	public JPanelTeste getjPanelTeste() {
-		if(jPanelTeste == null) {
-			jPanelTeste = new JPanelTeste();
-		}
-		return jPanelTeste;
-	}
+	}	
 	
 
 	private void JPanel_Open_Close(JPanel panel, int width_close, int width_open, int height) {
@@ -119,48 +107,64 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 				public void run() {
 					try {
 						
-						for (int i = width_open; i >= width_close; i--) {
+						for (int i = width_open; i >= width_close; i = i-5) {
+							
 							Thread.sleep(1);
+							telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
 							panel.setSize(i, height);
+							getjPanelPrincipal().getjPanelCenterPrincipal().setBounds(panel.getWidth(), 0, getjFramePrincipal()
+										.getWidth() - panel.getWidth(), height);
 							panel.repaint();
+							getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
+							
 							panel.validate();
+							getjPanelPrincipal().getjPanelCenterPrincipal().validate();
+							
 						}	
+						
 					} catch (Exception e) {
+						
 						JOptionPane.showMessageDialog(null, e);
+						
 					}					
 				}
-			};thread.start();
+			};
+			thread.start();
 		
 		}else {			
-		    panel.setSize(width_close, height);		    
+			
+			panel.setSize(width_close, height);					
 			Thread thread = new Thread() {	
 				@Override
 				public void run() {
 					try {
 						
 						for (int i = width_close; i <= width_open; i++) {
+							
 							Thread.sleep(1);
+							
 							panel.setSize(i, height);
-							getjPanelPrincipal().getjPanelCenterPrincipal().setSize(getjFramePrincipal().getWidth()-(panel.getWidth()-width_close),height);
-							panel.repaint();
-							panel.validate();
+							
+							getjPanelPrincipal().getjPanelCenterPrincipal().setBounds(panel.getWidth(), 0, getjFramePrincipal()
+									.getWidth() - panel.getWidth(), height);
+							
+						panel.repaint();						
+						getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
+						
+						panel.validate();
+						getjPanelPrincipal().getjPanelCenterPrincipal().validate();
 							
 						}
 						getjPanelPrincipal().setSize(getjFramePrincipal().getWidth(),getjFramePrincipal().getHeight());
 						getjPanelPrincipal().repaint();
-						getjPanelPrincipal().validate();
 
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e);
 					}
 				}
-			};thread.start();			
+			};
+			thread.start();			
 		}
-		
-		/*getjPanelPrincipal().getjScrollPaneButtonsWest().repaint();
-		getjPanelPrincipal().getjScrollPaneButtonsWest().validate();
-		getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
-		getjPanelPrincipal().getjPanelCenterPrincipal().validate();*/
 	}	
 	
 
@@ -170,7 +174,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
 			
-			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 85, 265, 1100); // Abre ou fecha o jPanelWestMenuLateral
+			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 85, 265, getjFramePrincipal().getHeight()); // Abre ou fecha o jPanelWestMenuLateral
 			
 		}
 									
@@ -211,6 +215,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 		
 		if(evt.getSource() == getjPanelPrincipal().getjButtonVeiculos()) { // Qando o JButton jButtonVeiculos for clicado:
 			mudarCorJButton(getjPanelPrincipal().getjButtonVeiculos());
+
 		}
 		
 		
@@ -348,11 +353,13 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
 	@Override
 	public void componentResized(ComponentEvent evt) {
 		// TODO Auto-generated method stub
+		
 		if((evt.getSource() == getjFramePrincipal()) // Quando a JFrame for redimencionada...
-				&&  (getjFramePrincipal().getjPanelAnterior() == getjPanelPrincipal())) { // E o JPanel setado na JFrame for "JPanelLogin"...
+				&&  (getjFramePrincipal().getjPanelAnterior() == getjPanelPrincipal())) { // E o JPanel setado na JFrame for "JPanelPrincipal"...
 			telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
 			getjPanelPrincipal().repaint();		
 		}
+		
 	}
 
 
@@ -418,4 +425,15 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener 
     }
     
 
+    private void reajustaFrame(int width_menuLateral) { // Metodo para reajustar os jpanel da classe JPanelPrincipal
+    	
+    	int width = getjFramePrincipal().getWidth();
+    	int height = getjFramePrincipal().getHeight();
+    	
+    	getjPanelPrincipal().getjPanelWestPrincipal().setSize(width_menuLateral,height);
+    	getjPanelPrincipal().getjPanelCenterPrincipal().setSize(width - width_menuLateral,height);
+    	getjPanelPrincipal().repaint();
+    	telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
+		getjPanelPrincipal().repaint();
+    }
 }

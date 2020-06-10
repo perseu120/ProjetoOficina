@@ -131,7 +131,7 @@ public class JPanelPrincipal extends JPanel {
 		// ##Parte Center do JPanelPrincipal## // Imagem da parte central
 		this.getjLabelFundojPanelHome();
 		this.getjPanelHome();
-		this.getjPanelHomeAddComponentes();
+		this.AddComponentesJPanelHome();
 		this.getjPanelCenterPrincipal();
 		this.AddComponentesJPanelCenterPrincipal();
 		this.getJPanelPrincipal();
@@ -143,7 +143,7 @@ public class JPanelPrincipal extends JPanel {
 	
 	public JPanelPrincipal getJPanelPrincipal() { // Retorna os parametros de definições da própia classe
 		this.setBackground(new Color(255, 255, 255));
-		this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		this.setOpaque(false);
 		this.setPreferredSize(new Dimension(800,600));
 		return this;
@@ -154,7 +154,7 @@ public class JPanelPrincipal extends JPanel {
 			jPanelWestPrincipal = new JPanel();
 			jPanelWestPrincipal.setLayout(new BorderLayout());
 			jPanelWestPrincipal.setBackground(corDoJPanelUsuario);
-			jPanelWestPrincipal.setPreferredSize(new Dimension(85, 800)); // Setado como zero para evitar conflitos com o layout BorderLayout
+			jPanelWestPrincipal.setSize(85,800);; // Setado como zero para evitar conflitos com o layout BorderLayout
 
 		}
 		return jPanelWestPrincipal;
@@ -213,6 +213,7 @@ public class JPanelPrincipal extends JPanel {
 		if(jPanelCenterPrincipal == null){
 			jPanelCenterPrincipal = new JPanel();
 			jPanelCenterPrincipal.setLayout(new BorderLayout());
+			jPanelCenterPrincipal.setSize(400,800);
 		}
 		return jPanelCenterPrincipal;
 	}
@@ -608,12 +609,17 @@ public class JPanelPrincipal extends JPanel {
 	// ### Inicio dos métodos de adição de componentes ###
 	
 	public void AddComponentesJPanelPrincipal() {
-		this.add(getjPanelWestPrincipal(), BorderLayout.WEST);
-		this.add(getjPanelCenterPrincipal(), BorderLayout.CENTER);
+		
+		this.add(getjPanelWestPrincipal());		
+		getjPanelWestPrincipal().setLocation(0, 0);
+		
+		this.add(getjPanelCenterPrincipal());
+		getjPanelCenterPrincipal().setLocation(85,0);
 	}
 	
 	
-	public void getjPanelHomeAddComponentes() {
+	public void AddComponentesJPanelHome() {
+		
 		getjPanelHome().add(this.getjLabelFundojPanelHome(), BorderLayout.CENTER);
 		
 	}
