@@ -42,6 +42,8 @@ public class JPanelPrincipal extends JPanel {
 	private Color corDaBarraMenuEButton = new Color(54,54,54);
 	private Color corDoJPanelUsuario = new Color(5,5,5);
 	
+	private Color foregroundJButton = new Color(5,5,5,0);
+	
 	private JButton jButtonMenuBar;
 	private JButton jButtonHome;
 	private JButton jButtonOS;
@@ -179,7 +181,7 @@ public class JPanelPrincipal extends JPanel {
 			jScrollPaneButtonsWest.setBackground(corDoJPanelUsuario);
 			jScrollPaneButtonsWest.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 			jScrollPaneButtonsWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			jScrollPaneButtonsWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			//jScrollPaneButtonsWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_POLICY);
 			jScrollPaneButtonsWest.setViewportBorder(null);
 			jScrollPaneButtonsWest.setAutoscrolls(true);
 			jScrollPaneButtonsWest.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -202,7 +204,7 @@ public class JPanelPrincipal extends JPanel {
 			jPanelButtons = new JPanel();
 			jPanelButtons.setBackground(corDosBotoesEMenuLateral);
 			jPanelButtons.setBorder(null);
-			jPanelButtons.setPreferredSize(new Dimension(265, 825));
+			jPanelButtons.setPreferredSize(new Dimension(265, 600));
 
 		}
 		return jPanelButtons;
@@ -236,7 +238,7 @@ public class JPanelPrincipal extends JPanel {
 			jPanelWestNorth = new JPanel();
 			jPanelWestNorth.setLayout(null);
 			jPanelWestNorth.setOpaque(false);
-			jPanelWestNorth.setPreferredSize(new Dimension(68,100));
+			jPanelWestNorth.setPreferredSize(new Dimension(83,100));
 		}
 		return jPanelWestNorth;
 	}
@@ -321,6 +323,7 @@ public class JPanelPrincipal extends JPanel {
 			jLabelIconeUsuario = new JLabel();
 			jLabelIconeUsuario.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/user_100.png")));
 			jLabelIconeUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelIconeUsuario.setVisible(false);
 			
 		}
 		return jLabelIconeUsuario;
@@ -335,6 +338,7 @@ public class JPanelPrincipal extends JPanel {
 			jLabelNomeUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 			jLabelNomeUsuario.setText("Usuário");
 			jLabelNomeUsuario.setHorizontalTextPosition(SwingConstants.CENTER);
+			jLabelNomeUsuario.setVisible(false);
 
 		}
 		return jLabelNomeUsuario;
@@ -384,7 +388,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonHome = new JButton();
 			jButtonHome.setBackground(corDosBotoesEMenuLateral);
 			jButtonHome.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonHome.setForeground(new Color(204, 204, 204));
+			jButtonHome.setForeground(foregroundJButton);
 			jButtonHome.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/home_48_blue.png"))); 
 			jButtonHome.setText(" Iniciar");
 			jButtonHome.setBorder(null);
@@ -404,7 +408,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonOS = new JButton();
 			jButtonOS.setBackground(corDosBotoesEMenuLateral);
 			jButtonOS.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonOS.setForeground(new Color(204, 204, 204));
+			jButtonOS.setForeground(foregroundJButton);
 			jButtonOS.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/OS_48_blue.png"))); 
 			jButtonOS.setText(" O.S");
 			jButtonOS.setBorder(null);
@@ -423,7 +427,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonOrcamento = new JButton();
 			jButtonOrcamento.setBackground(corDosBotoesEMenuLateral);
 			jButtonOrcamento.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonOrcamento.setForeground(new Color(204, 204, 204));
+			jButtonOrcamento.setForeground(foregroundJButton);
 			jButtonOrcamento.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/car_orcam_48_blue.png"))); 
 			jButtonOrcamento.setText(" Orçamento");
 			jButtonOrcamento.setBorder(null);
@@ -442,7 +446,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonVeiculos = new JButton();
 			jButtonVeiculos.setBackground(corDosBotoesEMenuLateral);
 			jButtonVeiculos.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonVeiculos.setForeground(new Color(204, 204, 204));
+			jButtonVeiculos.setForeground(foregroundJButton);
 			jButtonVeiculos.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/car_48_blue.png"))); 
 			jButtonVeiculos.setText(" Veículos");
 			jButtonVeiculos.setBorder(null);
@@ -461,7 +465,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonClientes = new JButton();
 			jButtonClientes.setBackground(corDosBotoesEMenuLateral);
 			jButtonClientes.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonClientes.setForeground(new Color(204, 204, 204));
+			jButtonClientes.setForeground(foregroundJButton);
 			jButtonClientes.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/users_48_blue.png"))); 
 			jButtonClientes.setText(" Clientes");
 			jButtonClientes.setBorder(null);
@@ -480,7 +484,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonFaturamento = new JButton();
 			jButtonFaturamento.setBackground(corDosBotoesEMenuLateral);
 			jButtonFaturamento.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonFaturamento.setForeground(new Color(204, 204, 204));
+			jButtonFaturamento.setForeground(foregroundJButton);
 			jButtonFaturamento.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/estimate-48_blue.png"))); 
 			jButtonFaturamento.setText(" Faturamento");
 			jButtonFaturamento.setBorder(null);
@@ -500,7 +504,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonAddUsuarios = new JButton();
 			jButtonAddUsuarios.setBackground(corDosBotoesEMenuLateral);
 			jButtonAddUsuarios.setFont(new Font("Trebuchet MS", Font.BOLD, 20)); 
-			jButtonAddUsuarios.setForeground(new Color(204, 204, 204));
+			jButtonAddUsuarios.setForeground(foregroundJButton);
 			jButtonAddUsuarios.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/use_conf_48_blue.png"))); 
 			jButtonAddUsuarios.setText(" Usu\u00E1rio");
 			jButtonAddUsuarios.setBorder(null);
@@ -520,7 +524,7 @@ public class JPanelPrincipal extends JPanel {
 			jButtonConfiguracao = new JButton();
 			jButtonConfiguracao.setBackground(corDosBotoesEMenuLateral);
 			jButtonConfiguracao.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-			jButtonConfiguracao.setForeground(new Color(204, 204, 204));
+			jButtonConfiguracao.setForeground(foregroundJButton);
 			jButtonConfiguracao.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/conf_48_blue.png")));
 			jButtonConfiguracao.setText(" Configurações");
 			jButtonConfiguracao.setBorder(null);
@@ -538,7 +542,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonGerarOS() {
 		if(jButtonGerarOS == null){
 			jButtonGerarOS = new JButton();
-			jButtonGerarOS.setBackground(new Color(204, 204, 204));
+			jButtonGerarOS.setBackground(foregroundJButton);
 			jButtonGerarOS.setFont(new Font("Trebuchet MS", 1, 18)); 
 			jButtonGerarOS.setText(" Gerar O.S.");
 			jButtonGerarOS.setBorder(null);
@@ -556,7 +560,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonConsultarOS() {
 		if(jButtonConsultarOS == null) {
 			jButtonConsultarOS = new JButton();
-			jButtonConsultarOS.setBackground(new Color(204, 204, 204));
+			jButtonConsultarOS.setBackground(foregroundJButton);
 			jButtonConsultarOS.setFont(new Font("Trebuchet MS", 1, 18)); 
 			jButtonConsultarOS.setText(" Consultar O.S.");
 			jButtonConsultarOS.setBorder(null);
@@ -574,7 +578,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButton10() {
 		if (jButton10 == null) {
 			jButton10 = new JButton();
-			jButton10.setBackground(new Color(204, 204, 204));
+			jButton10.setBackground(foregroundJButton);
 			jButton10.setFont(new Font("Trebuchet MS", 1, 18)); 
 			jButton10.setText(" Cliente");
 			jButton10.setBorder(null);
@@ -591,7 +595,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButton11() {
 		if (jButton11 == null) {
 			jButton11 = new JButton();
-			jButton11.setBackground(new Color(204, 204, 204));
+			jButton11.setBackground(foregroundJButton);
 			jButton11.setFont(new Font("Trebuchet MS", 1, 18)); 
 			jButton11.setText(" Cliente");
 			jButton11.setBorder(null);
@@ -614,7 +618,7 @@ public class JPanelPrincipal extends JPanel {
 		getjPanelWestPrincipal().setLocation(0, 0);
 		
 		this.add(getjPanelCenterPrincipal());
-		getjPanelCenterPrincipal().setLocation(85,0);
+		getjPanelCenterPrincipal().setLocation(83,0);
 	}
 	
 	

@@ -108,11 +108,27 @@ public class TelConf {
     
     
     public void iconRender(JLabel jLabel,String imagem) {
+    	
     	ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagem)); // adicniona o caminho da imagem 
-    	 Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), // pega a largura do incone que vai ser a mesma da label
-                 Image.SCALE_DEFAULT);
-    	jLabel.setIcon(new ImageIcon(img)); 
-    	//System.out.println(jLabel.getWidth()+" , "+jLabel.getHeight());
+    	
+    	Thread thread = new Thread() {
+    		@Override
+    		public void run() {
+    			try {					
+    				
+    		    	Image img = imageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), // pega a largura do incone que vai ser a mesma da label
+    		                 Image.SCALE_DEFAULT);
+    		    	jLabel.setIcon(new ImageIcon(img)); 
+    		    	//System.out.println(jLabel.getWidth()+" , "+jLabel.getHeight());
+    				
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("erro iconRend");
+				}
+    		}
+    		
+    	};thread.start();    	
+    	
     }
     
     
