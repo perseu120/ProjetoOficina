@@ -1,17 +1,23 @@
 package controller;
 
+import static java.awt.Frame.MAXIMIZED_BOTH;
+
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,7 +26,7 @@ import javax.swing.ScrollPaneConstants;
 
 import view.*;
 
-public class ControlJPanelPrincipal implements MouseListener, ComponentListener, WindowStateListener  {
+public class ControlJPanelPrincipal implements MouseListener, MouseMotionListener, ComponentListener, WindowStateListener  {
 	
 	// ### Início declaração de variáveis ###
 	
@@ -31,6 +37,11 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 	private JButton jButtonAnterior; // Variável para guardar o jButton que foi clicado pela ultima vez
 	private JButton jButtonAnteriorEntered; // Variavel que quada o jButton que o mouse entrou pela ultima vez
 	private String telaAnterior; // Variavel que contem o titulo da ultima tela que foi aberta.
+	private boolean isReset_Tamaho ; // Variavel que recebe true quando o jbutton reset tamanho é clicado
+	private int xMouseTela; // Recebe a posição x do ponteiro do mouse no JFrame
+	private int yMouseTela; // Recebe a posição y do ponteiro do mouse no JFrame
+	private int x; // Recebe a posição x do ponteiro do mouse na tela
+	private int y; // Recebe a posição y do ponteiro do mouse na tela
 	
 	private int cor1 = 103, cor2 = 103, cor3 = 103; // Cor dos jButtons quando e acionado algum evento de click ou entered.
 	
@@ -54,6 +65,9 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 		AddEvent();
 		
 		this.jButtonAnterior = getjPanelPrincipal().getjButtonHome();
+		this.isReset_Tamaho = false;
+		this.xMouseTela = 0;
+		this.yMouseTela = 0;
 		
 	}
 	
@@ -61,8 +75,14 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 	private void AddEvent() { // Método para adição de enventos aos componentes
 		this.getjFramePrincipal().addComponentListener(this);
 		this.getjFramePrincipal().addWindowStateListener(this);
+		this.getjFramePrincipal().addMouseMotionListener(this);
 		this.getjPanelPrincipal().getjScrollPaneButtonsWest().addMouseListener(this);
+		this.getjPanelPrincipal().getjPanelNorthCenter().addMouseListener(this);
+		this.getjPanelPrincipal().getjPanelNorthCenter().addMouseMotionListener(this);
 		this.getjPanelPrincipal().getjButtonMenuBar().addMouseListener(this);
+		this.getjPanelPrincipal().getjButtonMinimiza().addMouseListener(this);
+		this.getjPanelPrincipal().getjButtonRedimenciona().addMouseListener(this);
+		this.getjPanelPrincipal().getjButtonFecharPrograma().addMouseListener(this);
 		this.getjPanelPrincipal().getjButtonHome().addMouseListener(this);
 		this.getjPanelPrincipal().getjButtonOS().addMouseListener(this);
 		this.getjPanelPrincipal().getjButtonGerarOS().addMouseListener(this);
@@ -114,10 +134,10 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 	
 	
 	@Override
-	public void componentResized(ComponentEvent evt) { // Quando o jFrame for redimencionado.
+	public void componentResized(ComponentEvent e) { // Quando o jFrame for redimencionado.
 		// TODO Auto-generated method stub
 		
-		if(evt.getSource() == getjFramePrincipal()) { // Quando a JFrame for redimencionada...
+		if(e.getSource() == getjFramePrincipal()) { // Quando a JFrame for redimencionada...
 			reajustaFrame(getjPanelPrincipal().getjPanelWestPrincipal().getWidth());	
 		}
 		
@@ -125,21 +145,36 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 	
 	
 	@Override
-	public void mouseExited(MouseEvent evt) { // Quando o ponteiro do mouse sair de um componente.
+	public void mouseExited(MouseEvent e) { // Quando o ponteiro do mouse sair de um componente.
 		// TODO Auto-generated method stub		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
 			getjPanelPrincipal().getjButtonMenuBar().setBackground(getjPanelPrincipal().getCorDaBarraMenuEButton());
-		}		
+		}	
 		
 		
-		if(jButtonAnteriorEntered != null) {
+		if(e.getSource() == getjPanelPrincipal().getjButtonMinimiza()) {
+			getjPanelPrincipal().getjButtonMinimiza().setBackground(getjPanelPrincipal().getCorDaBarraMenuEButton());
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonRedimenciona()) {
+			getjPanelPrincipal().getjButtonRedimenciona().setBackground(getjPanelPrincipal().getCorDaBarraMenuEButton());
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonFecharPrograma()) {
+			getjPanelPrincipal().getjButtonFecharPrograma().setBackground(getjPanelPrincipal().getCorDaBarraMenuEButton());
+		}
+		
+		
+		if(jButtonAnteriorEntered != null) { // Método que desmarca cor do jButton que o ponteiro do mouse entrou anteriormente
 			this.jButtonAnteriorEntered.setBackground(getjPanelPrincipal().getCorDosBotoesEMenuLateral());
 			this.jButtonAnterior.setBackground(new Color(cor1,cor2,cor3));
 		}		
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjScrollPaneButtonsWest()) {
+		if(e.getSource() == getjPanelPrincipal().getjScrollPaneButtonsWest()) {
 			//getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 			//JOptionPane.showMessageDialog(null, "Deu certo");
 		}
@@ -147,88 +182,127 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 	
 	
 	@Override
-	public void mouseEntered(MouseEvent evt) { // Quando o ponteiro do mouse entrar em algum componente.
+	public void mouseEntered(MouseEvent e) { // Quando o ponteiro do mouse entrar em algum componente.
 		// TODO Auto-generated method stub
-		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
-			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(0, 0, 85));
+		if(e.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
+			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(74,74,74));
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonMinimiza()) {
+			getjPanelPrincipal().getjButtonMinimiza().setBackground(new Color(74,74,74));
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonRedimenciona()) {
+			getjPanelPrincipal().getjButtonRedimenciona().setBackground(new Color(74,74,74));
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonFecharPrograma()) {
+			getjPanelPrincipal().getjButtonFecharPrograma().setBackground(new Color(74,74,74));
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonHome());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonOS()) { // Qando o JButton jButtonOS for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonOS()) { // Qando o JButton jButtonOS for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonOS());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
 			
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonConsultarOS()) { // Qando o JButton jButtonConsultarOS for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonConsultarOS()) { // Qando o JButton jButtonConsultarOS for clicado:
 			
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonOrcamento()) { // Qando o JButton jButtonOrcamento for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonOrcamento()) { // Qando o JButton jButtonOrcamento for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonOrcamento());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonVeiculos()) { // Qando o JButton jButtonVeiculos for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonVeiculos()) { // Qando o JButton jButtonVeiculos for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonVeiculos());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonClientes()) { // Qando o JButton jButtonClientes for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonClientes()) { // Qando o JButton jButtonClientes for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonClientes());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonFaturamento()) { // Qando o JButton jButtonFaturamento for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonFaturamento()) { // Qando o JButton jButtonFaturamento for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonFaturamento());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonAddUsuarios()) { // Qando o JButton jButtonAddUsuarios for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonAddUsuarios()) { // Qando o JButton jButtonAddUsuarios for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonAddUsuarios());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonConfiguracao()) { // Qando o JButton jButtonConfiguracao for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonConfiguracao()) { // Qando o JButton jButtonConfiguracao for clicado:
 			mudarCorJButtonEntered(getjPanelPrincipal().getjButtonConfiguracao());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjScrollPaneButtonsWest()) {
+		if(e.getSource() == getjPanelPrincipal().getjScrollPaneButtonsWest()) {
 			//getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		}
 	}
 	
 	
 	@Override
-	public void mouseClicked(MouseEvent evt) { // Quando algum componente for clicado.
+	public void mouseClicked(MouseEvent e) { // Quando algum componente for clicado.
 		// TODO Auto-generated method stub		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
 			
 			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 83, 265, getjFramePrincipal()
 					.getHeight()); // Abre ou fecha o jPanelWestMenuLateral			
 		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonMinimiza()) {
+			getjFramePrincipal().setState(JFrame.ICONIFIED);
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonRedimenciona()) {
+			
+			if(!isReset_Tamaho) {
+				getjFramePrincipal().setSize(getjFramePrincipal().getMinimumSize());
+				getjFramePrincipal().setLocationRelativeTo(null);
+				getjFramePrincipal().setExtendedState(JFrame.NORMAL);
+				isReset_Tamaho = true;
+			}else {
+				getjFramePrincipal().setExtendedState(MAXIMIZED_BOTH);
+				isReset_Tamaho = false;
+			}
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonFecharPrograma()) {
+			System.exit(0);
+		}
 									
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:
 			
 			questionar(getjPanelPrincipal().getjButtonHome(),null, "Deseja sair mesmo?", 
 						getjPanelPrincipal().getjPanelHome(), null,null,null);			
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonOS()) { // Qando o JButton jButtonOS for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonOS()) { // Qando o JButton jButtonOS for clicado:
 			
 			if(getjPanelPrincipal().getjPanelJButtonOS().isVisible()) { // Deixa visivel ou não o jPanelJButtonOS
 				getjPanelPrincipal().getjPanelJButtonOS().setVisible(false);
@@ -240,44 +314,44 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
 			questionar(getjPanelPrincipal().getjButtonOS(), getjScrollPaneGerarOS().getStringTitulo(), "Deseja sair mesmo?", 
 					null, getjScrollPaneGerarOS(),getjScrollPaneGerarOS().getStringTitulo(), getjScrollPaneGerarOS().getIconTitulo());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonConsultarOS()) { // Qando o JButton jButtonConsultarOS for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonConsultarOS()) { // Qando o JButton jButtonConsultarOS for clicado:
 			
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonOrcamento()) { // Qando o JButton jButtonOrcamento for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonOrcamento()) { // Qando o JButton jButtonOrcamento for clicado:
 			mudarCorJButton(getjPanelPrincipal().getjButtonOrcamento());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonVeiculos()) { // Qando o JButton jButtonVeiculos for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonVeiculos()) { // Qando o JButton jButtonVeiculos for clicado:
 			mudarCorJButton(getjPanelPrincipal().getjButtonVeiculos());
 
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonClientes()) { // Qando o JButton jButtonClientes for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonClientes()) { // Qando o JButton jButtonClientes for clicado:
 			mudarCorJButton(getjPanelPrincipal().getjButtonClientes());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonFaturamento()) { // Qando o JButton jButtonFaturamento for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonFaturamento()) { // Qando o JButton jButtonFaturamento for clicado:
 			mudarCorJButton(getjPanelPrincipal().getjButtonFaturamento());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonAddUsuarios()) { // Qando o JButton jButtonAddUsuarios for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonAddUsuarios()) { // Qando o JButton jButtonAddUsuarios for clicado:
 			mudarCorJButton(getjPanelPrincipal().getjButtonAddUsuarios());
 		}
 		
 		
-		if(evt.getSource() == getjPanelPrincipal().getjButtonConfiguracao()) { // Qando o JButton jButtonConfiguracao for clicado:
+		if(e.getSource() == getjPanelPrincipal().getjButtonConfiguracao()) { // Qando o JButton jButtonConfiguracao for clicado:
 			
 			if(getjPanelPrincipal().getjPanelJButtonConfiguracao().isVisible()) { // Deixa visivel ou não o jPanelJButtonConfiguração
 				getjPanelPrincipal().getjPanelJButtonConfiguracao().setVisible(false);
@@ -288,7 +362,43 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 			mudarCorJButton(getjPanelPrincipal().getjButtonConfiguracao());
 		}
 		
-	}		
+	}	
+	
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		int wdhx = 0;
+		int hgty = 0;
+		if(e.getY() < 50) {
+			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.MOVE_CURSOR));
+			Point point = new Point(e.getXOnScreen() - xMouseTela, e.getYOnScreen() - yMouseTela);
+			getjFramePrincipal().setLocation(point);
+			getjPanelPrincipal().getjLabelDescricaoTela().setText(e.getXOnScreen()+"/"+xMouseTela);
+		}
+		
+		if((e.getX() > (getjFramePrincipal().getWidth()-10))&&(e.getX() < (getjFramePrincipal().getWidth()+10))) {
+			getjFramePrincipal().setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
+			wdhx = getjFramePrincipal().getWidth() + (e.getXOnScreen() -x);
+			hgty = getjFramePrincipal().getHeight();
+				reajustaFrame(83);
+
+				getjFramePrincipal().setSize(wdhx, hgty);
+				System.out.println(e.getXOnScreen() +"/"+x+";"+(e.getXOnScreen() -x));
+			
+		}
+	
+	}
+
+
+	@Override
+	public void mouseMoved(MouseEvent e) { // Pega a posição do ponteiro do mouse quando tenta mover um componente
+		
+		xMouseTela = e.getX();
+		yMouseTela = e.getY();
+		x = e.getXOnScreen();
+		y = e.getYOnScreen();
+		
+	} 
 
 	// ### Final dos métodos de sobreposição  utilizados ###
 	// --------------------------------------------------
@@ -490,21 +600,23 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
     // ### Início dos métodos de sobreposião, não utilizados ###
     
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource() == getjPanelPrincipal().getjPanelNorthCenter()) {
+			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));	
+		}
 	}
 	
 	
 	@Override
-	public void componentHidden(ComponentEvent arg0) {
+	public void componentHidden(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -521,7 +633,7 @@ public class ControlJPanelPrincipal implements MouseListener, ComponentListener,
 	public void componentShown(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
-	} 
+	}	
     
     // ### Final dos métodos de sobreposição não utilizados ###
     

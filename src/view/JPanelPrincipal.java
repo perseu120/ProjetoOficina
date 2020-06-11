@@ -24,6 +24,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
+import java.awt.FlowLayout;
 
 
 /**
@@ -45,6 +46,9 @@ public class JPanelPrincipal extends JPanel {
 	private Color foregroundJButton = new Color(5,5,5,0);
 	
 	private JButton jButtonMenuBar;
+	private JButton jButtonMinimiza;
+	private JButton jButtonRedimenciona;
+	private JButton jButtonFecharPrograma;
 	private JButton jButtonHome;
 	private JButton jButtonOS;
 	private JButton jButtonGerarOS;
@@ -61,6 +65,8 @@ public class JPanelPrincipal extends JPanel {
 	private JLabel jLabelFundojPanelHome;	
 	private JLabel jLabelIconeUsuario;
 	private JLabel jLabelNomeUsuario;
+	private JLabel jLabelLogoProjeto;
+	private JLabel jLabelDescricaoTela;
 	
 	private JPanel jPanelCenterPrincipal;
 	private JPanel jPanelHome;
@@ -78,6 +84,7 @@ public class JPanelPrincipal extends JPanel {
 	
 	private JPanel jPanelDescricaoTela;
 	private JLabel jLabelNomeDaTela;
+	private JLabel lblNewLabel;
 	// ### Fim dlecaração de variáveis ###
 	
 	public JPanelPrincipal() {		
@@ -184,7 +191,6 @@ public class JPanelPrincipal extends JPanel {
 			//jScrollPaneButtonsWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_POLICY);
 			jScrollPaneButtonsWest.setViewportBorder(null);
 			jScrollPaneButtonsWest.setAutoscrolls(true);
-			jScrollPaneButtonsWest.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			jScrollPaneButtonsWest.setFocusCycleRoot(true);
 			jScrollPaneButtonsWest.setOpaque(true);
 			jScrollPaneButtonsWest.setPreferredSize(new Dimension(265, 1100));
@@ -236,9 +242,10 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelWestNorth() {
 		if(jPanelWestNorth == null) {
 			jPanelWestNorth = new JPanel();
-			jPanelWestNorth.setLayout(null);
 			jPanelWestNorth.setOpaque(false);
-			jPanelWestNorth.setPreferredSize(new Dimension(83,100));
+			jPanelWestNorth.setPreferredSize(new Dimension(280, 100));
+			FlowLayout fl_jPanelWestNorth = new FlowLayout(FlowLayout.LEFT, 2, 0);
+			jPanelWestNorth.setLayout(fl_jPanelWestNorth);
 		}
 		return jPanelWestNorth;
 	}
@@ -247,8 +254,11 @@ public class JPanelPrincipal extends JPanel {
 	public JPanel getjPanelEastNorth() {
 		if(jPanelEastNorth == null) {
 			jPanelEastNorth = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) jPanelEastNorth.getLayout();
+			flowLayout.setVgap(3);
+			flowLayout.setAlignment(FlowLayout.LEFT);
 			jPanelEastNorth.setOpaque(false);
-			jPanelEastNorth.setPreferredSize(new Dimension(85,100));
+			jPanelEastNorth.setPreferredSize(new Dimension(190, 100));
 		}
 		return jPanelEastNorth;
 	}
@@ -353,9 +363,30 @@ public class JPanelPrincipal extends JPanel {
 			//lblNewLabel.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/OS_48.png")));
 		}
 		return jLabelNomeDaTela;
+	}	
+
+
+	public JLabel getjLabelLogoProjeto() {
+		if(jLabelLogoProjeto == null){
+			jLabelLogoProjeto = new JLabel();
+			jLabelLogoProjeto.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelLogoProjeto.setPreferredSize(new Dimension(80,64));
+			jLabelLogoProjeto.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/users_48_blue.png")));
+		}
+		return jLabelLogoProjeto;
 	}
-	
-	
+
+
+	public JLabel getjLabelDescricaoTela() {
+		if(jLabelDescricaoTela== null){
+			jLabelDescricaoTela = new JLabel();
+			jLabelDescricaoTela.setFont(new Font("Tahoma", Font.BOLD, 20));
+			jLabelDescricaoTela.setText("Home");
+		}
+		return jLabelDescricaoTela;
+	}
+
+
 	private void setJlabel(String string, ImageIcon icon) {
 		jLabelNomeDaTela.setText(string);
 		jLabelNomeDaTela.setIcon(icon);
@@ -375,7 +406,6 @@ public class JPanelPrincipal extends JPanel {
 			jButtonMenuBar.setBorderPainted(false);
 			jButtonMenuBar.setContentAreaFilled(false);
 			jButtonMenuBar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			jButtonMenuBar.setSize(65,65);
 			jButtonMenuBar.setOpaque(true);
 			
 		}
@@ -606,6 +636,50 @@ public class JPanelPrincipal extends JPanel {
 			jButton11.setOpaque(true);
 		}
 		return jButton11;
+	}	
+
+	public JButton getjButtonMinimiza() {
+		if(jButtonMinimiza == null){
+			jButtonMinimiza = new JButton();
+			jButtonMinimiza.setBackground(corDaBarraMenuEButton);
+			jButtonMinimiza.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/min_50.png")));
+			jButtonMinimiza.setBorder(null);
+			jButtonMinimiza.setBorderPainted(false);
+			jButtonMinimiza.setContentAreaFilled(false);
+			jButtonMinimiza.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			jButtonMinimiza.setOpaque(true);
+		}
+		return jButtonMinimiza;
+	}
+
+
+	public JButton getjButtonRedimenciona() {
+		if(jButtonRedimenciona == null){
+			jButtonRedimenciona = new JButton();
+			jButtonRedimenciona.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/square_50.png")));
+			jButtonRedimenciona.setBackground(corDaBarraMenuEButton);
+			jButtonRedimenciona.setBorder(null);
+			jButtonRedimenciona.setBorderPainted(false);
+			jButtonRedimenciona.setContentAreaFilled(false);
+			jButtonRedimenciona.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			jButtonRedimenciona.setOpaque(true);
+		}
+		return jButtonRedimenciona;
+	}
+
+
+	public JButton getjButtonFecharPrograma() {
+		if(jButtonFecharPrograma == null){
+			jButtonFecharPrograma = new JButton();
+			jButtonFecharPrograma.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/x_50.png")));
+			jButtonFecharPrograma.setBackground(corDaBarraMenuEButton);
+			jButtonFecharPrograma.setBorder(null);
+			jButtonFecharPrograma.setBorderPainted(false);
+			jButtonFecharPrograma.setContentAreaFilled(false);
+			jButtonFecharPrograma.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			jButtonFecharPrograma.setOpaque(true);
+		}
+		return jButtonFecharPrograma;
 	}
 	
 	// ### Final      dos      gets     dos     botoes ###
@@ -717,13 +791,16 @@ public class JPanelPrincipal extends JPanel {
 	
 	
 	public void addComponentesJPanelWestNorth() {
-		getjButtonMenuBar().setLocation(2,0);
 		getjPanelWestNorth().add(getjButtonMenuBar());
+		getjPanelWestNorth().add(getjLabelLogoProjeto());
+		getjPanelWestNorth().add(getjLabelDescricaoTela());
 	}
 	
 	
 	public void addComponentesJPanelEastNorth() {
-		getjPanelEastNorth().add(new JLabel("new"));
+		getjPanelEastNorth().add(getjButtonMinimiza());
+		getjPanelEastNorth().add(getjButtonRedimenciona());
+		getjPanelEastNorth().add(getjButtonFecharPrograma());
 	}
 	
 				
@@ -839,7 +916,12 @@ public class JPanelPrincipal extends JPanel {
 	public Color getCorDaBarraMenuEButton() {
 		return corDaBarraMenuEButton;
 	}
-	
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("New label");
+		}
+		return lblNewLabel;
+	}
 }
 
 
