@@ -1,0 +1,55 @@
+// Estruturas de paineis da classe JPanelPrincipal
+
+1- JPanelOS
+	2- jPanelNorthOS
+	3- jScrollPaneCenterOS
+		4- jPanelDadosVeiculo // alternativa 1
+			5- jPanelBuscaVeiculo
+
+		4- jPanelDadosCliente // alternativa 2
+			5- jPanelBuscaCliente
+
+		4- jPanelDadosServico // alternativa 3
+			5- jPanelBuscaServico
+
+
+// Componentes contidos nos Paineis
+
+2- jPanelNorthOS
+	jLabelVeiculo
+	jButtonVeiculo
+
+	jLabelCliente
+	jButtonCliente
+
+	jLabelCliente
+	jButtonCliente
+
+4- jPanelDadosVeiculo
+	jLabelMarca
+	jTextFieldMarca
+
+	jLabelModelo
+	jTextFieldModelo
+
+	jLabelMotor
+	jTextFieldMotor
+
+	jLabelCombustivel
+	jTextFieldCombustivel
+
+	jLabelAno
+	jTextFieldAno
+
+	jLabelKm
+	jTextFieldKm
+
+5- jPanelBuscarVeiculo
+	jLabelNum
+	jTextFieldNum
+
+	jLabelPlaca
+	jTextFieldPlaca
+
+	jLabelVin
+	jTextFieldVin

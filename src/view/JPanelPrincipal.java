@@ -41,6 +41,7 @@ public class JPanelPrincipal extends JPanel {
 	
 	private Color corDosBotoesEMenuLateral = new Color(5,5,5);
 	private Color corDaBarraMenuEButton = new Color(54,54,54);
+	private Color corDosJButtonsDosJButtons = new Color(204,204,204);
 	private Color corDoJPanelUsuario = new Color(5,5,5);
 	
 	private Color foregroundJButton = new Color(5,5,5,0);
@@ -233,7 +234,7 @@ public class JPanelPrincipal extends JPanel {
 			jPanelNorthCenter = new JPanel();
 			jPanelNorthCenter.setLayout(new BorderLayout());
 			jPanelNorthCenter.setBackground(corDaBarraMenuEButton);
-			jPanelNorthCenter.setPreferredSize(new Dimension(1027, 60));
+			jPanelNorthCenter.setPreferredSize(new Dimension(1027, 70));
 		}
 		return jPanelNorthCenter;
 	}
@@ -371,7 +372,6 @@ public class JPanelPrincipal extends JPanel {
 			jLabelLogoProjeto = new JLabel();
 			jLabelLogoProjeto.setHorizontalAlignment(SwingConstants.CENTER);
 			jLabelLogoProjeto.setPreferredSize(new Dimension(80,64));
-			jLabelLogoProjeto.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/users_48_blue.png")));
 		}
 		return jLabelLogoProjeto;
 	}
@@ -572,7 +572,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonGerarOS() {
 		if(jButtonGerarOS == null){
 			jButtonGerarOS = new JButton();
-			jButtonGerarOS.setBackground(foregroundJButton);
+			jButtonGerarOS.setBackground(corDosJButtonsDosJButtons);
 			jButtonGerarOS.setFont(new Font("Trebuchet MS", 1, 18)); 
 			jButtonGerarOS.setText(" Gerar O.S.");
 			jButtonGerarOS.setBorder(null);
@@ -590,7 +590,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonConsultarOS() {
 		if(jButtonConsultarOS == null) {
 			jButtonConsultarOS = new JButton();
-			jButtonConsultarOS.setBackground(foregroundJButton);
+			jButtonConsultarOS.setBackground(corDosJButtonsDosJButtons);
 			jButtonConsultarOS.setFont(new Font("Trebuchet MS", 1, 18)); 
 			jButtonConsultarOS.setText(" Consultar O.S.");
 			jButtonConsultarOS.setBorder(null);
@@ -656,7 +656,7 @@ public class JPanelPrincipal extends JPanel {
 	public JButton getjButtonRedimenciona() {
 		if(jButtonRedimenciona == null){
 			jButtonRedimenciona = new JButton();
-			jButtonRedimenciona.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/square_50.png")));
+			jButtonRedimenciona.setIcon(new ImageIcon(JPanelPrincipal.class.getResource("/icons/rest_tamanho.png")));
 			jButtonRedimenciona.setBackground(corDaBarraMenuEButton);
 			jButtonRedimenciona.setBorder(null);
 			jButtonRedimenciona.setBorderPainted(false);

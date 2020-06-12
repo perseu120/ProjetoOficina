@@ -42,6 +42,8 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	private int yMouseTela; // Recebe a posição y do ponteiro do mouse no JFrame
 	private int x; // Recebe a posição x do ponteiro do mouse na tela
 	private int y; // Recebe a posição y do ponteiro do mouse na tela
+	int wdhx = 0;
+	int hgty = 0;
 	
 	private int cor1 = 103, cor2 = 103, cor3 = 103; // Cor dos jButtons quando e acionado algum evento de click ou entered.
 	
@@ -59,6 +61,8 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 				
 		this.jFramePrincipal = jFramePrincipal;
 		this.jPanelPrincipal = jPanelPrincipal;
+		
+		telConf.iconRender(getjPanelPrincipal().getjLabelLogoProjeto(), "/images/iconPrj.png", 55, 55);
 		
 		reajustaFrame(83); // Reajusta os jpanel para ocuparem completamente o jFrame
 		
@@ -184,6 +188,9 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	@Override
 	public void mouseEntered(MouseEvent e) { // Quando o ponteiro do mouse entrar em algum componente.
 		// TODO Auto-generated method stub
+		
+		
+		
 		if(e.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
 			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(74,74,74));
 		}
@@ -278,19 +285,27 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonRedimenciona()) {
 			
-			if(!isReset_Tamaho) {
+			if(!isReset_Tamaho) { // quando o jButtonRedimenciona for clicado para restaurar tamanho
+				
+				getjPanelPrincipal().getjButtonRedimenciona().setIcon(new ImageIcon(JPanelPrincipal
+						.class.getResource("/icons/square_50.png")));
 				getjFramePrincipal().setSize(getjFramePrincipal().getMinimumSize());
 				getjFramePrincipal().setLocationRelativeTo(null);
 				getjFramePrincipal().setExtendedState(JFrame.NORMAL);
 				isReset_Tamaho = true;
-			}else {
+				
+			}else { // quando o jButtonRedimenciona for clicado para maximizar tela
+				
+				getjPanelPrincipal().getjButtonRedimenciona().setIcon(new ImageIcon(JPanelPrincipal
+						.class.getResource("/icons/rest_tamanho.png")));
 				getjFramePrincipal().setExtendedState(MAXIMIZED_BOTH);
 				isReset_Tamaho = false;
 			}
 		}
 		
 		
-		if(e.getSource() == getjPanelPrincipal().getjButtonFecharPrograma()) {
+		if(e.getSource() == getjPanelPrincipal().getjButtonFecharPrograma()) { // Quando o jButtonFecharPrograma
+				// for clicado o programa é encerrado.
 			System.exit(0);
 		}
 									
@@ -304,10 +319,15 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonOS()) { // Qando o JButton jButtonOS for clicado:
 			
+			if(getjPanelPrincipal().getjPanelWestPrincipal().getWidth() <= 83) {
+				JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 83, 265, getjFramePrincipal().getHeight());
+			}
 			if(getjPanelPrincipal().getjPanelJButtonOS().isVisible()) { // Deixa visivel ou não o jPanelJButtonOS
 				getjPanelPrincipal().getjPanelJButtonOS().setVisible(false);
 			}else {
 				getjPanelPrincipal().getjPanelJButtonOS().setVisible(true);
+				getjPanelPrincipal().getjPanelJButtonOS().repaint();
+				getjPanelPrincipal().getjPanelJButtonOS().validate();
 			}
 			
 			mudarCorJButton(getjPanelPrincipal().getjButtonOS());
@@ -364,26 +384,22 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 	}	
 	
-	
+	int var = 0;
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		int wdhx = 0;
-		int hgty = 0;
+		
 		if(e.getY() < 50) {
 			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.MOVE_CURSOR));
 			Point point = new Point(e.getXOnScreen() - xMouseTela, e.getYOnScreen() - yMouseTela);
 			getjFramePrincipal().setLocation(point);
-			getjPanelPrincipal().getjLabelDescricaoTela().setText(e.getXOnScreen()+"/"+xMouseTela);
 		}
 		
-		if((e.getX() > (getjFramePrincipal().getWidth()-10))&&(e.getX() < (getjFramePrincipal().getWidth()+10))) {
-			getjFramePrincipal().setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
-			wdhx = getjFramePrincipal().getWidth() + (e.getXOnScreen() -x);
-			hgty = getjFramePrincipal().getHeight();
-				reajustaFrame(83);
-
-				getjFramePrincipal().setSize(wdhx, hgty);
-				System.out.println(e.getXOnScreen() +"/"+x+";"+(e.getXOnScreen() -x));
+		
+		if((e.getX() > (getjFramePrincipal().getWidth()-25)) && (e.getX() < (getjFramePrincipal().getWidth()+25))) {
+			
+			getjFramePrincipal().setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));				
+				
+			System.out.println(e.getXOnScreen() +"/"+x+";"+(e.getXOnScreen() -x));
 			
 		}
 	
@@ -397,6 +413,8 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		yMouseTela = e.getY();
 		x = e.getXOnScreen();
 		y = e.getYOnScreen();
+		wdhx = getjFramePrincipal().getWidth();
+		hgty = getjFramePrincipal().getHeight();
 		
 	} 
 
@@ -453,8 +471,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
     	}else {
     		getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, string, icon);
 			mudarCorJButton(jButton); // Altera cor do JButtonHome, quando clicado.	
-
-			JPanel_Open_Close(getjPanelPrincipal().getjPanelWestPrincipal(), 83, 265, 1100);
+			
     	}
     }
     
@@ -496,7 +513,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 						
 						for (int i = width_open; i >= width_close; i--) {
 							
-							Thread.sleep(1);
+							//Thread.sleep(1);
 							
 							if(iAnterior - i > 20) { // Faz a rederização da imagem de fundo a cada 20 pixels.
 								telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
@@ -514,7 +531,9 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 							panel.validate();
 							getjPanelPrincipal().getjPanelCenterPrincipal().validate();
 							
-						}
+						}						
+						
+						Thread.sleep(50);
 						
 						telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
 						getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -543,7 +562,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 						
 						for (int i = width_close; i <= width_open; i++) {
 							
-							Thread.sleep(1);
+							//Thread.sleep(0, 50);
 							
 							if(i - iAnterior > 20) { // Faz a rederização da imagem de fundo a cada 20 pixels.
 								telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
@@ -562,6 +581,8 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 							getjPanelPrincipal().getjPanelCenterPrincipal().validate();
 							
 						}
+						
+						Thread.sleep(50);
 						
 						telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
 						getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -585,8 +606,6 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
     private void mudarCorTodosJButtons(Color color) {
     	getjPanelPrincipal().getjButtonHome().setForeground(color);
     	getjPanelPrincipal().getjButtonOS().setForeground(color);
-    	getjPanelPrincipal().getjButtonGerarOS().setForeground(color);
-    	getjPanelPrincipal().getjButtonConsultarOS().setForeground(color);
     	getjPanelPrincipal().getjButtonOrcamento().setForeground(color);
     	getjPanelPrincipal().getjButtonVeiculos().setForeground(color);
     	getjPanelPrincipal().getjButtonClientes().setForeground(color);
@@ -610,8 +629,16 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == getjPanelPrincipal().getjPanelNorthCenter()) {
-			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));	
+			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			getjPanelPrincipal().getjPanelCenterPrincipal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjPanelCenterPrincipal()) {
+			
+			getjPanelPrincipal().getjPanelCenterPrincipal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		}		
+	
 	}
 	
 	
