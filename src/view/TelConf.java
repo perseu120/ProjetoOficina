@@ -88,6 +88,10 @@ public class TelConf {
     
     
     
+    
+    
+    
+    
     // Deixa jFrame em tela cheia
     public void fullScree(Frame tela){
     	
@@ -130,39 +134,46 @@ public class TelConf {
     	};thread.start();    	
     	
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
     // Seta e renderiza o icon  de uma jlabel na resolução inserida.
-    public void imageRend(JLabel label, String img, int width, int height){
-        try {
-            ImageIcon imageIcon1 = new ImageIcon(getClass().getResource(img));
-            // Redimensiona a imagem com a resolução width X hight.
-            Image image1 = imageIcon1.getImage().getScaledInstance(width, height,
-                    Image.SCALE_DEFAULT);
-            // Seta o icon na JLabel.
-        label.setIcon(new ImageIcon(image1));
-        
-        } catch (Exception e) {
-            System.out.println("Erro");
-        }                  
+    public void iconRender(JLabel label, String image, int width, int height){
+    	ImageIcon imageIcon1 = new ImageIcon(getClass().getResource(image));
+    	Thread thread = new Thread() {
+    		@Override
+    		public void run() {
+    			try {					
+    				
+    				Image image1 = imageIcon1.getImage().getScaledInstance(width, height,
+    	                    Image.SCALE_DEFAULT);    	            
+    				label.setIcon(new ImageIcon(image1)); // Seta o icon na JLabel.
+    				
+				} catch (Exception e) {
+					
+					System.out.println("erro iconRend");
+				}
+    		}
+    		
+    	};thread.start();     	
+                      
     }  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // Centraliza uma JPanel no centro da tela, de acordo com a resolução do 
     // sistema e o tamanho do JPanel. (verificar forma de centralizar no JFrame).  
