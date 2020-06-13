@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.Border;
+//import javafx.scene.effect.DropShadow;
+//import javafx.scene.layout.Border;
 
 
 public class JScrollPaneGerarOS extends JScrollPane {
