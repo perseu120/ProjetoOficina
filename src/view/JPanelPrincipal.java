@@ -40,7 +40,7 @@ public class JPanelPrincipal extends JPanel {
 	// ### Inicio declaração de variáveis ###
 	
 	private Color corDosBotoesEMenuLateral = new Color(5,5,5);
-	private Color corDaBarraMenuEButton = new Color(54,54,54);
+	private Color corDaBarraMenuEButton = new Color(45,45,45);
 	private Color corDosJButtonsDosJButtons = new Color(204,204,204);
 	private Color corDoJPanelUsuario = new Color(5,5,5);
 	
@@ -893,7 +893,6 @@ public class JPanelPrincipal extends JPanel {
 			
 			this.getjPanelCenterPrincipal().add(BorderLayout.CENTER, jScrollPane);
 			alteraJScrollPaneCentral = jScrollPane; // E essa variável recebe a nova tela
-			this.getjPanelDescricaoTela().setVisible(true);
 		
 		}else { 			// Se for passado um jPanel como parâmetro, o método adiciona o mesmo na parte central da classe
 			

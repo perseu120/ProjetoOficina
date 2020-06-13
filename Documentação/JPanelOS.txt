@@ -1,17 +1,18 @@
 // Estruturas de paineis da classe JPanelPrincipal
 
-1- JPanelOS
-	2- jPanelNorthOS
-	3- jScrollPaneCenterOS
-		4- jPanelDadosVeiculo // alternativa 1
-			5- jPanelBuscaVeiculo
+1- JPanelOS (BorderLayout)
 
-		4- jPanelDadosCliente // alternativa 2
-			5- jPanelBuscaCliente
+	2- jPanelNorthOS (null)
 
-		4- jPanelDadosServico // alternativa 3
-			5- jPanelBuscaServico
+	3- jPanelCenterOS (BorderLayout)
 
+		4- jPanelBuscarVeiculo (FlowLayout) || jPanelBuscarCliente (FlowLayout) || jPanelServico (FlowLayout)
+
+		5- jPanelCenterCenter (FlowLayout)
+			
+			6- jPanelDadosVeiculo (null) || jPanelDadosCliente (null) || jPanelDadosServico (null)
+
+		
 
 // Componentes contidos nos Paineis
 
@@ -24,6 +25,8 @@
 
 	jLabelCliente
 	jButtonCliente
+
+//--------Painel de consulta e cadastro de veiculos----------
 
 4- jPanelDadosVeiculo
 	jLabelMarca
@@ -53,3 +56,40 @@
 
 	jLabelVin
 	jTextFieldVin
+
+//--------Painel de consulta e cadastro de clientes----------
+
+4- jPanelDadosClente
+	jLabelEmail
+	jTextFieldEmail
+
+	jLabelTelefone
+	jTextFieldTelefone
+
+	jLabelCidade
+	jTextFieldCidade
+
+	jLabelBairro
+	jTextFieldBairro
+
+	jLabelRua
+	jTextFieldRua
+
+	jLabelNumero
+	jTextFieldNumero
+
+	jLabelVeiculoCliente
+	jBoxTextFildeVeiculoCliente
+
+5- jPanelBuscarCliente
+	jLabelNumCliente
+	jTextFieldNumCliente
+
+	jLabelNomeCliente
+	jTextFieldNomeCliente
+
+	*Ver se há necessidade
+	jLabelCPF
+	jTextFieldCPF
+
+//--------Painel de inserção de serviço----------

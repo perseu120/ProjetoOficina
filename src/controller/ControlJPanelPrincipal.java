@@ -32,7 +32,9 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
-	private JScrollPaneGerarOS jScrollPaneGerarOS;
+	private JPanelOS jPanelOS;
+	
+	private Color corJButtonEntered = new Color(79,79,79);
 	
 	private JButton jButtonAnterior; // Variável para guardar o jButton que foi clicado pela ultima vez
 	private JButton jButtonAnteriorEntered; // Variavel que quada o jButton que o mouse entrou pela ultima vez
@@ -45,7 +47,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	int wdhx = 0;
 	int hgty = 0;
 	
-	private int cor1 = 103, cor2 = 103, cor3 = 103; // Cor dos jButtons quando e acionado algum evento de click ou entered.
+	private int cor1 = 79, cor2 = 79, cor3 = 79; // Cor dos jButtons quando e acionado algum evento de click ou entered.
 	
 	private final String img = "/images/fundoPreto2.jpg"; //imagem de fundo do jpanelCenterPrincipal(verificar se esta correto).
 	
@@ -117,11 +119,11 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	}	
 	
 	
-	public JScrollPaneGerarOS getjScrollPaneGerarOS() {
-		if(jScrollPaneGerarOS == null){
-			jScrollPaneGerarOS = new JScrollPaneGerarOS();
+	public JPanelOS getjPanelOS() {
+		if(jPanelOS == null){
+			jPanelOS = new JPanelOS();
 		}
-		return jScrollPaneGerarOS;
+		return jPanelOS;
 	}	
 	
 	
@@ -192,22 +194,22 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonMenuBar()) { // Qando o JButton jButtonMenuBar for clicado:
-			getjPanelPrincipal().getjButtonMenuBar().setBackground(new Color(74,74,74));
+			getjPanelPrincipal().getjButtonMenuBar().setBackground(corJButtonEntered);
 		}
 		
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonMinimiza()) {
-			getjPanelPrincipal().getjButtonMinimiza().setBackground(new Color(74,74,74));
+			getjPanelPrincipal().getjButtonMinimiza().setBackground(corJButtonEntered);
 		}
 		
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonRedimenciona()) {
-			getjPanelPrincipal().getjButtonRedimenciona().setBackground(new Color(74,74,74));
+			getjPanelPrincipal().getjButtonRedimenciona().setBackground(corJButtonEntered);
 		}
 		
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonFecharPrograma()) {
-			getjPanelPrincipal().getjButtonFecharPrograma().setBackground(new Color(74,74,74));
+			getjPanelPrincipal().getjButtonFecharPrograma().setBackground(corJButtonEntered);
 		}
 		
 		
@@ -335,8 +337,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
-			questionar(getjPanelPrincipal().getjButtonOS(), getjScrollPaneGerarOS().getStringTitulo(), "Deseja sair mesmo?", 
-					null, getjScrollPaneGerarOS(),getjScrollPaneGerarOS().getStringTitulo(), getjScrollPaneGerarOS().getIconTitulo());
+			getjPanelPrincipal().alteraJScrollPaneCentral(getjPanelOS(), null);
 		}
 		
 		
@@ -418,6 +419,23 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 	} 
 
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == getjPanelPrincipal().getjPanelNorthCenter()) {
+			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			getjPanelPrincipal().getjPanelCenterPrincipal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		}
+		
+		
+		if(e.getSource() == getjPanelPrincipal().getjPanelCenterPrincipal()) {
+			
+			getjPanelPrincipal().getjPanelCenterPrincipal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		}		
+	
+	}
+	
 	// ### Final dos métodos de sobreposição  utilizados ###
 	// --------------------------------------------------
 	// ### Inicio    de     métodos     da     classe ###
@@ -622,23 +640,6 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == getjPanelPrincipal().getjPanelNorthCenter()) {
-			getjPanelPrincipal().getjPanelNorthCenter().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			getjPanelPrincipal().getjPanelCenterPrincipal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		}
-		
-		
-		if(e.getSource() == getjPanelPrincipal().getjPanelCenterPrincipal()) {
-			
-			getjPanelPrincipal().getjPanelCenterPrincipal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		}		
-	
 	}
 	
 	

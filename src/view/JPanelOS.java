@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,37 +17,52 @@ import javax.swing.JTextField;
 
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Border;
+import java.awt.GridLayout;
+import javax.swing.border.MatteBorder;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 
-public class JScrollPaneGerarOS extends JScrollPane {
+public class JPanelOS extends JPanel {
 	
 	// ### Início declaração de variáveis ###
 	
 	private Color corIntermediaria = new Color(0,151,172); // Azul marinho
-	private Color corEscura = new Color(51,51,51); // Cinza escuro
-	private Color corClara = new Color(235,235,235); // Cinza claro
-	private Color foregroudJButtonClaro = new Color(204,204,204); // Cinza
+	private Color corEscura = new Color(45,45,45); // Cinza escuro
+	private Color corClara = new Color(79,79,79); // Cinza claro
+	
+	private Color foregroudJButtonClaro = new Color(150,150,150); // Cinza
 	private Color foregroudJButtonEscuro = new Color(0,0,0); // Preto
-	private Font fontJButton = new Font("Arial",1,24); // Fonte dos jButons da classe
+	
+	private Font fontJButton = new Font("Arial",1,20); // Fonte dos jButons da classe
 	private Font fontJTextField = new Font("Arial", 1, 24); // Fonte dos jTextField da classe
-    private Font fontJLabel = new Font("Arial", 1, 24); // Font dos jLabel da classe
+    private Font fontJLabel = new Font("Arial", 1, 20); // Font dos jLabel da classe
 	
 	private String iconGerarOS = "/icons/OS_48.png";
 	private String iconVeiculoBlue = "/icons/car_48_blue.png";
 	private String iconClienteBlue = "/icons/users_48_blue.png";
 	private String iconServico = "/icons/OS_48_blue.png";
+	private String stringTitulo = "Gerar ordem de serviço"; // Titulo da tela, para aparecer na classe JPanelPrincipal
 	
-	private JPanel jPanelGerarOS;
-	private JPanel jPanelCentroGerarOS;
+	
+	
+	private JPanel jPanelNorthOS;
+	private JPanel jPanelCenterOS;
+	
 	private JPanel jPanelBuscarVeiculo;
-	private JPanel jPanelBaseInformacaoVeiculo;
-	private JPanel jPanelInformacaoVeiculo;
-	private JPanel jPanelBaseInformacaoCliente;
-	private JPanel jPanelInformacaoCliente;	
+	private JPanel jPanelBuscarCliente;
+	private JPanel jPanelServico;
+	
+	private JPanel jPanelCenterCenter;
+	
+	private JPanel jPanelDadosVeiculo;
+	private JPanel jPanelDadosCliente;
+	private JPanel jPanelDadosServico;
 	
 	private JButton jButtonVeiculo;
 	private JButton jButtonCliente;
-	private JButton jButtonServico;	     
+	private JButton jButtonServico;	
+	
 
 	private JLabel jLabelVin;
     private JLabel jLabelNumVeiculo;
@@ -56,8 +73,16 @@ public class JScrollPaneGerarOS extends JScrollPane {
     private JLabel jLabelCombustivel;
     private JLabel jLabelAno;
     private JLabel jLabelKm;
+    
     private JLabel jLabelNumCliente;
-    private JLabel jLavelNomeCliente;
+    private JLabel jLabelNomeCliente;
+    private JLabel jLabelEmail;
+    private JLabel jLabelTelefone;
+    private JLabel jLabelCidade;
+    private JLabel jLabelBairro;
+    private JLabel jLabelRua;
+    private JLabel jLabelNumero;
+    private JLabel jLabelVeiculoCliente;
     
     
     private JTextField jTextFieldVin;     
@@ -69,32 +94,43 @@ public class JScrollPaneGerarOS extends JScrollPane {
     private JTextField jTextFieldCombustivel;
     private JTextField jTextFieldAno;
     private JTextField jTextFieldKm;
+    
     private JTextField jTextFieldNumCliente;
     private JTextField jTextFieldNomeCliente;
+    private JTextField jTextFielEmail;
+    private JTextField jTextFielTelefone;
+    private JTextField jTextFielCidade;
+    private JTextField jTextFielBairro;
+    private JTextField jTextFielRua;
+    private JTextField jTextFielNumero;
     
-    private String stringTitulo = "Gerar ordem de serviço";
+    
+    
     
     // ### Fim dlecaração de  variáveis ###
     // ------------------------------------
 	// ### Inicio de criação de objetos ###
     
 	private ImageIcon iconTitulo = new ImageIcon(getClass().getResource(iconGerarOS));
+	private JLabel label;
+	private JLabel label_1;
+	private JPanel panel;
 	
 	// ### Fim  da  criação  de objetos ###
 
-	public JScrollPaneGerarOS() {
-		this.getjPanelInformacaoVeiculo();
-		this.addComponentesJPanelInformacaoVeiculo();
-		this.getjPanelBaseInformacaoVeiculo();
-		this.addComponentesJPanelBaseInformacaoVeiculo();
+	public JPanelOS() {
+		this.getjPanelDadosVeiculo();
+		this.addComponentesJPanelDadosVeiculo();
+		this.getjPanelCenterCenter();
+		this.addComponentesJPanelCenterCenter();
 		this.getjPanelBuscarVeiculo();
 		this.addComponentesJPanelBuscarVeiculo();
-		this.getjPanelCentroGerarOS();
-		this.addComponentesJPanelCentroGerarOS();
-		this.getjPanelGerarOS();
-		this.addComponentesJPanelGerarOS();
-		this.getjScrollPaneOS();
-		this.addComponentesJScrollPaneGerarOS();
+		this.getjPanelCenterOS();
+		this.addComponentesJPanelCenterOS();
+		this.getjPanelNorthOS();
+		this.addComponentesJPanelNorthOS();
+		this.getjPanelOS();
+		this.addComponentesJPanelOS();
     }
 	
     // ### Inicio dos gets dos jButtons ###
@@ -102,14 +138,15 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JButton getjButtonVeiculo() {
 		if(jButtonVeiculo == null){
 			jButtonVeiculo = new JButton();
-			jButtonVeiculo.setBackground(corEscura);
+			jButtonVeiculo.setLocation(15, 13);
+			jButtonVeiculo.setSize(180, 58);
+			jButtonVeiculo.setBackground(corClara);
 	        jButtonVeiculo.setFont(fontJButton);
 	        jButtonVeiculo.setForeground(foregroudJButtonClaro);
 	        jButtonVeiculo.setIcon(new ImageIcon(getClass().getResource(iconVeiculoBlue)));
 	        jButtonVeiculo.setText(" Veículo");
 	        jButtonVeiculo.setContentAreaFilled(false);
 	        jButtonVeiculo.setOpaque(true);
-	        jButtonVeiculo.setSize(190,61);
 	        jButtonVeiculo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 		}
 		return jButtonVeiculo;
@@ -119,6 +156,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JButton getjButtonCliente() {
 		if(jButtonCliente == null){
 			jButtonCliente = new JButton();
+			jButtonCliente.setLocation(210, 13);
+			jButtonCliente.setSize(180, 58);
 			jButtonCliente.setBackground(corEscura);
 	        jButtonCliente.setFont(fontJButton);
 	        jButtonCliente.setForeground(foregroudJButtonClaro);
@@ -126,7 +165,6 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	        jButtonCliente.setText(" Cliente");
 	        jButtonCliente.setContentAreaFilled(false);
 	        jButtonCliente.setOpaque(true);
-	        jButtonCliente.setSize(190,58);
 	        jButtonCliente.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 		}
 		return jButtonCliente;
@@ -136,6 +174,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JButton getjButtonServico() {
 		if(jButtonServico == null){
 			jButtonServico = new JButton();
+			jButtonServico.setLocation(402, 13);
+			jButtonServico.setSize(180, 58);
 			jButtonServico.setBackground(corEscura);
 	        jButtonServico.setFont(fontJButton);
 	        jButtonServico.setForeground(foregroudJButtonClaro);
@@ -143,7 +183,6 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	        jButtonServico.setText(" Serviço");
 	        jButtonServico.setContentAreaFilled(false);
 	        jButtonServico.setOpaque(true);
-	        jButtonServico.setSize(190,58);
 	        jButtonServico.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 		}
 		return jButtonServico;
@@ -159,9 +198,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jLabelVin == null){
 			jLabelVin = new JLabel();
 			jLabelVin.setFont(fontJLabel);
-	        jLabelVin.setForeground(foregroudJButtonClaro);
-	        jLabelVin.setText("Vin :");
-	        jLabelVin.setSize(80,29);
+	        jLabelVin.setForeground(Color.BLACK);
+	        jLabelVin.setText("  Vin :");
 		}
 		return jLabelVin;
 	}
@@ -171,9 +209,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jLabelNumVeiculo == null){
 			jLabelNumVeiculo = new JLabel();
 			jLabelNumVeiculo.setFont(fontJLabel);
-	        jLabelNumVeiculo.setForeground(foregroudJButtonClaro);
-	        jLabelNumVeiculo.setText("Nº");
-	        jLabelNumVeiculo.setSize(26,29);
+	        jLabelNumVeiculo.setForeground(Color.BLACK);
+	        jLabelNumVeiculo.setText("N\u00BA :");
 		}
 		return jLabelNumVeiculo;
 	}
@@ -183,9 +220,8 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		if(jLabelPlaca == null){
 			jLabelPlaca = new JLabel();
 			jLabelPlaca.setFont(fontJLabel);
-	        jLabelPlaca.setForeground(foregroudJButtonClaro);
-	        jLabelPlaca.setText("Placa :");
-	        jLabelPlaca.setSize(80,29);
+	        jLabelPlaca.setForeground(Color.BLACK);
+	        jLabelPlaca.setText("  Placa :");
 		}
 		return jLabelPlaca;
 	}
@@ -268,33 +304,42 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	// ---------------------------------
 	// ### Inicio dos gets do jPanel ###
 	
-	public JScrollPaneGerarOS getjScrollPaneOS() {
-		this.setBorder(null);
-		//this.setPreferredSize(new Dimension(870,600));
+	public JPanelOS getjPanelOS() {
+		this.setLayout(new BorderLayout());
+		this.setPreferredSize(new Dimension(800, 500));
 		return this;
 	}
 
-
-	public JPanel getjPanelGerarOS() {
-		if(jPanelGerarOS == null){
-			jPanelGerarOS = new JPanel();
-			jPanelGerarOS.setBackground(corIntermediaria);
-			jPanelGerarOS.setBorder(null);
-			jPanelGerarOS.setPreferredSize(new Dimension(1000,1000));
+	
+	public JPanel getjPanelNorthOS() {
+		if(jPanelNorthOS == null){
+			jPanelNorthOS = new JPanel();
+			jPanelNorthOS.setLayout(null);
+			jPanelNorthOS.setBorder(null);
+			jPanelNorthOS.setBackground(corEscura);
+			jPanelNorthOS.setPreferredSize(new Dimension(800, 70));
 		}
-		return jPanelGerarOS;
+		return jPanelNorthOS;
 	}
+	
 
-
-	public JPanel getjPanelCentroGerarOS() {
-		if(jPanelCentroGerarOS == null){
-			jPanelCentroGerarOS = new JPanel();
-	        jPanelCentroGerarOS.setLayout(null);
-			jPanelCentroGerarOS.setBackground(corIntermediaria);
-	        jPanelCentroGerarOS.setBorder(null);
-	        jPanelCentroGerarOS.setPreferredSize(new Dimension(850, 950));
+	public JPanel getjPanelCenterOS() {
+		if(jPanelCenterOS == null){
+			jPanelCenterOS = new JPanel();
+			jPanelCenterOS.setLayout(new BorderLayout());
 		}
-		return jPanelCentroGerarOS;
+		return jPanelCenterOS;
+	}	
+	
+	
+	public JPanel getjPanelCenterCenter() {
+		if(jPanelCenterCenter == null){
+			jPanelCenterCenter = new JPanel();
+			jPanelCenterCenter.setBackground(corClara);
+			jPanelCenterCenter.setLayout(new FlowLayout());
+			jPanelCenterCenter.setPreferredSize(new Dimension(800, 370));
+		}
+		return jPanelCenterCenter;
 	}
 
 	// --------------Início tela veículo--------------
@@ -302,60 +347,61 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JPanel getjPanelBuscarVeiculo() {
 		if(jPanelBuscarVeiculo == null){
 			jPanelBuscarVeiculo = new JPanel();
-			jPanelBuscarVeiculo.setBackground(corEscura);
+			jPanelBuscarVeiculo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+			jPanelBuscarVeiculo.setBackground(corClara);
 	        jPanelBuscarVeiculo.setLayout(null);
-	        jPanelBuscarVeiculo.setSize(850,58);
+	        jPanelBuscarVeiculo.setPreferredSize(new Dimension(800,58));
+	        jPanelBuscarVeiculo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
+	        
+	        getjPanelBuscarVeiculo().add(getjTextFieldPlaca());
 		}
 		return jPanelBuscarVeiculo;
 	}
+	
 
-
-	public JPanel getjPanelBaseInformacaoVeiculo() {
-		if(jPanelBaseInformacaoVeiculo == null){
-			jPanelBaseInformacaoVeiculo = new JPanel();
-	        jPanelBaseInformacaoVeiculo.setLayout(null);
-			jPanelBaseInformacaoVeiculo.setBackground(new Color(0,0,0,20));
-			jPanelBaseInformacaoVeiculo.setSize(850,578);
+	public JPanel getjPanelDadosVeiculo() {
+		if(jPanelDadosVeiculo == null){
+			jPanelDadosVeiculo = new JPanel();
+			jPanelDadosVeiculo.setBackground(new Color(0, 0, 0, 0));
+			jPanelDadosVeiculo.setLayout(null);
+			jPanelDadosVeiculo.setPreferredSize(new Dimension(600, 300));			
 		}
-		return jPanelBaseInformacaoVeiculo;
-	}
-
-
-	public JPanel getjPanelInformacaoVeiculo() {
-		if(jPanelInformacaoVeiculo == null){
-			jPanelInformacaoVeiculo = new JPanel();
-			jPanelInformacaoVeiculo.setBackground(new Color(0,0,0,20)); 
-	        jPanelInformacaoVeiculo.setSize(838, 510);
-	        jPanelInformacaoVeiculo.setLayout(null);
-		}
-		return jPanelInformacaoVeiculo;
-	}
+		return jPanelDadosVeiculo;
+	}	
 	
 	// --------------Final tela veículo--------------
 	// --------------Início tela cliente--------------
 	
-	public JPanel getjPanelInformacaoCliente() {
-		if(jPanelInformacaoCliente == null) {
-			jPanelInformacaoCliente = new JPanel();
-			jPanelInformacaoCliente.setBackground(corIntermediaria); 
-			jPanelInformacaoCliente.setSize(838, 510);
-			jPanelInformacaoCliente.setLayout(null);
+	public JPanel getjPanelBuscarCliente() {
+		if(jPanelBuscarCliente == null){
+			jPanelBuscarCliente = new JPanel();
 		}
-		return jPanelInformacaoCliente;
+		return jPanelBuscarCliente;
 	}
 	
 	
-	public JPanel getjPanelBaseIformacaoCliente() {
-		if(jPanelBaseInformacaoCliente == null) {
-			jPanelBaseInformacaoCliente = new JPanel();
-			jPanelBaseInformacaoCliente.setLayout(null);
-			jPanelBaseInformacaoCliente.setBackground(corEscura);
-			jPanelBaseInformacaoCliente.setSize(850,578);
+	public JPanel getjPanelDadosCliente() {
+		if(jPanelDadosCliente == null){
+			jPanelDadosCliente = new JPanel();
+		}
+		return jPanelDadosCliente;
 	}
-	return jPanelBaseInformacaoVeiculo;
-	}
-	
+
 	// --------------Final tela cliete--------------
+	
+	public JPanel getjPanelServico() {
+		if(jPanelServico == null){
+			jPanelServico = new JPanel();
+		}
+		return jPanelServico;
+	}
+	
+	public JPanel getjPanelDadosServico() {
+		if(jPanelDadosServico == null){
+			jPanelDadosServico = new JPanel();
+		}
+		return jPanelDadosServico;
+	}
 	
 	// ### Fim    dos     gets    dos    paineis ###
 	// ---------------------------------------------
@@ -366,10 +412,11 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JTextField getjTextFieldVin() {
 		if(jTextFieldVin == null){
 			jTextFieldVin = new JTextField();
+			jTextFieldVin.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 			jTextFieldVin.setBackground(corClara);
 	        jTextFieldVin.setFont(fontJTextField);
-	        jTextFieldVin.setHorizontalAlignment(JTextField.RIGHT);
-	        jTextFieldVin.setSize(250,34);
+	        jTextFieldVin.setHorizontalAlignment(SwingConstants.LEFT);
+	        jTextFieldVin.setPreferredSize(new Dimension(180, 31));
 		}
 		return jTextFieldVin;
 	}
@@ -378,10 +425,11 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JTextField getjTextFieldNum() {
 		if(jTextFieldNum == null){
 			jTextFieldNum = new JTextField();
+			jTextFieldNum.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 			jTextFieldNum.setBackground(corClara);
 	        jTextFieldNum.setFont(fontJTextField);
 	        jTextFieldNum.setHorizontalAlignment(JTextField.RIGHT);
-	        jTextFieldNum.setSize(100,34);
+	        jTextFieldNum.setPreferredSize(new Dimension(95, 31));
 		}
 		return jTextFieldNum;
 	}
@@ -390,10 +438,11 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	public JTextField getjTextFieldPlaca() {
 		if(jTextFieldPlaca == null){
 			jTextFieldPlaca = new JTextField();
+			jTextFieldPlaca.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 			jTextFieldPlaca.setBackground(corClara);
 	        jTextFieldPlaca.setFont(fontJTextField);
-	        jTextFieldPlaca.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-	        jTextFieldPlaca.setSize(200,34);
+	        jTextFieldPlaca.setHorizontalAlignment(SwingConstants.LEFT);
+	        jTextFieldPlaca.setPreferredSize(new Dimension(150, 31));
 		}
 		return jTextFieldPlaca;
 	}
@@ -406,7 +455,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	        jTextFieldMarca.setFont(fontJTextField);
 	        jTextFieldMarca.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 	        jTextFieldMarca.setText("");
-	        jTextFieldMarca.setBorder(new javax.swing.border.LineBorder(corEscura, 3, true));
+	        jTextFieldMarca.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
 	        jTextFieldMarca.setMargin(new java.awt.Insets(0, 20, 0, 0));
 	        jTextFieldMarca.setSize(240,40);
 		}
@@ -421,7 +470,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		    jTextFieldModelo.setFont(fontJTextField);
 		    jTextFieldModelo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldModelo.setText("");
-		    jTextFieldModelo.setBorder(new javax.swing.border.LineBorder(corEscura, 3, true));
+		    jTextFieldModelo.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
 		    jTextFieldModelo.setMargin(new java.awt.Insets(0, 20, 0, 0));
 		    jTextFieldModelo.setSize(240,40);
 		}
@@ -436,7 +485,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		    jTextFieldMotor.setFont(fontJTextField);
 		    jTextFieldMotor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldMotor.setText("");
-		    jTextFieldMotor.setBorder(new javax.swing.border.LineBorder(corEscura, 3, true));
+		    jTextFieldMotor.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
 		    jTextFieldMotor.setMargin(new java.awt.Insets(0, 20, 0, 0));
 		    jTextFieldMotor.setSize(240,40);
 		}
@@ -451,7 +500,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		    jTextFieldCombustivel.setFont(fontJTextField);
 		    jTextFieldCombustivel.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldCombustivel.setText("");
-		    jTextFieldCombustivel.setBorder(new javax.swing.border.LineBorder(corEscura, 3, true));
+		    jTextFieldCombustivel.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
 		    jTextFieldCombustivel.setMargin(new java.awt.Insets(0, 20, 0, 0));
 		    jTextFieldCombustivel.setSize(240,40);
 		}
@@ -466,7 +515,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		    jTextFieldAno.setFont(fontJTextField);
 		    jTextFieldAno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldAno.setText("");
-		    jTextFieldAno.setBorder(new javax.swing.border.LineBorder(corEscura, 3, true));
+		    jTextFieldAno.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
 		    jTextFieldAno.setMargin(new java.awt.Insets(0, 20, 0, 0));
 		    jTextFieldAno.setSize(240,40);
 		}
@@ -481,7 +530,7 @@ public class JScrollPaneGerarOS extends JScrollPane {
 		    jTextFieldKm.setFont(fontJTextField);
 		    jTextFieldKm.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldKm.setText("");
-		    jTextFieldKm.setBorder(new javax.swing.border.LineBorder(corEscura, 3, true));
+		    jTextFieldKm.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
 		    jTextFieldKm.setMargin(new java.awt.Insets(0, 20, 0, 0));
 		    jTextFieldKm.setSize(240,40);
 		}
@@ -495,32 +544,47 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	// ### Fim   dos   gets   textfild   e   derivados ###
 	// ---------------------------------------------------
 	// ### Inicio dos métodos de adição de componentes ###	
-
-
-	public void addComponentesJScrollPaneGerarOS() {
-		this.setViewportView(getjPanelGerarOS());// seta o jpanel dentro do jscroll
+	
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setLayout(new BorderLayout());
+			panel.setPreferredSize(new Dimension( 800,90));
+			panel.add(BorderLayout.CENTER, new JButton());
+		}
+		return panel;
+	}
+	
+	public void addComponentesJPanelOS() {	
+		
+		this.add(BorderLayout.NORTH, getjPanelNorthOS());
+		
+		this.add(BorderLayout.CENTER, getjPanelCenterOS());
+		
 	}
 	
 	
-	public void addComponentesJPanelGerarOS() {		
-		getjPanelGerarOS().add(getjPanelCentroGerarOS());// seta o jpanel no centro
+	public void addComponentesJPanelNorthOS() {
+		
+		getjPanelNorthOS().add(getjButtonVeiculo());
+		getjPanelNorthOS().add(getjButtonCliente());
+		getjPanelNorthOS().add(getjButtonServico());
+		
 	}
 	
-     
-	public void addComponentesJPanelCentroGerarOS() {
+	
+	public void addComponentesJPanelCenterOS() {	
 		
-		getjButtonVeiculo().setLocation(0, 48);
-		getjPanelCentroGerarOS().add(getjButtonVeiculo());
+		getjPanelCenterOS().add(BorderLayout.NORTH, getjPanelBuscarVeiculo());
 		
-		getjButtonCliente().setLocation(193, 48);
-		getjPanelCentroGerarOS().add(getjButtonCliente());
+		getjPanelCenterOS().add(BorderLayout.CENTER, getjPanelCenterCenter());
 		
-		getjButtonServico().setLocation(386, 48);
-		getjPanelCentroGerarOS().add(getjButtonServico());
+	}
+	
+	
+	public void addComponentesJPanelCenterCenter() {	
 		
-		getjPanelBaseInformacaoVeiculo().setLocation(0, 109);
-		getjPanelCentroGerarOS().add(getjPanelBaseInformacaoVeiculo());
-		
+		getjPanelCenterCenter().add(getjPanelDadosVeiculo());
 		
 	}
 	
@@ -528,73 +592,55 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	
 	public void addComponentesJPanelBuscarVeiculo() {
 		
-		getjLabelNumVeiculo().setLocation(10, 12);
 		getjPanelBuscarVeiculo().add(getjLabelNumVeiculo());
-		
-		getjLabelPlaca().setLocation(160, 12);
-		getjPanelBuscarVeiculo().add(getjLabelPlaca());
-		
-		getjLabelVin().setLocation(475, 12);
-		getjPanelBuscarVeiculo().add(getjLabelVin());
-		
-		getjTextFieldNum().setLocation(42, 12);
 		getjPanelBuscarVeiculo().add(getjTextFieldNum());
 		
-		getjTextFieldPlaca().setLocation(242, 12);
+		getjPanelBuscarVeiculo().add(getjLabelPlaca());
 		getjPanelBuscarVeiculo().add(getjTextFieldPlaca());
-		
-		getjTextFieldVin().setLocation(532, 12);
+
+		getjPanelBuscarVeiculo().add(getjLabelVin());
 		getjPanelBuscarVeiculo().add(getjTextFieldVin());
 	}
 	
-	public void addComponentesJPanelBaseInformacaoVeiculo() {
 		
-		getjPanelBuscarVeiculo().setLocation(0, 0);
-		getjPanelBaseInformacaoVeiculo().add(getjPanelBuscarVeiculo());
+	public void addComponentesJPanelDadosVeiculo() {
 		
-		getjPanelInformacaoVeiculo().setLocation(6, 62);
-		getjPanelBaseInformacaoVeiculo().add(getjPanelInformacaoVeiculo());
 		
-	}
-	
-	
-	public void addComponentesJPanelInformacaoVeiculo() {
+		getjPanelDadosVeiculo().add(getjLabelMarca());
+		getjLabelMarca().setLocation(35,15);
 		
-		getjLabelMarca().setLocation(35,45);
-		getjPanelInformacaoVeiculo().add(getjLabelMarca());
+		getjLabelModelo().setLocation(330, 15);
+		getjPanelDadosVeiculo().add(getjLabelModelo());
 		
-		getjLabelModelo().setLocation(480, 45);
-		getjPanelInformacaoVeiculo().add(getjLabelModelo());
+		getjLabelMotor().setLocation(35, 109);
+		getjPanelDadosVeiculo().add(getjLabelMotor());
 		
-		getjLabelMotor().setLocation(35, 179);
-		getjPanelInformacaoVeiculo().add(getjLabelMotor());
+		getjLabelCombustivel().setLocation(330, 109);
+		getjPanelDadosVeiculo().add(getjLabelCombustivel());
 		
-		getjLabelCombustivel().setLocation(480, 179);
-		getjPanelInformacaoVeiculo().add(getjLabelCombustivel());
+		getjLabelAno().setLocation(35, 203);
+		getjPanelDadosVeiculo().add(getjLabelAno());
 		
-		getjLabelAno().setLocation(35, 313);
-		getjPanelInformacaoVeiculo().add(getjLabelAno());
+		getjLabelKm().setLocation(330, 203);
+		getjPanelDadosVeiculo().add(getjLabelKm());
 		
-		getjLabelKm().setLocation(480, 313);
-		getjPanelInformacaoVeiculo().add(getjLabelKm());
+		getjTextFieldMarca().setLocation(35,49);
+		getjPanelDadosVeiculo().add(getjTextFieldMarca());
 		
-		getjTextFieldMarca().setLocation(35,79);
-		getjPanelInformacaoVeiculo().add(getjTextFieldMarca());
+		getjTextFieldModelo().setLocation(330, 49);
+		getjPanelDadosVeiculo().add(getjTextFieldModelo());
 		
-		getjTextFieldModelo().setLocation(480, 79);
-		getjPanelInformacaoVeiculo().add(getjTextFieldModelo());
+		getjTextFieldMotor().setLocation(35, 143);
+		getjPanelDadosVeiculo().add(getjTextFieldMotor());
 		
-		getjTextFieldMotor().setLocation(35, 213);
-		getjPanelInformacaoVeiculo().add(getjTextFieldMotor());
+		getjTextFieldCombustivel().setLocation(330, 143);
+		getjPanelDadosVeiculo().add(getjTextFieldCombustivel());
 		
-		getjTextFieldCombustivel().setLocation(480, 213);
-		getjPanelInformacaoVeiculo().add(getjTextFieldCombustivel());
+		getjTextFieldAno().setLocation(35, 237);
+		getjPanelDadosVeiculo().add(getjTextFieldAno());
 		
-		getjTextFieldAno().setLocation(35, 347);
-		getjPanelInformacaoVeiculo().add(getjTextFieldAno());
-		
-		getjTextFieldKm().setLocation(480, 347);
-		getjPanelInformacaoVeiculo().add(getjTextFieldKm());
+		getjTextFieldKm().setLocation(330, 237);
+		getjPanelDadosVeiculo().add(getjTextFieldKm());
 	}
 	
 	// --------------Final tela veículo--------------
@@ -624,4 +670,17 @@ public class JScrollPaneGerarOS extends JScrollPane {
 	}
 	
 	// ### Final dos métodos da classe ###
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel("");
+		}
+		return label;
+	}
+	private JLabel getLabel_1() {
+		if (label_1 == null) {
+			label_1 = new JLabel("");
+		}
+		return label_1;
+	}
+	
 }
