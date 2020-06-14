@@ -75,7 +75,7 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelUsuarioWest;
 	private JPanel jPanelWestPrincipal;
 	private JScrollPane jScrollPaneButtonsWest;
-	private JScrollPane alteraJScrollPaneCentral; // Variavel que recebe a o novo JScrollPane da parte central da classe.
+	private JPanel alteraJPanelCentral; // Variavel que recebe a o novo JScrollPane da parte central da classe.
 	private JPanel jPanelButtons;
 	private JPanel jPanelJButtonOS;
 	private JPanel jPanelJButtonConfiguracao;
@@ -201,8 +201,8 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	public JScrollPane getAlteraJScrollPaneCentral() {
-		return alteraJScrollPaneCentral;
+	public JPanel getAlteraJScrollPaneCentral() {
+		return alteraJPanelCentral;
 	}
 	
 
@@ -298,18 +298,7 @@ public class JPanelPrincipal extends JPanel {
 	}
 	
 	
-	private JPanel getjPanelDescricaoTela() {
-		if (jPanelDescricaoTela == null) {
-			jPanelDescricaoTela = new JPanel();
-			jPanelDescricaoTela.setBorder(BorderFactory
-						.createMatteBorder(3, 0, 0, 0, new Color(100,132,147)));
-			jPanelDescricaoTela.setBackground(new Color(51,51,51));
-			jPanelDescricaoTela.setPreferredSize(new Dimension(500,62));
-			jPanelDescricaoTela.setVisible(false);
-			jPanelDescricaoTela.add(getJLabelNomeDaTela());
-		}
-		return jPanelDescricaoTela;
-	}
+	
 	
 	
 	// ### Fim  dos  gets  dos  jPanel ###
@@ -865,41 +854,38 @@ public class JPanelPrincipal extends JPanel {
 	// --------------------------------------------------
 	// ### Inicio    de     métodos     da     classe ###
 	
-	public void alteraJScrollPaneCentral(JPanel jPanel) { // Se passar um jPanel como parâmetro
+	public void alteraJPanelCentral(JPanel jPanel) { // Se passar um jPanel como parâmetro
 		
-		alteraJScrollPaneCentral(jPanel,null);
+		alteraJPanelCentral(jPanel,null);
 		
 	}
 	
 	
-	public void alteraJScrollPaneCentral(JScrollPane jScrollPane, String string, ImageIcon icon) { // Se passar um jScrollPanel	
+	public void alteraJPanelCentral(JScrollPane jScrollPane, String string, ImageIcon icon) { // Se passar um jScrollPanel	
 		
-		alteraJScrollPaneCentral(null,jScrollPane);
+		alteraJPanelCentral(null,jScrollPane);
 		this.setJlabel(string, icon);
 		
 	}
 	
 	
-	public void alteraJScrollPaneCentral(JPanel jPanel, JScrollPane jScrollPane) { // Método que faz os tratamentos nessessários
+	public void alteraJPanelCentral(JPanel jPanel, JScrollPane jScrollPane) { // Método que faz os tratamentos nessessários
 		//		para trocar a tela do centro da classe
 		
-		if(alteraJScrollPaneCentral == null) { 	// Se estiver na tela incial e for trocar para outra tela
+		if(alteraJPanelCentral == null) { 	// Se estiver na tela incial e for trocar para outra tela
 			this.getjPanelCenterPrincipal().remove(getjPanelHome());
 		}else {									// Se estiver em uma tela qualquer e for outra tela
-			this.getjPanelCenterPrincipal().remove(alteraJScrollPaneCentral);
+			this.getjPanelCenterPrincipal().remove(alteraJPanelCentral);
 		}
 		
 		if(jPanel == null) { // Se for passado um jScrollPane como parametro o método adiciona o mesmo na parte central da classe
 			
-			this.getjPanelCenterPrincipal().add(BorderLayout.CENTER, jScrollPane);
-			alteraJScrollPaneCentral = jScrollPane; // E essa variável recebe a nova tela
 		
 		}else { 			// Se for passado um jPanel como parâmetro, o método adiciona o mesmo na parte central da classe
 			
 			this.getjPanelCenterPrincipal().add(BorderLayout.CENTER, jPanel);
-			alteraJScrollPaneCentral = null; // Seta variável como nulo, para "informar" ao método "alteraJScrollPaneCentral" para 
+			alteraJPanelCentral = jPanel; // Seta variável como nulo, para "informar" ao método "alteraJPanelCentral" para 
 					//na proxima troca de tela retiara o jPanel Central
-			this.getjPanelDescricaoTela().setVisible(false);
 		}
 		
 		this.getjPanelCenterPrincipal().repaint();
@@ -915,12 +901,7 @@ public class JPanelPrincipal extends JPanel {
 	public Color getCorDaBarraMenuEButton() {
 		return corDaBarraMenuEButton;
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("New label");
-		}
-		return lblNewLabel;
-	}
+
 }
 
 

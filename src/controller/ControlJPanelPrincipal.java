@@ -314,8 +314,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonHome()) { // Qando o JButton jbuttonHome for clicado:
 			
-			questionar(getjPanelPrincipal().getjButtonHome(),null, "Deseja sair mesmo?", 
-						getjPanelPrincipal().getjPanelHome(), null,null,null);			
+			getjPanelPrincipal().alteraJPanelCentral(getjPanelPrincipal().getjPanelHome(), null);		
 		}
 		
 		
@@ -337,7 +336,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
-			getjPanelPrincipal().alteraJScrollPaneCentral(getjPanelOS(), null);
+			getjPanelPrincipal().alteraJPanelCentral(getjPanelOS(), null);
 		}
 		
 		
@@ -460,38 +459,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
     }
     
     
-    private void questionar(JButton jButton, String titulo, String mensagem, JPanel jPanel, JScrollPane jScrollPane, String string, ImageIcon icon) {
-    	
-    	if(getjPanelPrincipal().getAlteraJScrollPaneCentral() != null) {
-    		
-			Object[] options = { "Sim", "Não" }; // Texto dos botões da tela de alerta.
-			
-			int confimacao = JOptionPane.showOptionDialog(null, mensagem, this.telaAnterior,
-					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-			
-			if(confimacao == 0) { // se for confirmada a mensagem de alerta.
-				
-				if(jPanel == null) { // se foi passado um JScrollPane
-					
-					getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, string, icon);
-					
-				}else { // Se foi passado um JPanel
-					
-					getjPanelPrincipal().alteraJScrollPaneCentral(jPanel);
-					
-				}
-				
-				mudarCorJButton(jButton); // Altera cor do JButtonHome, quando clicado.	
-			}
-			
-			telaAnterior = titulo;
-			
-    	}else {
-    		getjPanelPrincipal().alteraJScrollPaneCentral(jScrollPane, string, icon);
-			mudarCorJButton(jButton); // Altera cor do JButtonHome, quando clicado.	
-			
-    	}
-    }
+    
     
 
     private void reajustaFrame(int width_menuLateral) { // Metodo para reajustar os jpanel da classe JPanelPrincipal
