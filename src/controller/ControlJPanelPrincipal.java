@@ -488,104 +488,40 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 			getjPanelPrincipal().getjLabelIconeUsuario().setVisible(false);
 			getjPanelPrincipal().getjLabelNomeUsuario().setVisible(false);
 			
-		    panel.setSize(width_open, height);		    
-			Thread thread = new Thread() {
-								
-				@Override
-				public void run() {					
-					try {
-						
-						int iAnterior = width_open; // Guada o valor da variavel do for;
-						
-						for (int i = width_open; i >= width_close; i--) {
-							
-							//Thread.sleep(1);
-							
-							if(iAnterior - i > 20) { // Faz a rederização da imagem de fundo a cada 20 pixels.
-								telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
-								iAnterior = i;
-							}	
-							
-							panel.setSize(i, height);
-							
-							getjPanelPrincipal().getjPanelCenterPrincipal().setBounds(panel.getWidth(), 0, getjFramePrincipal()
-										.getWidth() - panel.getWidth(), height); // Seta a posião e o tamanho do jPanelCenterPrincipal a cada loop do for
-							
-							panel.repaint();
-							getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
-							
-							panel.validate();
-							getjPanelPrincipal().getjPanelCenterPrincipal().validate();
-							
-						}						
-						
-						Thread.sleep(50);
-						
-						telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
-						getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-						mudarCorTodosJButtons(new Color(5,5,5,0));						
-						getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
-						getjPanelPrincipal().getjPanelCenterPrincipal().validate();
-						
-					} catch (Exception e) {
-						
-						JOptionPane.showMessageDialog(null, e);
-						
-					}					
-				}
-			};
-			thread.start();
+			getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants
+						.VERTICAL_SCROLLBAR_AS_NEEDED);
+			mudarCorTodosJButtons(new Color(5,5,5,0));
+			
+		    panel.setSize(width_close, height);		    
+		    
+		    
+			
 		
 		}else {			
 			
-			panel.setSize(width_close, height);					
-			Thread thread = new Thread() {	
-				@Override
-				public void run() {
-					try {
+			panel.setSize(width_open, height);	
+			
+			getjPanelPrincipal().getjLabelIconeUsuario().setVisible(true);
+			getjPanelPrincipal().getjLabelNomeUsuario().setVisible(true);
+			
+			getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants
+						.VERTICAL_SCROLLBAR_AS_NEEDED);			
+			mudarCorTodosJButtons(new Color(204,204,204));			
 						
-						int iAnterior = width_close; // Guada o valor da variavel do for;
-						
-						for (int i = width_close; i <= width_open; i++) {
-							
-							//Thread.sleep(0, 50);
-							
-							if(i - iAnterior > 20) { // Faz a rederização da imagem de fundo a cada 20 pixels.
-								telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
-								iAnterior = i;
-							}	
-							
-							panel.setSize(i, height);
-							
-							getjPanelPrincipal().getjPanelCenterPrincipal().setBounds(panel.getWidth(), 0, getjFramePrincipal()
-										.getWidth() - panel.getWidth(), height); // Seta a posião e o tamanho do jPanelCenterPrincipal a cada loop do for
-							
-							panel.repaint();
-							getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
-							
-							panel.validate();
-							getjPanelPrincipal().getjPanelCenterPrincipal().validate();
-							
-						}
-						
-						Thread.sleep(50);
-						
-						telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
-						getjPanelPrincipal().getjScrollPaneButtonsWest().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-						getjPanelPrincipal().getjLabelIconeUsuario().setVisible(true);
-						getjPanelPrincipal().getjLabelNomeUsuario().setVisible(true);
-						mudarCorTodosJButtons(new Color(204,204,204));
-						getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
-						getjPanelPrincipal().getjPanelCenterPrincipal().validate();
-						
-
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e);
-					}
-				}
-			};
-			thread.start();			
 		}
+		
+		 getjPanelPrincipal().getjPanelCenterPrincipal().setBounds(panel.getWidth(), 0, getjFramePrincipal()
+					.getWidth() - panel.getWidth(), height); // Seta a posião e o tamanho do jPanelCenterPrincipal 
+		
+		   
+	   
+		panel.repaint();
+		getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
+		
+		panel.validate();
+		getjPanelPrincipal().getjPanelCenterPrincipal().validate();
+		
+		telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); 
 	}	
     
     
