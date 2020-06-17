@@ -19,18 +19,24 @@ import java.awt.GridLayout;
 import javax.swing.border.MatteBorder;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import model.CoresPrograma;
 
 
 public class JPanelOS extends JPanel {
 	
+	// ### Início de instânceamento de objetos ###
+	
+	CoresPrograma CoresPrograma = new CoresPrograma();
+	
+	
 	// ### Início declaração de variáveis ###
 	
-	private Color corIntermediaria = new Color(0,151,172); // Azul marinho
-	private Color corEscura = new Color(45,45,45); // Cinza escuro
-	private Color corClara = new Color(79,79,79); // Cinza claro
+	private Color corIntermediaria = CoresPrograma.getCorIntermediaria();  // cor de jpanel sobre a cor de fundo
+	private Color corEscura = CoresPrograma.getCorEscura(); // cor contida também na barra de menu superior
+	private Color corFundo = CoresPrograma.getCorFundo(); // cor de fundo dos jpanels
 	
-	private Color foregroudJButtonClaro = new Color(150,150,150); // Cinza
-	private Color foregroudJButtonEscuro = new Color(0,0,0); // Preto
+	private Color foreground = CoresPrograma.getForeground(); // foregroudo dos jbuttons
+	private Color foregroundClic = CoresPrograma.getForegroundClic(); // foregroud de jbutton quando clicado ou ganhado foco
 	
 	private Font fontJButton = new Font("Arial",1,20); // Fonte dos jButons da classe
 	private Font fontJTextField = new Font("Arial", 1, 24); // Fonte dos jTextField da classe
@@ -138,9 +144,9 @@ public class JPanelOS extends JPanel {
 			jButtonVeiculo = new JButton();
 			jButtonVeiculo.setLocation(15, 13);
 			jButtonVeiculo.setSize(180, 58);
-			jButtonVeiculo.setBackground(corClara);
+			jButtonVeiculo.setBackground(corFundo);
 	        jButtonVeiculo.setFont(fontJButton);
-	        jButtonVeiculo.setForeground(foregroudJButtonClaro);
+	        jButtonVeiculo.setForeground(foregroundClic);
 	        jButtonVeiculo.setIcon(new ImageIcon(getClass().getResource(iconVeiculoBlue)));
 	        jButtonVeiculo.setText(" Veículo");
 	        jButtonVeiculo.setContentAreaFilled(false);
@@ -158,7 +164,7 @@ public class JPanelOS extends JPanel {
 			jButtonCliente.setSize(180, 58);
 			jButtonCliente.setBackground(corEscura);
 	        jButtonCliente.setFont(fontJButton);
-	        jButtonCliente.setForeground(foregroudJButtonClaro);
+	        jButtonCliente.setForeground(foreground);
 	        jButtonCliente.setIcon(new ImageIcon(getClass().getResource(iconClienteBlue)));
 	        jButtonCliente.setText(" Cliente");
 	        jButtonCliente.setContentAreaFilled(false);
@@ -176,7 +182,7 @@ public class JPanelOS extends JPanel {
 			jButtonServico.setSize(180, 58);
 			jButtonServico.setBackground(corEscura);
 	        jButtonServico.setFont(fontJButton);
-	        jButtonServico.setForeground(foregroudJButtonClaro);
+	        jButtonServico.setForeground(foreground);
 	        jButtonServico.setIcon(new ImageIcon(getClass().getResource(iconServico)));
 	        jButtonServico.setText(" Serviço");
 	        jButtonServico.setContentAreaFilled(false);
@@ -229,7 +235,7 @@ public class JPanelOS extends JPanel {
 		if(jLabelMarca == null){
 			jLabelMarca = new JLabel();
 			jLabelMarca.setFont(fontJLabel);
-			jLabelMarca.setForeground(foregroudJButtonEscuro);
+			jLabelMarca.setForeground(foregroundClic);
 			jLabelMarca.setText("Marca");
 			jLabelMarca.setSize(170, 34);
 		}
@@ -241,7 +247,7 @@ public class JPanelOS extends JPanel {
 		if(jLabelModelo == null){
 			jLabelModelo = new JLabel();
 			jLabelModelo.setFont(fontJLabel);
-			jLabelModelo.setForeground(foregroudJButtonEscuro);
+			jLabelModelo.setForeground(foregroundClic);
 	        jLabelModelo.setText("Modelo");
 	        jLabelModelo.setSize(170, 34);
 		}
@@ -253,7 +259,7 @@ public class JPanelOS extends JPanel {
 		if(jLabelMotor == null){
 			jLabelMotor = new JLabel();
 			jLabelMotor.setFont(fontJLabel);
-			jLabelMotor.setForeground(foregroudJButtonEscuro);
+			jLabelMotor.setForeground(foregroundClic);
 			jLabelMotor.setText("Motor");
 			jLabelMotor.setSize(170, 34);
 		}
@@ -265,7 +271,7 @@ public class JPanelOS extends JPanel {
 		if(jLabelCombustivel == null){
 			jLabelCombustivel = new JLabel();
 			jLabelCombustivel.setFont(fontJLabel);
-			jLabelCombustivel.setForeground(foregroudJButtonEscuro);
+			jLabelCombustivel.setForeground(foregroundClic);
 			jLabelCombustivel.setText("Combustível");
 			jLabelCombustivel.setSize(170, 34);
 		}
@@ -277,7 +283,7 @@ public class JPanelOS extends JPanel {
 		if(jLabelAno == null){
 			jLabelAno = new JLabel();
 			jLabelAno.setFont(fontJLabel);
-			jLabelAno.setForeground(foregroudJButtonEscuro);
+			jLabelAno.setForeground(foregroundClic);
 			jLabelAno.setText("Ano");
 			jLabelAno.setSize(170, 34);
 		}
@@ -289,7 +295,7 @@ public class JPanelOS extends JPanel {
 		if(jLabelKm == null){
 			jLabelKm = new JLabel();
 			jLabelKm.setFont(fontJLabel);
-			jLabelKm.setForeground(foregroudJButtonEscuro);
+			jLabelKm.setForeground(foregroundClic);
 			jLabelKm.setText("Km");
 			jLabelKm.setSize(170, 34);
 		}
@@ -333,7 +339,7 @@ public class JPanelOS extends JPanel {
 	public JPanel getjPanelCenterCenter() {
 		if(jPanelCenterCenter == null){
 			jPanelCenterCenter = new JPanel();
-			jPanelCenterCenter.setBackground(corClara);
+			jPanelCenterCenter.setBackground(corFundo);
 			jPanelCenterCenter.setLayout(new FlowLayout());
 			jPanelCenterCenter.setPreferredSize(new Dimension(800, 370));
 		}
@@ -346,7 +352,7 @@ public class JPanelOS extends JPanel {
 		if(jPanelBuscarVeiculo == null){
 			jPanelBuscarVeiculo = new JPanel();
 			jPanelBuscarVeiculo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
-			jPanelBuscarVeiculo.setBackground(corClara);
+			jPanelBuscarVeiculo.setBackground(corFundo);
 	        jPanelBuscarVeiculo.setLayout(null);
 	        jPanelBuscarVeiculo.setPreferredSize(new Dimension(800,58));
 	        jPanelBuscarVeiculo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
@@ -411,7 +417,7 @@ public class JPanelOS extends JPanel {
 		if(jTextFieldVin == null){
 			jTextFieldVin = new JTextField();
 			jTextFieldVin.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
-			jTextFieldVin.setBackground(corClara);
+			jTextFieldVin.setBackground(corFundo);
 	        jTextFieldVin.setFont(fontJTextField);
 	        jTextFieldVin.setHorizontalAlignment(SwingConstants.LEFT);
 	        jTextFieldVin.setPreferredSize(new Dimension(180, 31));
@@ -424,7 +430,7 @@ public class JPanelOS extends JPanel {
 		if(jTextFieldNum == null){
 			jTextFieldNum = new JTextField();
 			jTextFieldNum.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
-			jTextFieldNum.setBackground(corClara);
+			jTextFieldNum.setBackground(corFundo);
 	        jTextFieldNum.setFont(fontJTextField);
 	        jTextFieldNum.setHorizontalAlignment(JTextField.RIGHT);
 	        jTextFieldNum.setPreferredSize(new Dimension(95, 31));
@@ -437,7 +443,7 @@ public class JPanelOS extends JPanel {
 		if(jTextFieldPlaca == null){
 			jTextFieldPlaca = new JTextField();
 			jTextFieldPlaca.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
-			jTextFieldPlaca.setBackground(corClara);
+			jTextFieldPlaca.setBackground(corFundo);
 	        jTextFieldPlaca.setFont(fontJTextField);
 	        jTextFieldPlaca.setHorizontalAlignment(SwingConstants.LEFT);
 	        jTextFieldPlaca.setPreferredSize(new Dimension(150, 31));
@@ -449,7 +455,7 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldMarca() {
 		if(jTextFieldMarca == null){
 			jTextFieldMarca = new JTextField();
-			jTextFieldMarca.setBackground(corClara);
+			jTextFieldMarca.setBackground(corFundo);
 	        jTextFieldMarca.setFont(fontJTextField);
 	        jTextFieldMarca.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 	        jTextFieldMarca.setText("");
@@ -464,7 +470,7 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldModelo() {
 		if(jTextFieldModelo == null) {
 			jTextFieldModelo = new JTextField();
-			jTextFieldModelo.setBackground(corClara);
+			jTextFieldModelo.setBackground(corFundo);
 		    jTextFieldModelo.setFont(fontJTextField);
 		    jTextFieldModelo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldModelo.setText("");
@@ -479,7 +485,7 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldMotor() {
 		if(jTextFieldMotor == null){
 			jTextFieldMotor = new JTextField();
-			jTextFieldMotor.setBackground(corClara);
+			jTextFieldMotor.setBackground(corFundo);
 		    jTextFieldMotor.setFont(fontJTextField);
 		    jTextFieldMotor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldMotor.setText("");
@@ -494,7 +500,7 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldCombustivel() {
 		if(jTextFieldCombustivel == null){
 			jTextFieldCombustivel = new JTextField();
-			jTextFieldCombustivel.setBackground(corClara);
+			jTextFieldCombustivel.setBackground(corFundo);
 		    jTextFieldCombustivel.setFont(fontJTextField);
 		    jTextFieldCombustivel.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldCombustivel.setText("");
@@ -509,7 +515,7 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldAno() {
 		if(jTextFieldAno == null){
 			jTextFieldAno = new JTextField();
-			jTextFieldAno.setBackground(corClara);
+			jTextFieldAno.setBackground(corFundo);
 		    jTextFieldAno.setFont(fontJTextField);
 		    jTextFieldAno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldAno.setText("");
@@ -524,7 +530,7 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldKm() {
 		if(jTextFieldKm == null){
 			jTextFieldKm = new JTextField();
-			jTextFieldKm.setBackground(corClara);
+			jTextFieldKm.setBackground(corFundo);
 		    jTextFieldKm.setFont(fontJTextField);
 		    jTextFieldKm.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 		    jTextFieldKm.setText("");
