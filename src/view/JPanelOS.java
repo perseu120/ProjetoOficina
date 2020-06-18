@@ -5,11 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,9 +19,24 @@ import javax.swing.JTextField;
 
 import java.awt.GridLayout;
 import javax.swing.border.MatteBorder;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicComboBoxUI.ComboBoxLayoutManager;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
+import javafx.scene.effect.ColorInput;
+
 import java.awt.SystemColor;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import model.CoresPrograma;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 
 
 public class JPanelOS extends JPanel {
@@ -47,6 +64,9 @@ public class JPanelOS extends JPanel {
 	private String iconClienteBlue = "/icons/users_48_blue.png";
 	private String iconServico = "/icons/OS_48_blue.png";
 	private String stringTitulo = "Gerar ordem de serviço"; // Titulo da tela, para aparecer na classe JPanelPrincipal
+	
+	private JPanel telaAtualBusca; // recebe a tela que foi adicionada na parte north do JPanelCenterOS
+	private JPanel telaAtualDados; // recebe a tela que foi adicionada na parte center do JPanelCenterOS
 	
 	
 	
@@ -79,6 +99,7 @@ public class JPanelOS extends JPanel {
     private JLabel jLabelKm;
     
     private JLabel jLabelNumCliente;
+    private JLabel jLabelCPF;
     private JLabel jLabelNomeCliente;
     private JLabel jLabelEmail;
     private JLabel jLabelTelefone;
@@ -95,11 +116,12 @@ public class JPanelOS extends JPanel {
     private JTextField jTextFieldMarca;
     private JTextField jTextFieldModelo;
     private JTextField jTextFieldMotor;
-    private JTextField jTextFieldCombustivel;
-    private JTextField jTextFieldAno;
+    private JComboBox<String> jComboBoxCombustivel;
+    private JComboBox<Integer> jComboBoxAno;
     private JTextField jTextFieldKm;
     
     private JTextField jTextFieldNumCliente;
+    private JTextField jTextFieldCPF;
     private JTextField jTextFieldNomeCliente;
     private JTextField jTextFielEmail;
     private JTextField jTextFielTelefone;
@@ -123,6 +145,14 @@ public class JPanelOS extends JPanel {
 	// ### Fim  da  criação  de objetos ###
 
 	public JPanelOS() {
+		
+		
+		
+		telaAtualBusca = getjPanelBuscarVeiculo();
+		
+		this.getjPanelDadosCliente();
+		this.getjPanelBuscarCliente();
+		
 		this.getjPanelDadosVeiculo();
 		this.addComponentesJPanelDadosVeiculo();
 		this.getjPanelCenterCenter();
@@ -135,6 +165,10 @@ public class JPanelOS extends JPanel {
 		this.addComponentesJPanelNorthOS();
 		this.getjPanelOS();
 		this.addComponentesJPanelOS();
+		
+
+		
+		telaAtualDados = getjPanelDadosVeiculo();
     }
 	
     // ### Inicio dos gets dos jButtons ###
@@ -303,6 +337,134 @@ public class JPanelOS extends JPanel {
 	}	
 	
 	// --------------Final tela veículo--------------
+	// --------------Início tela cliente-------------
+	
+	public JLabel getjLabelNumCliente() {
+		
+		if(jLabelNumCliente == null){
+			jLabelNumCliente.setFont(fontJLabel);
+			jLabelNumCliente.setForeground(foregroundClic);
+			jLabelNumCliente.setText("Ano");
+			jLabelNumCliente.setSize(170, 34);
+	
+		}
+		return jLabelNumCliente;
+	}
+
+	public JLabel getjLabelCPF() {
+		
+		if(jLabelCPF == null){
+	
+			jLabelCPF = new JLabel();
+			jLabelCPF.setFont(fontJLabel);
+			jLabelCPF.setForeground(foregroundClic);
+			jLabelCPF.setText("Ano");
+			jLabelCPF.setSize(170, 34);
+	
+		}
+		return jLabelCPF;
+	}
+
+	public JLabel getjLabelNomeCliente() {
+		
+		if(jLabelNomeCliente == null){
+	
+			jLabelNomeCliente = new JLabel();
+			jLabelNomeCliente.setFont(fontJLabel);
+			jLabelNomeCliente.setForeground(foregroundClic);
+			jLabelNomeCliente.setText("Ano");
+			jLabelNomeCliente.setSize(170, 34);
+	
+		}
+		return jLabelNomeCliente;
+	}
+
+	public JLabel getjLabelEmail() {
+		
+		if(jLabelEmail == null){
+	
+			jLabelEmail = new JLabel();
+			jLabelEmail.setFont(fontJLabel);
+			jLabelEmail.setForeground(foregroundClic);
+			jLabelEmail.setText("Ano");
+			jLabelEmail.setSize(170, 34);
+	
+		}
+		return jLabelEmail;
+	}
+
+	public JLabel getjLabelTelefone() {
+		
+		if(jLabelTelefone == null){
+	
+			jLabelTelefone = new JLabel();
+			jLabelTelefone.setFont(fontJLabel);
+			jLabelTelefone.setForeground(foregroundClic);
+			jLabelTelefone.setText("Ano");
+			jLabelTelefone.setSize(170, 34);
+	
+		}
+		return jLabelTelefone;
+	}
+
+	public JLabel getjLabelCidade() {
+		
+		if(jLabelCidade == null){
+	
+			jLabelCidade = new JLabel();
+			jLabelCidade.setFont(fontJLabel);
+			jLabelCidade.setForeground(foregroundClic);
+			jLabelCidade.setText("Ano");
+			jLabelCidade.setSize(170, 34);
+	
+		}
+		return jLabelCidade;
+	}
+
+	public JLabel getjLabelBairro() {
+		
+		if(jLabelBairro == null){
+	
+			jLabelBairro = new JLabel();
+			jLabelBairro.setFont(fontJLabel);
+			jLabelBairro.setForeground(foregroundClic);
+			jLabelBairro.setText("Ano");
+			jLabelBairro.setSize(170, 34);
+	
+		}
+		return jLabelBairro;
+	}
+
+	public JLabel getjLabelRua() {
+		
+		if(jLabelRua == null){
+	
+			jLabelRua = new JLabel();
+			jLabelRua.setFont(fontJLabel);
+			jLabelRua.setForeground(foregroundClic);
+			jLabelRua.setText("Ano");
+			jLabelRua.setSize(170, 34);
+	
+		}
+		return jLabelRua;
+	}
+
+	public JLabel getjLabelVeiculoCliente() {
+		
+		if(jLabelVeiculoCliente == null){
+	
+			jLabelVeiculoCliente = new JLabel();
+			jLabelVeiculoCliente.setFont(fontJLabel);
+			jLabelVeiculoCliente.setForeground(foregroundClic);
+			jLabelVeiculoCliente.setText("Ano");
+			jLabelVeiculoCliente.setSize(170, 34);
+	
+		}
+		return jLabelVeiculoCliente;
+	}
+
+	
+	// --------------Final tela cliente--------------
 	
 	// ### Fim  dos  gets dos  jLabel ###
 	// ---------------------------------
@@ -355,9 +517,8 @@ public class JPanelOS extends JPanel {
 			jPanelBuscarVeiculo.setBackground(corFundo);
 	        jPanelBuscarVeiculo.setLayout(null);
 	        jPanelBuscarVeiculo.setPreferredSize(new Dimension(800,58));
-	        jPanelBuscarVeiculo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
+	        jPanelBuscarVeiculo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));	        
 	        
-	        getjPanelBuscarVeiculo().add(getjTextFieldPlaca());
 		}
 		return jPanelBuscarVeiculo;
 	}
@@ -379,6 +540,11 @@ public class JPanelOS extends JPanel {
 	public JPanel getjPanelBuscarCliente() {
 		if(jPanelBuscarCliente == null){
 			jPanelBuscarCliente = new JPanel();
+			jPanelBuscarVeiculo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+			jPanelBuscarVeiculo.setBackground(corFundo);
+	        jPanelBuscarVeiculo.setLayout(null);
+	        jPanelBuscarVeiculo.setPreferredSize(new Dimension(800,58));
+	        jPanelBuscarVeiculo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
 		}
 		return jPanelBuscarCliente;
 	}
@@ -387,6 +553,9 @@ public class JPanelOS extends JPanel {
 	public JPanel getjPanelDadosCliente() {
 		if(jPanelDadosCliente == null){
 			jPanelDadosCliente = new JPanel();
+			jPanelDadosCliente.setBackground(new Color(0, 0, 0, 0));
+			jPanelDadosCliente.setLayout(null);
+			jPanelDadosCliente.setPreferredSize(new Dimension(600, 300));
 		}
 		return jPanelDadosCliente;
 	}
@@ -497,33 +666,30 @@ public class JPanelOS extends JPanel {
 	}
 	
 
-	public JTextField getjTextFieldCombustivel() {
-		if(jTextFieldCombustivel == null){
-			jTextFieldCombustivel = new JTextField();
-			jTextFieldCombustivel.setBackground(corFundo);
-		    jTextFieldCombustivel.setFont(fontJTextField);
-		    jTextFieldCombustivel.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-		    jTextFieldCombustivel.setText("");
-		    jTextFieldCombustivel.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
-		    jTextFieldCombustivel.setMargin(new java.awt.Insets(0, 20, 0, 0));
-		    jTextFieldCombustivel.setSize(240,40);
+	public JComboBox<String> getjComboBoxCombustivel() {
+		if(jComboBoxCombustivel == null){
+			UIManager.put("ComboBox.selectionBackground", corFundo);
+			jComboBoxCombustivel = new JComboBox<String>();
+			jComboBoxCombustivel.setModel(new DefaultComboBoxModel(new String[] {"Selecione opção", "Diesel", "Flex", "Gasolina", "GLP", "TetaFuel"}));
+			jComboBoxCombustivel.setOpaque(false);
+		    jComboBoxCombustivel.setFont(fontJTextField);
+		    jComboBoxCombustivel.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jComboBoxCombustivel.setSize(240,40);
 		}
-		return jTextFieldCombustivel;
+		return jComboBoxCombustivel;
 	}
 
 	
-	public JTextField getjTextFieldAno() {
-		if(jTextFieldAno == null){
-			jTextFieldAno = new JTextField();
-			jTextFieldAno.setBackground(corFundo);
-		    jTextFieldAno.setFont(fontJTextField);
-		    jTextFieldAno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-		    jTextFieldAno.setText("");
-		    jTextFieldAno.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
-		    jTextFieldAno.setMargin(new java.awt.Insets(0, 20, 0, 0));
-		    jTextFieldAno.setSize(240,40);
+	public JComboBox<Integer> getjComboBoxAno() {
+		if(jComboBoxAno == null){
+			jComboBoxAno = new JComboBox<Integer>();
+			jComboBoxAno.setBackground(corFundo);
+		    jComboBoxAno.setFont(fontJTextField);
+		    jComboBoxAno.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jComboBoxAno.setSize(240,40);
+		    
 		}
-		return jTextFieldAno;
+		return jComboBoxAno;
 	}
 	
 
@@ -543,7 +709,146 @@ public class JPanelOS extends JPanel {
 	
 	
 	// --------------Final tela veículo--------------	
+	// --------------Final tela cliente--------------
+
+	public JTextField getjTextFieldNumCliente() {
+		
+		if(jTextFieldNumCliente == null){
 	
+			jTextFieldNumCliente = new JTextField();
+			jTextFieldNumCliente.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
+			jTextFieldNumCliente.setBackground(corFundo);
+			jTextFieldNumCliente.setFont(fontJTextField);
+			jTextFieldNumCliente.setHorizontalAlignment(SwingConstants.LEFT);
+			jTextFieldNumCliente.setPreferredSize(new Dimension(150, 31));
+		}
+		return jTextFieldNumCliente;
+	}
+
+	public JTextField getjTextFieldNomeCliente() {
+		
+		if(jTextFieldNomeCliente == null){
+	
+			jTextFieldNomeCliente.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
+			jTextFieldNomeCliente.setBackground(corFundo);
+			jTextFieldNomeCliente.setFont(fontJTextField);
+			jTextFieldNomeCliente.setHorizontalAlignment(SwingConstants.LEFT);
+			jTextFieldNomeCliente.setPreferredSize(new Dimension(150, 31));
+		}
+		return jTextFieldNomeCliente;
+	}
+
+	public JTextField getjTextFielEmail() {
+		
+		if(jTextFielEmail == null){
+	
+			jTextFielEmail = new JTextField();
+			jTextFielEmail.setBackground(corFundo);
+		    jTextFielEmail.setFont(fontJTextField);
+		    jTextFielEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+		    jTextFielEmail.setText("");
+		    jTextFielEmail.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jTextFielEmail.setMargin(new java.awt.Insets(0, 20, 0, 0));
+		    jTextFielEmail.setSize(240,40);
+		}
+		return jTextFielEmail;
+	}
+
+	public JTextField getjTextFielTelefone() {
+		
+		if(jTextFielTelefone == null){
+	
+			jTextFielTelefone = new JTextField();
+			jTextFielTelefone.setBackground(corFundo);
+		    jTextFielTelefone.setFont(fontJTextField);
+		    jTextFielTelefone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+		    jTextFielTelefone.setText("");
+		    jTextFielTelefone.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jTextFielTelefone.setMargin(new java.awt.Insets(0, 20, 0, 0));
+		    jTextFielTelefone.setSize(240,40);
+		}
+		return jTextFielTelefone;
+	}
+
+	public JTextField getjTextFielCidade() {
+		
+		if(jTextFielCidade == null){
+	
+			jTextFielCidade = new JTextField();
+			jTextFielCidade.setBackground(corFundo);
+		    jTextFielCidade.setFont(fontJTextField);
+		    jTextFielCidade.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+		    jTextFielCidade.setText("");
+		    jTextFielCidade.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jTextFielCidade.setMargin(new java.awt.Insets(0, 20, 0, 0));
+		    jTextFielCidade.setSize(240,40);
+		}
+		return jTextFielCidade;
+	}
+
+	public JTextField getjTextFielBairro() {
+		
+		if(jTextFielBairro == null){
+	
+			jTextFielBairro = new JTextField();
+			jTextFielBairro.setBackground(corFundo);
+		    jTextFielBairro.setFont(fontJTextField);
+		    jTextFielBairro.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+		    jTextFielBairro.setText("");
+		    jTextFielBairro.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jTextFielBairro.setMargin(new java.awt.Insets(0, 20, 0, 0));
+		    jTextFielBairro.setSize(240,40);
+		}
+		return jTextFielBairro;
+	}
+
+	public JTextField getjTextFielRua() {
+		
+		if(jTextFielRua == null){
+	
+			jTextFielRua = new JTextField();
+			jTextFielRua.setBackground(corFundo);
+		    jTextFielRua.setFont(fontJTextField);
+		    jTextFielRua.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+		    jTextFielRua.setText("");
+		    jTextFielRua.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jTextFielRua.setMargin(new java.awt.Insets(0, 20, 0, 0));
+		    jTextFielRua.setSize(240,40);
+		}
+		return jTextFielRua;
+	}
+
+	public JTextField getjTextFielNumero() {
+		
+		if(jTextFielNumero == null){
+	
+			jTextFielNumero = new JTextField();
+			jTextFielNumero.setBackground(corFundo);
+		    jTextFielNumero.setFont(fontJTextField);
+		    jTextFielNumero.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+		    jTextFielNumero.setText("");
+		    jTextFielNumero.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
+		    jTextFielNumero.setMargin(new java.awt.Insets(0, 20, 0, 0));
+		    jTextFielNumero.setSize(240,40);
+		}
+		return jTextFielNumero;
+	}
+	
+	
+	public JTextField getjTextFieldCPF() {
+		
+		if(jTextFieldCPF == null){
+	
+			jTextFieldCPF.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
+			jTextFieldCPF.setBackground(corFundo);
+			jTextFieldCPF.setFont(fontJTextField);
+			jTextFieldCPF.setHorizontalAlignment(SwingConstants.LEFT);
+			jTextFieldCPF.setPreferredSize(new Dimension(150, 31));
+		}
+		return jTextFieldCPF;
+	}
+	
+	// --------------Final tela cliente--------------
 	
 	// ### Fim   dos   gets   textfild   e   derivados ###
 	// ---------------------------------------------------
@@ -637,11 +942,11 @@ public class JPanelOS extends JPanel {
 		getjTextFieldMotor().setLocation(35, 143);
 		getjPanelDadosVeiculo().add(getjTextFieldMotor());
 		
-		getjTextFieldCombustivel().setLocation(330, 143);
-		getjPanelDadosVeiculo().add(getjTextFieldCombustivel());
+		getjComboBoxCombustivel().setLocation(330, 143);
+		getjPanelDadosVeiculo().add(getjComboBoxCombustivel());
 		
-		getjTextFieldAno().setLocation(35, 237);
-		getjPanelDadosVeiculo().add(getjTextFieldAno());
+		getjComboBoxAno().setLocation(35, 237);
+		getjPanelDadosVeiculo().add(getjComboBoxAno());
 		
 		getjTextFieldKm().setLocation(330, 237);
 		getjPanelDadosVeiculo().add(getjTextFieldKm());
@@ -664,6 +969,23 @@ public class JPanelOS extends JPanel {
 	// ### Final dos métodos de adição de componentes ###
 	// --------------------------------------------------
 	// ### Métodos              da             classe ###
+	
+	public void alteraJPanelTela(JPanel jPanelNorth, JPanel jPanelCenter) { // Método que faz os tratamentos nessessários
+		//		para trocar a tela do centro da classe
+		
+		if(telaAtualBusca != null) { 	// Se estiver na tela incial e for trocar para outra tela
+			//getjPanelOS().getjPanelCenterOS().remove(telaAtualBusca);
+			//getjPanelOS().getjPanelCenterOS().add(BorderLayout.NORTH, jPanelNorth);
+			getjPanelOS().getjPanelCenterOS().remove(getjPanelDadosVeiculo());
+			getjPanelOS().getjPanelCenterOS().add(BorderLayout.CENTER, getjPanelDadosCliente());
+			telaAtualBusca = jPanelNorth;
+			telaAtualDados = jPanelCenter;
+		}
+		
+		getjPanelOS().repaint();
+		getjPanelOS().validate();
+	}	
+	
 	
 	public String getStringTitulo() {
 		return stringTitulo;

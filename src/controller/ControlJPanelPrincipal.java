@@ -33,6 +33,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelOS jPanelOS;
+	private ControlJPanelOS controlJPanelOS;
 	
 	private Color corJButtonEntered = new Color(79,79,79);
 	
@@ -126,6 +127,13 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		return jPanelOS;
 	}	
 	
+	
+	public  ControlJPanelOS getControlJPanelOS() {
+		if(controlJPanelOS == null) {
+			controlJPanelOS = new ControlJPanelOS(getjFramePrincipal(), getjPanelOS());
+		}
+		return controlJPanelOS;
+	}
 	
 	
 	
@@ -337,6 +345,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
 		if(e.getSource() == getjPanelPrincipal().getjButtonGerarOS()) { // Qando o JButton jButtonGerarOS for clicado:
 			getjPanelPrincipal().alteraJPanelCentral(getjPanelOS(), null);
+			getControlJPanelOS();
 		}
 		
 		
