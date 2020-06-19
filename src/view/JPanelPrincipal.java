@@ -871,7 +871,7 @@ public class JPanelPrincipal extends JPanel {
 	
 	public void alteraJPanelCentral(JPanel jPanel, JScrollPane jScrollPane) { // Método que faz os tratamentos nessessários
 		//		para trocar a tela do centro da classe
-		
+		System.out.println("Mudou tela");
 		if(alteraJPanelCentral == null) { 	// Se estiver na tela incial e for trocar para outra tela
 			this.getjPanelCenterPrincipal().remove(getjPanelHome());
 		}else {									// Se estiver em uma tela qualquer e for outra tela

@@ -106,7 +106,7 @@ public class JPanelOS extends JPanel {
     private JLabel jLabelCidade;
     private JLabel jLabelBairro;
     private JLabel jLabelRua;
-    private JLabel jLabelNumero;
+    private JLabel jlabelNumeroRua;
     private JLabel jLabelVeiculoCliente;
     
     
@@ -150,8 +150,8 @@ public class JPanelOS extends JPanel {
 		
 		telaAtualBusca = getjPanelBuscarVeiculo();
 		
-		this.getjPanelDadosCliente();
-		this.getjPanelBuscarCliente();
+		this.addComponentesJPanelDadosCliente();
+		this.addComponentesJPanelBuscarCliente();
 		
 		this.getjPanelDadosVeiculo();
 		this.addComponentesJPanelDadosVeiculo();
@@ -342,10 +342,11 @@ public class JPanelOS extends JPanel {
 	public JLabel getjLabelNumCliente() {
 		
 		if(jLabelNumCliente == null){
+			jLabelNumCliente = new JLabel();
 			jLabelNumCliente.setFont(fontJLabel);
 			jLabelNumCliente.setForeground(foregroundClic);
-			jLabelNumCliente.setText("Ano");
-			jLabelNumCliente.setSize(170, 34);
+			jLabelNumCliente.setText("N\u00BA : ");
+			jLabelNumCliente.setPreferredSize(new Dimension(45, 34));
 	
 		}
 		return jLabelNumCliente;
@@ -358,8 +359,8 @@ public class JPanelOS extends JPanel {
 			jLabelCPF = new JLabel();
 			jLabelCPF.setFont(fontJLabel);
 			jLabelCPF.setForeground(foregroundClic);
-			jLabelCPF.setText("Ano");
-			jLabelCPF.setSize(170, 34);
+			jLabelCPF.setText("  CPF :");
+			jLabelCPF.setPreferredSize(new Dimension(73, 34));
 	
 		}
 		return jLabelCPF;
@@ -372,8 +373,8 @@ public class JPanelOS extends JPanel {
 			jLabelNomeCliente = new JLabel();
 			jLabelNomeCliente.setFont(fontJLabel);
 			jLabelNomeCliente.setForeground(foregroundClic);
-			jLabelNomeCliente.setText("Ano");
-			jLabelNomeCliente.setSize(170, 34);
+			jLabelNomeCliente.setText("  Nome :");
+			jLabelNomeCliente.setPreferredSize(new Dimension(88, 34));
 	
 		}
 		return jLabelNomeCliente;
@@ -386,7 +387,7 @@ public class JPanelOS extends JPanel {
 			jLabelEmail = new JLabel();
 			jLabelEmail.setFont(fontJLabel);
 			jLabelEmail.setForeground(foregroundClic);
-			jLabelEmail.setText("Ano");
+			jLabelEmail.setText("Email");
 			jLabelEmail.setSize(170, 34);
 	
 		}
@@ -400,7 +401,7 @@ public class JPanelOS extends JPanel {
 			jLabelTelefone = new JLabel();
 			jLabelTelefone.setFont(fontJLabel);
 			jLabelTelefone.setForeground(foregroundClic);
-			jLabelTelefone.setText("Ano");
+			jLabelTelefone.setText("Telefone");
 			jLabelTelefone.setSize(170, 34);
 	
 		}
@@ -414,7 +415,7 @@ public class JPanelOS extends JPanel {
 			jLabelCidade = new JLabel();
 			jLabelCidade.setFont(fontJLabel);
 			jLabelCidade.setForeground(foregroundClic);
-			jLabelCidade.setText("Ano");
+			jLabelCidade.setText("Cidade");
 			jLabelCidade.setSize(170, 34);
 	
 		}
@@ -428,7 +429,7 @@ public class JPanelOS extends JPanel {
 			jLabelBairro = new JLabel();
 			jLabelBairro.setFont(fontJLabel);
 			jLabelBairro.setForeground(foregroundClic);
-			jLabelBairro.setText("Ano");
+			jLabelBairro.setText("Bairro");
 			jLabelBairro.setSize(170, 34);
 	
 		}
@@ -442,12 +443,28 @@ public class JPanelOS extends JPanel {
 			jLabelRua = new JLabel();
 			jLabelRua.setFont(fontJLabel);
 			jLabelRua.setForeground(foregroundClic);
-			jLabelRua.setText("Ano");
+			jLabelRua.setText("Rua");
 			jLabelRua.setSize(170, 34);
 	
 		}
 		return jLabelRua;
 	}
+	
+	
+	public JLabel getjlabelNumeroRua() {
+		
+		if(jlabelNumeroRua == null){
+	
+			jlabelNumeroRua = new JLabel();
+			jlabelNumeroRua.setFont(fontJLabel);
+			jlabelNumeroRua.setForeground(foregroundClic);
+			jlabelNumeroRua.setText("N\u00BA Casa");
+			jlabelNumeroRua.setSize(170, 34);
+	
+		}
+		return jlabelNumeroRua;
+	}
+	
 
 	public JLabel getjLabelVeiculoCliente() {
 		
@@ -456,7 +473,7 @@ public class JPanelOS extends JPanel {
 			jLabelVeiculoCliente = new JLabel();
 			jLabelVeiculoCliente.setFont(fontJLabel);
 			jLabelVeiculoCliente.setForeground(foregroundClic);
-			jLabelVeiculoCliente.setText("Ano");
+			jLabelVeiculoCliente.setText("Motorista");
 			jLabelVeiculoCliente.setSize(170, 34);
 	
 		}
@@ -493,6 +510,7 @@ public class JPanelOS extends JPanel {
 		if(jPanelCenterOS == null){
 			jPanelCenterOS = new JPanel();
 			jPanelCenterOS.setLayout(new BorderLayout());
+			jPanelCenterOS.setPreferredSize(new Dimension(800, 70));
 		}
 		return jPanelCenterOS;
 	}	
@@ -540,11 +558,11 @@ public class JPanelOS extends JPanel {
 	public JPanel getjPanelBuscarCliente() {
 		if(jPanelBuscarCliente == null){
 			jPanelBuscarCliente = new JPanel();
-			jPanelBuscarVeiculo.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
-			jPanelBuscarVeiculo.setBackground(corFundo);
-	        jPanelBuscarVeiculo.setLayout(null);
-	        jPanelBuscarVeiculo.setPreferredSize(new Dimension(800,58));
-	        jPanelBuscarVeiculo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
+			jPanelBuscarCliente.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+			jPanelBuscarCliente.setBackground(corFundo);
+			jPanelBuscarCliente.setLayout(null);
+			jPanelBuscarCliente.setPreferredSize(new Dimension(800,58));
+			jPanelBuscarCliente.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
 		}
 		return jPanelBuscarCliente;
 	}
@@ -555,7 +573,7 @@ public class JPanelOS extends JPanel {
 			jPanelDadosCliente = new JPanel();
 			jPanelDadosCliente.setBackground(new Color(0, 0, 0, 0));
 			jPanelDadosCliente.setLayout(null);
-			jPanelDadosCliente.setPreferredSize(new Dimension(600, 300));
+			jPanelDadosCliente.setPreferredSize(new Dimension(600, 360));
 		}
 		return jPanelDadosCliente;
 	}
@@ -728,7 +746,8 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldNomeCliente() {
 		
 		if(jTextFieldNomeCliente == null){
-	
+
+			jTextFieldNomeCliente = new JTextField();
 			jTextFieldNomeCliente.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 			jTextFieldNomeCliente.setBackground(corFundo);
 			jTextFieldNomeCliente.setFont(fontJTextField);
@@ -818,7 +837,7 @@ public class JPanelOS extends JPanel {
 		return jTextFielRua;
 	}
 
-	public JTextField getjTextFielNumero() {
+	public JTextField getjTextFieldNumero() {
 		
 		if(jTextFielNumero == null){
 	
@@ -838,7 +857,8 @@ public class JPanelOS extends JPanel {
 	public JTextField getjTextFieldCPF() {
 		
 		if(jTextFieldCPF == null){
-	
+			
+			jTextFieldCPF = new JTextField();
 			jTextFieldCPF.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 			jTextFieldCPF.setBackground(corFundo);
 			jTextFieldCPF.setFont(fontJTextField);
@@ -854,15 +874,6 @@ public class JPanelOS extends JPanel {
 	// ---------------------------------------------------
 	// ### Inicio dos métodos de adição de componentes ###	
 	
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.setLayout(new BorderLayout());
-			panel.setPreferredSize(new Dimension( 800,90));
-			panel.add(BorderLayout.CENTER, new JButton());
-		}
-		return panel;
-	}
 	
 	public void addComponentesJPanelOS() {	
 		
@@ -884,7 +895,7 @@ public class JPanelOS extends JPanel {
 	
 	public void addComponentesJPanelCenterOS() {	
 		
-		getjPanelCenterOS().add(BorderLayout.NORTH, getjPanelBuscarVeiculo());
+		getjPanelCenterOS().add(BorderLayout.NORTH, getjPanelBuscarCliente());
 		
 		getjPanelCenterOS().add(BorderLayout.CENTER, getjPanelCenterCenter());
 		
@@ -893,7 +904,7 @@ public class JPanelOS extends JPanel {
 	
 	public void addComponentesJPanelCenterCenter() {	
 		
-		getjPanelCenterCenter().add(getjPanelDadosVeiculo());
+		getjPanelCenterCenter().add(getjPanelDadosCliente());
 		
 	}
 	
@@ -957,10 +968,60 @@ public class JPanelOS extends JPanel {
 	
 	public void addComponentesJPanelBuscarCliente() {
 		
+		getjPanelBuscarCliente().add(getjLabelNumCliente());
+		getjPanelBuscarCliente().add(getjTextFieldNumCliente());
+		
+		getjPanelBuscarCliente().add(getjLabelCPF());
+		getjPanelBuscarCliente().add(getjTextFieldCPF());
+
+		getjPanelBuscarCliente().add(getjLabelNomeCliente());
+		getjPanelBuscarCliente().add(getjTextFieldNomeCliente());
 	}
 	
 	
-	public void addComponentesJPanelBaseInformacaoCliente() {
+	public void addComponentesJPanelDadosCliente() {
+
+		getjLabelEmail().setLocation(35,15);
+		getjPanelDadosCliente().add(getjLabelEmail());
+		
+		getjLabelTelefone().setLocation(330, 15);
+		getjPanelDadosCliente().add(getjLabelTelefone());
+		
+		getjLabelCidade().setLocation(35, 109);
+		getjPanelDadosCliente().add(getjLabelCidade());
+		
+		getjLabelBairro().setLocation(330, 109);
+		getjPanelDadosCliente().add(getjLabelBairro());
+		
+		getjLabelRua().setLocation(35, 203);
+		getjPanelDadosCliente().add(getjLabelRua());
+		
+		getjlabelNumeroRua().setLocation(330, 203);
+		getjPanelDadosCliente().add(getjlabelNumeroRua());
+		
+		getjLabelVeiculoCliente().setLocation(35,281);
+		getjPanelDadosCliente().add(getjLabelVeiculoCliente());
+		
+		
+		getjTextFielEmail().setLocation(35,49);
+		getjPanelDadosCliente().add(getjTextFielEmail());
+		
+		getjTextFielTelefone().setLocation(330, 49);
+		getjPanelDadosCliente().add(getjTextFielTelefone());
+		
+		getjTextFielCidade().setLocation(35, 143);
+		getjPanelDadosCliente().add(getjTextFielCidade());
+		
+		getjTextFielBairro().setLocation(330, 143);
+		getjPanelDadosCliente().add(getjTextFielBairro());
+		
+		getjTextFielRua().setLocation(35, 237);
+		getjPanelDadosCliente().add(getjTextFielRua());
+		
+		getjTextFieldNumero().setLocation(330, 237);
+		getjPanelDadosCliente().add(getjTextFieldNumero());
+		
+		
 		
 	}
 
@@ -974,16 +1035,18 @@ public class JPanelOS extends JPanel {
 		//		para trocar a tela do centro da classe
 		
 		if(telaAtualBusca != null) { 	// Se estiver na tela incial e for trocar para outra tela
-			//getjPanelOS().getjPanelCenterOS().remove(telaAtualBusca);
-			//getjPanelOS().getjPanelCenterOS().add(BorderLayout.NORTH, jPanelNorth);
-			getjPanelOS().getjPanelCenterOS().remove(getjPanelDadosVeiculo());
-			getjPanelOS().getjPanelCenterOS().add(BorderLayout.CENTER, getjPanelDadosCliente());
+			getjPanelOS().getjPanelCenterOS().remove(telaAtualBusca);
+			getjPanelOS().getjPanelCenterOS().add(BorderLayout.NORTH, jPanelNorth);
+			getjPanelOS().getjPanelCenterCenter().remove(telaAtualDados);
+			getjPanelOS().getjPanelCenterCenter().add(jPanelCenter);
+			
 			telaAtualBusca = jPanelNorth;
 			telaAtualDados = jPanelCenter;
 		}
 		
-		getjPanelOS().repaint();
-		getjPanelOS().validate();
+		//getjPanelOS().getjPanelCenterCenter().repaint();
+		//getjPanelOS().getjPanelCenterCenter().validate();
+		
 	}	
 	
 	

@@ -130,7 +130,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	
 	public  ControlJPanelOS getControlJPanelOS() {
 		if(controlJPanelOS == null) {
-			controlJPanelOS = new ControlJPanelOS(getjFramePrincipal(), getjPanelOS());
+			controlJPanelOS = new ControlJPanelOS(getjFramePrincipal(), getjPanelOS(), getjPanelPrincipal());
 		}
 		return controlJPanelOS;
 	}
@@ -298,10 +298,11 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 			if(!isReset_Tamaho) { // quando o jButtonRedimenciona for clicado para restaurar tamanho
 				
 				getjPanelPrincipal().getjButtonRedimenciona().setIcon(new ImageIcon(JPanelPrincipal
-						.class.getResource("/icons/square_50.png")));
-				getjFramePrincipal().setSize(getjFramePrincipal().getMinimumSize());
-				getjFramePrincipal().setLocationRelativeTo(null);
+						.class.getResource("/icons/square_50.png"))); // Mudar icone do jbutton de Maximizar/Restaurar tamanho
+				
+				getjFramePrincipal().setLocationRelativeTo(null); // Setar a tela para ficar no meio
 				getjFramePrincipal().setExtendedState(JFrame.NORMAL);
+				reajustaFrame(getjPanelPrincipal().getjPanelWestPrincipal().getWidth());
 				isReset_Tamaho = true;
 				
 			}else { // quando o jButtonRedimenciona for clicado para maximizar tela
@@ -309,6 +310,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 				getjPanelPrincipal().getjButtonRedimenciona().setIcon(new ImageIcon(JPanelPrincipal
 						.class.getResource("/icons/rest_tamanho.png")));
 				getjFramePrincipal().setExtendedState(MAXIMIZED_BOTH);
+				reajustaFrame(getjPanelPrincipal().getjPanelWestPrincipal().getWidth());
 				isReset_Tamaho = false;
 			}
 		}
@@ -473,7 +475,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 
     private void reajustaFrame(int width_menuLateral) { // Metodo para reajustar os jpanel da classe JPanelPrincipal
     	getjFramePrincipal().repaint();
-    	getjFramePrincipal().invalidate();
+    	getjFramePrincipal().validate();
     	
     	int width = getjFramePrincipal().getWidth();
     	int height = getjFramePrincipal().getHeight();
@@ -485,8 +487,13 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		
     	telConf.iconRender(getjPanelPrincipal().getjLabelFundojPanelHome(), img); // seta imagem no tamanho da jLabel
     	
+    	getjPanelOS().repaint();
+		getjPanelOS().validate();
+		
 		getjPanelPrincipal().repaint();
 		getjPanelPrincipal().validate();
+		
+		
     }
     
     
