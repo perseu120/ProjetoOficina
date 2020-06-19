@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -47,22 +49,20 @@ public class JPanelUsuario extends JPanel {
 			jPanelFundo = new JPanel();
 			
 			GridBagLayout layout = new GridBagLayout();
-			GridBagConstraints configuracoesDoGrid = new GridBagConstraints();	
-			configuracoesDoGrid.gridx = 0;
-			configuracoesDoGrid.gridy = 0;
-			configuracoesDoGrid.ipadx = 300;
-			configuracoesDoGrid.ipady = 300;
+			GridBagConstraints configuracoesDoGrid = new GridBagConstraints();	//criando o containes para seta os componentes no gridbeg
+			configuracoesDoGrid.gridx = 0;//seta onde da tabela o componente vai fica posição x
+			configuracoesDoGrid.gridy = 0;//seta onde da tabela o componente vai fica posição y
+			configuracoesDoGrid.ipadx = 300;//comprimento da primeira grande do gridbag em pixel X
+			configuracoesDoGrid.ipady = 300;//comprimento da primeira grade do gridbag em pixel Y
 			
 			jPanelFundo.setLayout(layout);
-			jPanelFundo.add(getjPanelCentro(), configuracoesDoGrid);
+			jPanelFundo.add(getjPanelCentro(), configuracoesDoGrid);// adicionando o painel na primeira linha da grade
 			jPanelFundo.setBackground(Color.GRAY);
-			GridBagConstraints configuracoesDoGrid2 = new GridBagConstraints();	
 			
-			configuracoesDoGrid2.gridx= 0;
-			configuracoesDoGrid2.gridy = 1;
-			configuracoesDoGrid2.ipadx = 33;
-			configuracoesDoGrid2.ipady = 20;
-			configuracoesDoGrid2.anchor = GridBagConstraints.WEST;
+			GridBagConstraints configuracoesDoGrid2 = new GridBagConstraints();	//criando o segundo containe
+			configuracoesDoGrid2.gridx= 0; //seta onde da tabela o componente vai fica posição x
+			configuracoesDoGrid2.gridy = 1;//seta onde da tavela o componente vai fica posição y
+			configuracoesDoGrid2.anchor = GridBagConstraints.WEST; //posição de onde os componentes vao fica ancorado
 			jPanelFundo.add( getjPanelBotoes(), configuracoesDoGrid2 );
 			
 		}
@@ -75,8 +75,8 @@ public class JPanelUsuario extends JPanel {
 		if(jPanelCentro == null){
 			
 			jPanelCentro = new JPanel();
-			jPanelCentro.setLayout(new GridLayout(1,2));
 			jPanelCentro.setSize(300, 200);
+			jPanelCentro.setLayout(new GridLayout(1,2));
 			jPanelCentro.add(new JButton("Usuario cadastrado"));
 			jPanelCentro.add(new JButton("detalhes do usuario"));
 			
@@ -89,29 +89,16 @@ public class JPanelUsuario extends JPanel {
 		if(jPanelBotoes == null){
 	
 			jPanelBotoes = new JPanel();
-			jPanelBotoes.setLayout(new GridBagLayout());
-	
+			FlowLayout layoutFlow = new FlowLayout();
+			layoutFlow.setHgap(8);
+			layoutFlow.setVgap(5);
 			
-			GridBagConstraints configuracoesDoGridbotao1 = new GridBagConstraints();
-			configuracoesDoGridbotao1.gridx= 0;
-			configuracoesDoGridbotao1.gridy = 0;
-			configuracoesDoGridbotao1.insets = new Insets(5, 0, 0, 10);
-			
-			GridBagConstraints configuracoesDoGridbotao2 = new GridBagConstraints();
-			configuracoesDoGridbotao2.gridx= 2;
-			configuracoesDoGridbotao2.gridy = 0;		
-			configuracoesDoGridbotao2.insets = new Insets(5, 0, 0, 10);
-
-			
-			GridBagConstraints configuracoesDoGridbotao3 = new GridBagConstraints();
-			configuracoesDoGridbotao3.gridx= 1;
-			configuracoesDoGridbotao3.gridy = 0;	
-			configuracoesDoGridbotao3.insets = new Insets(5, 0, 0, 10);
+			jPanelBotoes.setLayout(layoutFlow);
 			
 			
-			jPanelBotoes.add(getjButtonAdicionar(), configuracoesDoGridbotao1);
-			jPanelBotoes.add(getjButtonEditar(), configuracoesDoGridbotao3);
-			jPanelBotoes.add(getjButtonRemover(), configuracoesDoGridbotao2);
+			jPanelBotoes.add(getjButtonAdicionar());
+			jPanelBotoes.add(getjButtonEditar());
+			jPanelBotoes.add(getjButtonRemover());
 			
 	
 		}
