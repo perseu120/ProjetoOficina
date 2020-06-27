@@ -1,0 +1,4 @@
+-JPanelConsultarClientes (BorderLayout)
+	-JPanelBarraPesquisa (FllowLayout) // Add parte north de JPanelconsultarClientes
+	-JPanelCentral (FllowLayout)
+		-JPanelListaCientes (null)
