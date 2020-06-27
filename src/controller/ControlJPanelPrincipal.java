@@ -4,6 +4,7 @@ import static java.awt.Frame.MAXIMIZED_BOTH;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -420,7 +421,7 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 	@Override
 	public void mouseMoved(MouseEvent e) { // Pega a posição do ponteiro do mouse quando tenta mover um componente
 		
-		xMouseTela = e.getX();
+		xMouseTela = e.getX() + 65; // Incremento de 65 para resover problema de calculo no momento de mover o o jpanel horizonalmento
 		yMouseTela = e.getY();
 		x = e.getXOnScreen();
 		y = e.getYOnScreen();
@@ -527,13 +528,18 @@ public class ControlJPanelPrincipal implements MouseListener, MouseMotionListene
 		}
 		
 		 getjPanelPrincipal().getjPanelCenterPrincipal().setBounds(panel.getWidth(), 0, getjFramePrincipal()
-					.getWidth() - panel.getWidth(), height); // Seta a posião e o tamanho do jPanelCenterPrincipal 
-		
-		   
+					.getWidth() - panel.getWidth(), height); // Seta a posião e o tamanho do jPanelCenterPrincipal 		   
 	   
+		/*getjPanelOS().getjPanelCenterOS().repaint();
+		getjPanelOS().getjPanelBuscarCliente().repaint();
+		getjPanelOS().getjPanelDadosCliente().repaint();*/
 		panel.repaint();
-		getjPanelPrincipal().getjPanelCenterPrincipal().repaint();
-		
+		getjPanelPrincipal().getjPanelCenterPrincipal().repaint();		
+
+		/*getjPanelOS().revalidate();
+		getjPanelOS().getjPanelCenterOS().validate();
+		getjPanelOS().getjPanelBuscarCliente().validate();
+		getjPanelOS().getjPanelDadosCliente().validate();*/
 		panel.validate();
 		getjPanelPrincipal().getjPanelCenterPrincipal().validate();
 		

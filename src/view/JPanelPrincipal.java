@@ -14,9 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle;
 import javax.swing.ImageIcon;
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -83,9 +81,8 @@ public class JPanelPrincipal extends JPanel {
 	private JPanel jPanelWestNorth;
 	private JPanel jPanelEastNorth;
 	
-	private JPanel jPanelDescricaoTela;
 	private JLabel jLabelNomeDaTela;
-	private JLabel lblNewLabel;
+	
 	// ### Fim dlecaração de variáveis ###
 	
 	public JPanelPrincipal() {		
@@ -164,7 +161,7 @@ public class JPanelPrincipal extends JPanel {
 			jPanelWestPrincipal = new JPanel();
 			jPanelWestPrincipal.setLayout(new BorderLayout());
 			jPanelWestPrincipal.setBackground(corDoJPanelUsuario);
-			jPanelWestPrincipal.setSize(85,800);; // Setado como zero para evitar conflitos com o layout BorderLayout
+			jPanelWestPrincipal.setSize(85,800); // Setado como 85 para evitar conflitos com o layout BorderLayout
 
 		}
 		return jPanelWestPrincipal;
@@ -189,7 +186,6 @@ public class JPanelPrincipal extends JPanel {
 			jScrollPaneButtonsWest.setBackground(corDoJPanelUsuario);
 			jScrollPaneButtonsWest.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 			jScrollPaneButtonsWest.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			//jScrollPaneButtonsWest.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_POLICY);
 			jScrollPaneButtonsWest.setViewportBorder(null);
 			jScrollPaneButtonsWest.setAutoscrolls(true);
 			jScrollPaneButtonsWest.setFocusCycleRoot(true);

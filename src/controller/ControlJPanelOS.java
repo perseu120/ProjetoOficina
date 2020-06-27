@@ -126,16 +126,17 @@ public JFramePrincipal getjFramePrincipal() {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == getjPanelOS().getjButtonVeiculo()) {
+
 			selecaoJButton(getjPanelOS().getjButtonVeiculo());
 			getjPanelOS().alteraJPanelTela(getjPanelOS().getjPanelBuscarVeiculo(), getjPanelOS().getjPanelDadosVeiculo());
-			getjJPanelPrincipal().alteraJPanelCentral(getjPanelOS());
+
 		}
 		
 			
 		if(e.getSource() == getjPanelOS().getjButtonCliente()) {
+
 			selecaoJButton(getjPanelOS().getjButtonCliente());
 			getjPanelOS().alteraJPanelTela(getjPanelOS().getjPanelBuscarCliente(), getjPanelOS().getjPanelDadosCliente());
-			getjJPanelPrincipal().alteraJPanelCentral(getjPanelOS());
 		}
 		
 		

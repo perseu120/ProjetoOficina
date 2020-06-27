@@ -5,50 +5,40 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import java.awt.GridLayout;
 import javax.swing.border.MatteBorder;
-import javax.swing.colorchooser.ColorSelectionModel;
-import javax.swing.plaf.ComboBoxUI;
-import javax.swing.plaf.basic.BasicComboBoxUI.ComboBoxLayoutManager;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
-import javafx.scene.effect.ColorInput;
-
-import java.awt.SystemColor;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import model.CoresPrograma;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListCellRenderer;
 
 
 public class JPanelOS extends JPanel {
 	
 	// ### Início de instânceamento de objetos ###
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	CoresPrograma CoresPrograma = new CoresPrograma();
 	
 	
 	// ### Início declaração de variáveis ###
 	
-	private Color corIntermediaria = CoresPrograma.getCorIntermediaria();  // cor de jpanel sobre a cor de fundo
+	//private Color corIntermediaria = CoresPrograma.getCorIntermediaria();  // cor de jpanel sobre a cor de fundo
 	private Color corEscura = CoresPrograma.getCorEscura(); // cor contida também na barra de menu superior
 	private Color corFundo = CoresPrograma.getCorFundo(); // cor de fundo dos jpanels
 	
@@ -138,13 +128,12 @@ public class JPanelOS extends JPanel {
 	// ### Inicio de criação de objetos ###
     
 	private ImageIcon iconTitulo = new ImageIcon(getClass().getResource(iconGerarOS));
-	private JLabel label;
-	private JLabel label_1;
-	private JPanel panel;
+	
 	
 	// ### Fim  da  criação  de objetos ###
 
 	public JPanelOS() {
+		setBackground(Color.RED);
 		
 		
 		
@@ -159,8 +148,8 @@ public class JPanelOS extends JPanel {
 		this.addComponentesJPanelCenterCenter();
 		this.getjPanelBuscarVeiculo();
 		this.addComponentesJPanelBuscarVeiculo();
-		this.getjPanelCenterOS();
-		this.addComponentesJPanelCenterOS();
+		//this.getjPanelCenterOS();
+		//this.addComponentesJPanelCenterOS();
 		this.getjPanelNorthOS();
 		this.addComponentesJPanelNorthOS();
 		this.getjPanelOS();
@@ -489,7 +478,7 @@ public class JPanelOS extends JPanel {
 	
 	public JPanelOS getjPanelOS() {
 		this.setLayout(new BorderLayout());
-		this.setPreferredSize(new Dimension(800, 500));
+		//this.setPreferredSize(new Dimension(800, 500));
 		return this;
 	}
 
@@ -505,15 +494,16 @@ public class JPanelOS extends JPanel {
 		return jPanelNorthOS;
 	}
 	
+	// Método desnecessária
 
-	public JPanel getjPanelCenterOS() {
+	/*public JPanel getjPanelCenterOS() {
 		if(jPanelCenterOS == null){
 			jPanelCenterOS = new JPanel();
 			jPanelCenterOS.setLayout(new BorderLayout());
-			jPanelCenterOS.setPreferredSize(new Dimension(800, 70));
+			//jPanelCenterOS.setPreferredSize(new Dimension(800, 70));
 		}
 		return jPanelCenterOS;
-	}	
+	}	*/
 	
 	
 	public JPanel getjPanelCenterCenter() {
@@ -688,7 +678,7 @@ public class JPanelOS extends JPanel {
 		if(jComboBoxCombustivel == null){
 			UIManager.put("ComboBox.selectionBackground", corFundo);
 			jComboBoxCombustivel = new JComboBox<String>();
-			jComboBoxCombustivel.setModel(new DefaultComboBoxModel(new String[] {"Selecione opção", "Diesel", "Flex", "Gasolina", "GLP", "TetaFuel"}));
+			jComboBoxCombustivel.setModel(new DefaultComboBoxModel<String>(new String[] {"Selecione opção", "Diesel", "Flex", "Gasolina", "GLP", "TetaFuel"}));
 			jComboBoxCombustivel.setOpaque(false);
 		    jComboBoxCombustivel.setFont(fontJTextField);
 		    jComboBoxCombustivel.setBorder(new javax.swing.border.LineBorder(new Color(0,0,0), 3, true));
@@ -879,8 +869,12 @@ public class JPanelOS extends JPanel {
 		
 		this.add(BorderLayout.NORTH, getjPanelNorthOS());
 		
-		this.add(BorderLayout.CENTER, getjPanelCenterOS());
+		this.add(BorderLayout.CENTER, getjPanelBuscarVeiculo());
 		
+		this.add(BorderLayout.SOUTH, getjPanelDadosVeiculo());
+		
+		//this.add(BorderLayout.CENTER, getjPanelCenterOS()); Metodo desnecessário
+		 
 	}
 	
 	
@@ -893,18 +887,18 @@ public class JPanelOS extends JPanel {
 	}
 	
 	
-	public void addComponentesJPanelCenterOS() {	
+	/*public void addComponentesJPanelCenterOS() {	
 		
-		getjPanelCenterOS().add(BorderLayout.NORTH, getjPanelBuscarCliente());
+		getjPanelCenterOS().add(BorderLayout.NORTH, getjPanelBuscarVeiculo());
 		
 		getjPanelCenterOS().add(BorderLayout.CENTER, getjPanelCenterCenter());
 		
-	}
+	}*/
 	
 	
 	public void addComponentesJPanelCenterCenter() {	
 		
-		getjPanelCenterCenter().add(getjPanelDadosCliente());
+		getjPanelCenterCenter().add(getjPanelDadosVeiculo());
 		
 	}
 	
@@ -1035,18 +1029,26 @@ public class JPanelOS extends JPanel {
 		//		para trocar a tela do centro da classe
 		
 		if(telaAtualBusca != null) { 	// Se estiver na tela incial e for trocar para outra tela
-			getjPanelOS().getjPanelCenterOS().remove(telaAtualBusca);
-			getjPanelOS().getjPanelCenterOS().add(BorderLayout.NORTH, jPanelNorth);
-			getjPanelOS().getjPanelCenterCenter().remove(telaAtualDados);
-			getjPanelOS().getjPanelCenterCenter().add(jPanelCenter);
+			
+			this.remove(telaAtualBusca);
+			this.add(BorderLayout.CENTER, jPanelNorth);
+			this.remove(telaAtualDados);
+			this.add(BorderLayout.SOUTH, jPanelCenter);
 			
 			telaAtualBusca = jPanelNorth;
 			telaAtualDados = jPanelCenter;
 		}
 		
-		//getjPanelOS().getjPanelCenterCenter().repaint();
-		//getjPanelOS().getjPanelCenterCenter().validate();
+		this.repaint();
+		this.validate();
+		getjPanelOS().repaint();
+		getjPanelOS().validate();
+		/*this.getjPanelNorthOS().repaint();
+		this.getjPanelNorthOS().validate();
+		this.getjPanelCenterOS().repaint();
+		this.getjPanelCenterOS().validate();*/
 		
+		System.out.println("Foi alterado a tela os");
 	}	
 	
 	
@@ -1059,17 +1061,15 @@ public class JPanelOS extends JPanel {
 	}
 	
 	// ### Final dos métodos da classe ###
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("");
+	private JPanel jPanel1;
+	
+	public JPanel getjPanel1() {
+		if(jPanel1 == null) {
+			jPanel1 = new JPanel();
+			jPanel1.setVisible(true);
+			jPanel1.setBackground(Color.BLUE);
 		}
-		return label;
-	}
-	private JLabel getLabel_1() {
-		if (label_1 == null) {
-			label_1 = new JLabel("");
-		}
-		return label_1;
+		return jPanel1;
 	}
 	
 }
