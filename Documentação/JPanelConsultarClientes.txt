@@ -2,3 +2,10 @@
 	-JPanelBarraPesquisa (FllowLayout) // Add parte north de JPanelconsultarClientes
 	-JPanelCentral (FllowLayout)
 		-JPanelListaCientes (null)
+
+-JPanelBarraPesquisa
+	-jButtonPesquisa
+	-jButtonFiltro
+
+-JPanelListaClientes
+ 	-jPanelNome

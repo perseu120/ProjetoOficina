@@ -17,7 +17,7 @@ public class ControlMain {
 		
 		try {
 	      	for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-	        	if ("Windows".equals(info.getName())) { // Define designer dos componentes ("Windows","Windows Classic","Nimbus","Metal","CDE/Motif")
+	        	if ("Nimbus".equals(info.getName())) { // Define designer dos componentes ("Windows","Windows Classic","Nimbus","Metal","CDE/Motif")
 	            	UIManager.setLookAndFeel(info.getClassName());
 	                break;
 	            }

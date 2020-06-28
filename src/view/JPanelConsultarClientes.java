@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
@@ -18,6 +19,8 @@ import javax.swing.table.TableModel;
 import model.CoresPrograma;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
 
 public class JPanelConsultarClientes extends JPanel{
 
@@ -26,7 +29,9 @@ public class JPanelConsultarClientes extends JPanel{
 	private JPanel jPanelBarraPesquisa; //Contem os JButtons de pesquisa e filtro
 	private JPanel jPanelCentral; //JPanel utilizado para a resposividade da classe
 	private JPanel jPanelListaClientes; //Contem a JTable e jPanel de dados do cliente
-	private JPanel jPanelDadosCiente; //ira exibir os dados dos clientes
+	private JPanel jPanelDadosClientes; //ira exibir os dados dos clientes
+	
+	private JScrollPane jScrollPane; //Panel ecenssial para funiconamento da jTableLista
 	
 	private JTable jTableListaClientes;
 	
@@ -47,7 +52,15 @@ public class JPanelConsultarClientes extends JPanel{
     private JLabel jLabelRua;
     private JLabel jlabelNumeroRua;
 
+	private String[] tituloJTable = {"   Nº   ", "  Nome  ", "  CPF  "}; // titulo das colunas da jTableLista
 	
+	private Object[][] dadosJTable = {
+			
+			{"001", "Josimar", "54865232425"},	
+			{"002", "Paulo Uilian", "58413654225"},
+			{"003", "Gustavo", "45321569825"} 
+			
+	}; // Dados inicial da jTableLista
 	    
 	    
 	    
@@ -67,7 +80,7 @@ public class JPanelConsultarClientes extends JPanel{
     // ------------------------------------
 	
 	public JPanelConsultarClientes() {
-
+		getjPanelListaClientes();
 		addComponentesJPanelListaClientes();
 		addComponentesJPanelCentral();
 		getjJPanelConsultarClientes();
@@ -100,10 +113,8 @@ public class JPanelConsultarClientes extends JPanel{
 		
 		if(jPanelCentral == null){
 	
-			jPanelCentral = new JPanel();
-			jPanelBarraPesquisa.setLayout(new FlowLayout());
-			jPanelBarraPesquisa.setVisible(true);
-			jPanelBarraPesquisa.setBackground(corFundo);
+			jPanelCentral = new JPanel();			
+			jPanelCentral.setLayout(new FlowLayout());
 		}
 		return jPanelCentral;
 	}
@@ -112,52 +123,45 @@ public class JPanelConsultarClientes extends JPanel{
 		if(jPanelListaClientes == null){
 	
 			jPanelListaClientes = new JPanel();
-			jPanelListaClientes.setBounds(100, 5, 250, 162);
-			jPanelBarraPesquisa.setLayout(null);
-			jPanelBarraPesquisa.setPreferredSize(new Dimension(400,550));
-			jPanelBarraPesquisa.setSize(400,400);
-			jPanelBarraPesquisa.setVisible(true);
-			jPanelBarraPesquisa.setBackground(corEscura);
+			jPanelListaClientes.setLayout(null);
+			jPanelListaClientes.setPreferredSize(new Dimension(400, 200));
+			
 		}
 		return jPanelListaClientes;
 	}
 	public JPanel getjPanelDadosCiente() {
 		
-		if(jPanelDadosCiente == null){
+		if(jPanelDadosClientes == null){
 	
-			jPanelDadosCiente = new JPanel();
-			jPanelDadosCiente.setBounds(235, 32, 10, 10);
-			jPanelBarraPesquisa.setLayout(null);
-			jPanelBarraPesquisa.setPreferredSize(new Dimension(100,200));
-			jPanelBarraPesquisa.setVisible(true);
-			jPanelBarraPesquisa.setBackground(corFundo);
-	
+			jPanelDadosClientes = new JPanel();
+			jPanelDadosClientes.setBounds(273, 42, 100, 129);
+				
 		}
-		return jPanelDadosCiente;
+		return jPanelDadosClientes;
 	}
 	
 	
 	public JTable getjTableListaClientes() {
 		if(jTableListaClientes == null) {
 			
-			jTableListaClientes = new JTable();
-			jTableListaClientes.setForeground(Color.MAGENTA);
+			jTableListaClientes = new JTable(dadosJTable, tituloJTable);
 			jTableListaClientes.setBackground(Color.YELLOW);
-			jTableListaClientes.setBounds(12, 32, 225, 96);
-			jTableListaClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jTableListaClientes.setModel(new DefaultTableModel(
-				new Object[][] {
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-				},
-				new String[] {
-					"   N\u00BA   ", "   Nome   ", "   CPF   "
-				}
-			));
+			jTableListaClientes.setVisible(true);
+			jTableListaClientes.getPreferredScrollableViewportSize();
+			
 		}
 		return jTableListaClientes;
+	}
+	
+	
+	public JScrollPane getjScrollPane() {
+		if(jScrollPane == null) {
+			jScrollPane = new JScrollPane(getjTableListaClientes());
+			jScrollPane.setBounds(12, 42, 225, 129);
+			jScrollPane.setVisible(true);
+		}
+		
+		return jScrollPane;
 	}
 	
     // ### Final da criação dos jPanels e jTalbles ###
@@ -341,15 +345,14 @@ public class JPanelConsultarClientes extends JPanel{
 	
 	
 	private void addComponentesJPanelCentral() {
-		getjPanelCentral().setLayout(null);
+		
 		getjPanelCentral().add(getjPanelListaClientes());
 	}
 	
 	private void addComponentesJPanelListaClientes() {
-		getjPanelListaClientes().setLayout(null);
 		
-		getjPanelListaClientes().add(getjTableListaClientes());
-		getjPanelListaClientes().add(getjPanelDadosCiente());
+		getjPanelListaClientes().add(BorderLayout.WEST, getjScrollPane());
+		getjPanelListaClientes().add(BorderLayout.EAST, getjPanelDadosCiente());
 	}
 	// ### Final dos métodos de adição de componentes ###
 
