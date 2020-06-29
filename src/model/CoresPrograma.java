@@ -4,13 +4,13 @@ import java.awt.Color;
 
 public class CoresPrograma {
 
-	private Color corFundo; // cor de fundo dos jpanels
+	private Color corFundo;         // cor de fundo dos jpanels
 	private Color corIntermediaria; // cor de jpanel sobre a cor de fundo
-	private Color corEscura; // cor contida também na barra de menu superior
-	private Color corBorda; // cor das bordas dos componentes
-	private Color foreground; // foregroudo dos jbuttons
-	private Color foregroundClic; // foregroud de jbutton quando clicado ou ganhado foco
-	private Color foregroundText; // foregroud de jTextfilde e similares.
+	private Color corEscura;        // cor contida também na barra de menu superior
+	private Color corBorda;         // cor das bordas dos componentes
+	private Color foreground;       // foregroudo dos jbuttons
+	private Color foregroundClic;   // foregroud de jbutton quando clicado ou ganhado foco
+	private Color foregroundText;   // foregroud de jTextfilde e similares.
 	
 	public CoresPrograma() {
 		

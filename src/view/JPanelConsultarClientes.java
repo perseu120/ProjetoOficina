@@ -8,26 +8,23 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.TableModel;
+import javax.swing.SwingConstants;
 
 import model.CoresPrograma;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 public class JPanelConsultarClientes extends JPanel{
 
 	// ### Início declaração de variáveis ###
 	
 	private JPanel jPanelBarraPesquisa; //Contem os JButtons de pesquisa e filtro
-	private JPanel jPanelCentral; //JPanel utilizado para a resposividade da classe
+	private JPanel jPanelCentral;       //JPanel utilizado para a resposividade da classe
 	private JPanel jPanelListaClientes; //Contem a JTable e jPanel de dados do cliente
 	private JPanel jPanelDadosClientes; //ira exibir os dados dos clientes
 	
@@ -36,10 +33,13 @@ public class JPanelConsultarClientes extends JPanel{
 	private JTable jTableListaClientes;
 	
 	private JButton jButtonPesquisa; //Realizar pesquisa pelo nome do cliente
-	private JButton jButtonFiltro; //adicionar filtros a tabela
-	private JButton jButtonEditar; //Editar dados do cliente
-	private JButton jButtonSalvar; //Salvar alteração nos dados do cliente
+	private JButton jButtonFiltro;   //adicionar filtros a tabela
+	private JButton jButtonEditar;   //Editar dados do cliente
+	private JButton jButtonSalvar;   //Salvar alteração nos dados do cliente
 	private JButton jButtonCancelar; //Cancela alterações;
+	
+	private JTextField jTextFieldPesquisa;
+	private JTextField jTextFieldFiltro;
 	
 	private JLabel jLabelLista;
 	private JLabel jLabelDados;
@@ -71,15 +71,24 @@ public class JPanelConsultarClientes extends JPanel{
     CoresPrograma CoresPrograma = new CoresPrograma();
     
     private Color corEscura = CoresPrograma.getCorEscura(); // cor contida também na barra de menu superior
-	private Color corFundo = CoresPrograma.getCorFundo(); // cor de fundo dos jpanels
+	private Color corFundo = CoresPrograma.getCorFundo();   // cor de fundo dos jpanels
 	
-	private Color foreground = CoresPrograma.getForeground(); // foregroudo dos jbuttons
+	private Color foreground = CoresPrograma.getForeground();         // foregroudo dos jbuttons
 	private Color foregroundClic = CoresPrograma.getForegroundClic(); // foregroud de jbutton quando clicado ou ganhado foco
+	
+	private Font fontJButton = new Font("Arial",1,20);      // Fonte dos jButons da classe
+	private Font fontJTextField = new Font("Arial", 1, 24); // Fonte dos jTextField da classe
+    private Font fontJLabel = new Font("Arial", 1, 20);     // Font dos jLabel da classe
+    
+    private ImageIcon iConFilterBlue = new ImageIcon(getClass().getResource("/icons/filter_48.png"));
+    private ImageIcon iConSearchUserBlue = new ImageIcon(getClass().getResource("/icons/search_user_48.png"));
 		
 	// ### Fim  da  criação  de objetos ###
     // ------------------------------------
 	
 	public JPanelConsultarClientes() {
+		
+		addComponentesJpanelBarraPesquisa();
 		getjPanelListaClientes();
 		addComponentesJPanelListaClientes();
 		addComponentesJPanelCentral();
@@ -92,49 +101,68 @@ public class JPanelConsultarClientes extends JPanel{
 	public JPanel getjJPanelConsultarClientes() {
 		
 		this.setLayout(new BorderLayout());
+		this.setBackground(corFundo);
+		this.setPreferredSize(new Dimension(650, 450));
 		
 		return this;
 	}
 
+	
 	public JPanel getjPanelBarraPesquisa() {
 		
 		if(jPanelBarraPesquisa == null){
 	
 			jPanelBarraPesquisa = new JPanel();
-			jPanelBarraPesquisa.setLayout(new FlowLayout());
-			jPanelBarraPesquisa.setPreferredSize(new Dimension(100,100));
-			jPanelBarraPesquisa.setVisible(true);
+			FlowLayout fl_jPanelBarraPesquisa = new FlowLayout();
+			fl_jPanelBarraPesquisa.setVgap(10);
+			fl_jPanelBarraPesquisa.setHgap(20);
+			fl_jPanelBarraPesquisa.setAlignment(FlowLayout.LEFT);
+			jPanelBarraPesquisa.setLayout(fl_jPanelBarraPesquisa);
+			jPanelBarraPesquisa.setPreferredSize(new Dimension(100, 70));
 			jPanelBarraPesquisa.setBackground(corEscura);
+			jPanelBarraPesquisa.setVisible(true);
 	
 		}
 		return jPanelBarraPesquisa;
 	}
+	
+	
 	public JPanel getjPanelCentral() {
 		
 		if(jPanelCentral == null){
 	
 			jPanelCentral = new JPanel();			
-			jPanelCentral.setLayout(new FlowLayout());
+			FlowLayout fl_jPanelCentral = new FlowLayout();
+			fl_jPanelCentral.setVgap(0);
+			fl_jPanelCentral.setHgap(0);
+			jPanelCentral.setLayout(fl_jPanelCentral);
+			jPanelCentral.setOpaque(false);
 		}
 		return jPanelCentral;
 	}
+	
+	
 	public JPanel getjPanelListaClientes() {
 		
 		if(jPanelListaClientes == null){
 	
 			jPanelListaClientes = new JPanel();
 			jPanelListaClientes.setLayout(null);
-			jPanelListaClientes.setPreferredSize(new Dimension(400, 200));
+			jPanelListaClientes.setPreferredSize(new Dimension(650, 300));
+			jPanelListaClientes.setOpaque(false);
 			
 		}
 		return jPanelListaClientes;
 	}
+	
+	
 	public JPanel getjPanelDadosCiente() {
 		
 		if(jPanelDadosClientes == null){
 	
 			jPanelDadosClientes = new JPanel();
-			jPanelDadosClientes.setBounds(273, 42, 100, 129);
+			jPanelDadosClientes.setBounds(400, 35, 227, 250);
+			jPanelDadosClientes.setBackground(corEscura);
 				
 		}
 		return jPanelDadosClientes;
@@ -145,7 +173,8 @@ public class JPanelConsultarClientes extends JPanel{
 		if(jTableListaClientes == null) {
 			
 			jTableListaClientes = new JTable(dadosJTable, tituloJTable);
-			jTableListaClientes.setBackground(Color.YELLOW);
+			jTableListaClientes.setFont(new Font("Arial", Font.PLAIN, 18));
+			jTableListaClientes.setBackground(Color.LIGHT_GRAY);
 			jTableListaClientes.setVisible(true);
 			jTableListaClientes.getPreferredScrollableViewportSize();
 			
@@ -157,7 +186,10 @@ public class JPanelConsultarClientes extends JPanel{
 	public JScrollPane getjScrollPane() {
 		if(jScrollPane == null) {
 			jScrollPane = new JScrollPane(getjTableListaClientes());
-			jScrollPane.setBounds(12, 42, 225, 129);
+			jScrollPane.setFont(new Font("Arial", Font.BOLD, 18));
+			jScrollPane.setBackground(corFundo);
+			jScrollPane.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+			jScrollPane.setBounds(20, 35, 360, 250);
 			jScrollPane.setVisible(true);
 		}
 		
@@ -173,6 +205,14 @@ public class JPanelConsultarClientes extends JPanel{
 		if(jButtonPesquisa == null){
 	
 			jButtonPesquisa = new JButton();
+			jButtonPesquisa.setBackground(corEscura);
+	        jButtonPesquisa.setFont(fontJButton);
+	        jButtonPesquisa.setForeground(foreground);
+	        jButtonPesquisa.setContentAreaFilled(false);
+	        jButtonPesquisa.setPreferredSize(new Dimension(100,58));
+	        jButtonPesquisa.setIcon(iConSearchUserBlue);
+	        jButtonPesquisa.setOpaque(true);
+	        jButtonPesquisa.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 	
 		}
 		return jButtonPesquisa;
@@ -184,7 +224,14 @@ public class JPanelConsultarClientes extends JPanel{
 		if(jButtonFiltro == null){
 	
 			jButtonFiltro = new JButton();
-	
+			jButtonFiltro.setBackground(corEscura);
+	        jButtonFiltro.setFont(fontJButton);
+	        jButtonFiltro.setForeground(foreground);
+	        jButtonFiltro.setContentAreaFilled(false);
+	        jButtonFiltro.setPreferredSize(new Dimension(100,58));
+	        jButtonFiltro.setIcon(iConFilterBlue);
+	        jButtonFiltro.setOpaque(true);
+	        jButtonFiltro.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 		}
 		return jButtonFiltro;
 	}
@@ -334,7 +381,55 @@ public class JPanelConsultarClientes extends JPanel{
 	}
     // ### Final     dos     gets     dos      jLabels ###
     // ---------------------------------------------------
+	// ### Início    dos    gets    dos    jTextFields ###
+	
+	public JTextField getjTextFieldPesquisa() {
+		
+		if(jTextFieldPesquisa == null){
+	
+			jTextFieldPesquisa = new JTextField();
+			jTextFieldPesquisa.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
+			jTextFieldPesquisa.setBackground(corFundo);
+	        jTextFieldPesquisa.setFont(fontJTextField);
+	        jTextFieldPesquisa.setHorizontalAlignment(SwingConstants.LEFT);
+	        jTextFieldPesquisa.setPreferredSize(new Dimension(180, 31));
+	        jTextFieldPesquisa.setOpaque(false);
+	        jTextFieldPesquisa.setVisible(false);
+		}
+		return jTextFieldPesquisa;
+	}
+
+	
+	public JTextField getjTextFieldFiltro() {
+		
+		if(jTextFieldFiltro == null){
+	
+			jTextFieldFiltro = new JTextField();
+			jTextFieldFiltro.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
+			jTextFieldFiltro.setBackground(corFundo);
+	        jTextFieldFiltro.setFont(fontJTextField);
+	        jTextFieldFiltro.setHorizontalAlignment(SwingConstants.LEFT);
+	        jTextFieldFiltro.setPreferredSize(new Dimension(180, 31));
+	        jTextFieldFiltro.setOpaque(false);
+	        jTextFieldFiltro.setVisible(false);
+	
+		}
+		return jTextFieldFiltro;
+	}
+
+	
+	
+	// ### Final     dos    gets    dos    jTextFields ###
+	// ---------------------------------------------------
 	// ### Início dos métodos de adição de componentes ###
+	
+	private void addComponentesJpanelBarraPesquisa() {
+		getjPanelBarraPesquisa().add(getjButtonPesquisa());
+		getjPanelBarraPesquisa().add(getjTextFieldPesquisa());
+		getjPanelBarraPesquisa().add(getjButtonFiltro());
+		getjPanelBarraPesquisa().add(getjTextFieldFiltro());
+	}
+	
 	
 	private void addComponetesJPanelConsultarClientes() {
 		
@@ -353,7 +448,8 @@ public class JPanelConsultarClientes extends JPanel{
 		
 		getjPanelListaClientes().add(BorderLayout.WEST, getjScrollPane());
 		getjPanelListaClientes().add(BorderLayout.EAST, getjPanelDadosCiente());
-	}
+	} 
+	
 	// ### Final dos métodos de adição de componentes ###
 
 }
